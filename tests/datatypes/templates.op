@@ -1,0 +1,24 @@
+-- create template
+(template example (x y)
+    (init (update x 4))
+    (var z 2)
+    (func add () (+ x y))
+    (func mult (a b) (* a b))
+    (func div (a b) (/ a b)))
+
+(template counter (n)
+    (func show () (show n))
+    (func inc () (update n (+ n 1))))
+
+-- bind new instance
+(set e (new example (1 2)))
+
+-- call template methods
+(== 6 (e mult (2 3)))
+(== 6 (e add))
+
+-- bind second instance
+(set c (new counter (0)))
+
+-- call second instance method
+(c inc)

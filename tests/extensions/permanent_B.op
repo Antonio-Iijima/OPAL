@@ -1,0 +1,3 @@
+-- NOTE: also tests NameError when not run with -p
+
+(delex permanent)

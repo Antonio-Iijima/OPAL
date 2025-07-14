@@ -1,0 +1,21 @@
+dev.info
+
+dev.closures
+
+dev.globals
+
+dev.imports
+
+dev.env
+
+(def ctr (n) (lambda () (do ((update n (++ n))) n)))
+
+dev.closures
+
+(global x 1)
+
+dev.globals
+
+(import math as m)
+
+dev.imports

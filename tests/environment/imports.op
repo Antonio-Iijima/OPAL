@@ -1,0 +1,11 @@
+(import math)
+
+(math.pi)
+
+math
+
+(import math as m)
+
+(m.pi)
+
+m

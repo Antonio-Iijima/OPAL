@@ -1,0 +1,14 @@
+-- create function
+(def f (x) (+ x 1))
+
+-- create lambda function
+(set l (lambda (x) (+ x 1)))
+
+-- call function
+(f 1)
+
+-- call bound lambda function
+(l 1)
+
+-- call unbound lambda function
+((lambda (x) (++ x)) 3)

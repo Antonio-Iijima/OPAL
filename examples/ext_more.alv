@@ -1,0 +1,13 @@
+@start
+
+#INCLUDE generate_factorials as gen_fact
+
+def factorial(n: int) -> int:
+    """Return the factorial of n"""
+    return 1 if n <= 1 else n * factorial(n-1)
+    
+def generate_factorials(n: int) -> int:
+    return [ factorial(i) for i in range(n) ]
+
+
+@end

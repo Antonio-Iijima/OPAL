@@ -1,0 +1,9 @@
+(def counter (n)
+    (lambda () (do ((update n (+ n 1))) n)))
+
+(set c (counter 0))
+(c)
+(c)
+c
+
+dev.closures

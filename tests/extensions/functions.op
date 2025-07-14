@@ -1,0 +1,8 @@
+-- test loop
+
+(def ctr (n) 
+  (lambda () (do ((update n (+ n 1))) n)))
+
+(set c (ctr 0))
+
+(loop for i in range 0 10  1 (show (c)))

@@ -1,0 +1,23 @@
+(def add (a b) (+ a b))
+(def multiply (a b) (* a b))
+
+
+(def curry (fun) 
+  (lambda (x)
+    (lambda (y) (fun x y))))
+
+
+(def compose (a b) (lambda (x) (a (b x))))
+
+
+(set add3 ((curry add) 3))
+(set double ((curry multiply) 2))
+
+(set double_added3 (compose double add3))
+(set add3_to_doubled (compose add3 double))
+
+(double_added3 2)
+-- output: 10
+
+(add3_to_doubled 2)
+-- output: 7

@@ -1,0 +1,6 @@
+(def f (a b) (+ a b))
+
+(def g (fun x) 
+  (do ((set y 2))
+    (fun x y)))
+    

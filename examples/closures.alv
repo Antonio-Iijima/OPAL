@@ -1,0 +1,12 @@
+-- first version
+(def counter (n) 
+  (do 
+    ((def inc () 
+      (do 
+        ((update n (+ n 1)))
+        n)))
+    inc))
+
+-- alternative using lambda function
+(def ctr (n) 
+  (lambda () (do ((update n (+ n 1))) n)))

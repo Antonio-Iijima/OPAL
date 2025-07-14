@@ -1,0 +1,19 @@
+(null? '(1 2))
+(null? ())
+
+
+(atom? '1)
+(atom? ())
+
+(number? 1)
+(number? ())
+
+(bool? #t)
+(bool? #f)
+(bool? ())
+
+(string? 'hello)
+(string? ())
+
+(list? 'hello)
+(list? ())
