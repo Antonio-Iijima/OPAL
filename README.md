@@ -1,1 +1,1 @@
-# opal
+# OPAL (Omni-Paradigm Language)
