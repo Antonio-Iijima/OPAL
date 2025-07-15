@@ -1,0 +1,5 @@
+(def mult (a b) (cond ((eq a 1) b) (else (+ b (mult (- a 1) b)))))
+
+(def factorial (n) (cond ((<= n 1) 1) (else (* n (factorial (- n 1))))))
+
+(def length (l) (cond ((null? l) 0) (else (+ 1 (length (cdr l))))))
