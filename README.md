@@ -1,4 +1,4 @@
-<img src=https://github.com/Antonio-Iijima/OPAL/blob/main/logo.png width=75%>
+<p align=center><img src=https://github.com/Antonio-Iijima/OPAL/blob/main/logo.png width=75%></p>
 
 OPAL (Omni-Paradigm Programming Language) seeks to unify multiple diverse programming paradigms through a consistent syntax and intuitive semantics.
 
