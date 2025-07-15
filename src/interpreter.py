@@ -168,10 +168,9 @@ https://github.com/Antonio-Iijima/OPAL
             f"EXTENSIONS ({len(cf.config.EXTENSIONS)})"   : sorted(cf.config.EXTENSIONS)
             }
 
-        # Calculate the required character limit of each word
+        # Calculate the character limit of each word with padding
         offset = max(len(key) for key in cf.config.KEYWORDS) + 2
 
-        # Iterate through each category
         for section_idx, section_title in enumerate(categories):
 
             # Add spacing between categories
@@ -242,37 +241,24 @@ https://github.com/Antonio-Iijima/OPAL
         # Segment code into list of strings by individual extension
         include, *exclude = code.removeprefix("@start").removesuffix("@end").strip().split("#EXCLUDE")
         
-        # Remove leading empty string
-        ext_list = include.split("#INCLUDE ")[1:]
+        ext_list = include.split("#INCLUDE ")[1:] # remove leading empty string
 
-        # Add individual extensions
         for extension in ext_list:
-
-            # Separate <name> as <alias>
             name, alias = extension[:extension.find("\n")].split(" as ")
 
             if writable:
                 
                 extension = f"#INCLUDE {extension}\n\n\n"    
                 
-                # Get the current contents of the extensions.py file
                 contents = open(f"{cf.config.PATH}/src/extensions.py").read()
 
-                with open(f"{cf.config.PATH}/src/extensions.py", "w") as file: 
-                    file.writelines(extension + contents)
-                    
-                # Reload extension file to show changes
+                with open(f"{cf.config.PATH}/src/extensions.py", "w") as file: file.writelines(extension + contents)
                 importlib.reload(ext)
 
             index = 0 if writable else len(cf.config.EXTENSION_LOG)
 
-            # Add entry to log
             cf.config.EXTENSION_LOG.insert(index, (alias))
-
-            # Create index entry
             cf.config.EXTENSION_INDEX.insert(index, (alias, len(extension.splitlines())))
-
-            # Add entry to keywords
             cf.config.EXTENSIONS[alias] = ext.EXTENSIONS.get(name)
             cf.config.KEYWORDS.add(alias)
             

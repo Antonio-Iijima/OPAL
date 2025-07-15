@@ -224,13 +224,8 @@ def getfile(filepath: str) -> list:
 def import_lib(name: str, as_: str = None, alias: str = None) -> None:
     """Import a library with an optional alias."""
 
-    # Set the alias to be either the provided alias or the original name
     alias = alias or name
-
-    # Import the module
     name = importlib.import_module(name)
-
-    # Enable access to the module via the IMPORTS dictionary
     cf.config.IMPORTS[alias] = name
 
 
@@ -240,14 +235,12 @@ def load(location: str) -> None:
     # Require .op files for reliability
     if not location.endswith(".op"): raise IOError(f"ensure file extension is *.op.")
     
-    # Process file using REPL
     with open(location, "r") as file: rpl.REPL(file.read().split("\n"), True)
 
 
 def run_method(imported: str, args: list) -> any:
     """Call a method from an imported module or library."""
 
-    # Divide the call into the module name and the method itself
     module, method = imported.split(".")
 
     # Use the module and method strings to get the callable function

@@ -28,7 +28,6 @@ def REPL(stream: str = sys.stdin, loadingFile: bool = False) -> None:
             intrp.interpreter.prompt()
     else: print(f"--- OPAL v{cf.config.VERSION} ---")
         
-    # Initialize expression
     expression = ""
 
     for line in stream:
@@ -87,14 +86,12 @@ def run(line: str, loadingFile: bool = False) -> None:
 
     output = interpret(line.strip())
 
-    # If the output is None, then the line probably has its own internal output solution
+    # If the output is None, the line probably has its own output solution
     if output is not None and cf.config.iFlag != loadingFile: print(output)
 
 
 def interpret(line: str) -> any:
     """Fully interpret a complete expression."""
-    
-    # Handle interactive tools
     
     # Ignore empty lines
     if line == "": return None

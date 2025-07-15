@@ -45,40 +45,28 @@ def isperfectlybalanced(expr: list) -> bool:
 def syntax_check(expr: list) -> list:
     """Checks balanced parentheses, proper expression nesting, etc. Raises errors if any conditions not met, otherwise returns `expr`."""
 
-    # Confirm balanced parentheses
     isperfectlybalanced(expr)        
 
     return expr
 
 
-def get_opp_par(expr: list, par: str="(") -> int | bool:
+def get_opp_par(expr: list) -> int | bool:
     """Get the index of the corresponding parenthesis, otherwise return False."""
 
-    stack = 0
+    balance = 0
 
-    opp = ")" if par == "(" else "("
-
-    # Iterate through the expression
     for index, char in enumerate(expr):
-        
-        # Track opening parentheses using the stack
-        if   char == par: stack += 1
-        elif char == opp: stack -= 1
+        if   char == "(": balance += 1
+        elif char == ")": balance -= 1
 
-        # Return the index once the stack is empty (i.e. found the balancing parenthesis)
-        if not stack: return index
+        if balance == 0: return index
 
 
 def retype(x: str) -> int | float | bool: 
     """Replace int, float, and bool strings with their correct data types."""
 
-    # Replace numbers with either int or float types
     if kw.isnumber(x): return float(x) if "." in x else int(x)
-    
-    # Replace boolean #t and #f with the proper bool
     elif x in ("#t", "#f"): return x == "#t"
-    
-    # Otherwise just return the original input
     return x
 
 
@@ -94,11 +82,7 @@ def lst_to_Python(expr: list) -> list:
     """Convert intermediary list of strings into nested lists."""
 
     if expr == []: return []
-
-    # If the head is an opening parenthesis,
     elif expr[0] == "(": 
-
-        # Find the corresponding closing parenthesis
         closing_idx = get_opp_par(expr)
 
         # Replace the section from opening to closing with a list, process the contents, process the rest, and return
@@ -137,8 +121,6 @@ def convert(s: any) -> str | None:
     """Convert Python list to fully-parenthesized OPAL string."""
 
     if s == None: return None
-
-    # Handle booleans
     elif isinstance(s, bool): return "#t" if s else "#f"
 
     # Otherwise replace lists with parentheses and (quote x) with '

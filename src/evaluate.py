@@ -70,11 +70,11 @@ def evaluate(expr):
                 # Create new template instances
                 case "new" : return cf.config.ENV.lookup(TAIL[0]).new(*TAIL[1:]) 
 
-                # Lambda function declarations
-                case "lambda": return dt.Function("lambda", expr[1], expr[2])
-
                 # Evaluate 'until' expressions
                 case "until": return kw.until(expr[1][0], expr[1][1], expr[2])
+
+                # Lambda function declarations
+                case "lambda": return dt.Function("lambda", expr[1], expr[2])
 
                 # 'string' and 'list' predicates
                 case "string?": return kw.isstring(TAIL)

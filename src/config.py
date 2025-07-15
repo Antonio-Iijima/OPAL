@@ -21,6 +21,7 @@ class Config:
         # Technical details
         self.VERSION = "1.0"
         self.NAME = "OPAL"
+        self.PATH = os.path.abspath(__file__ + "/../..")
 
         # Color customization
         self.COLORS = {
@@ -49,9 +50,6 @@ class Config:
         self.MULTILINE_COMMENT_OPEN = "/-"
         self.MULTILINE_COMMENT_CLOSE = "-/"
 
-        # src/ path
-        self.PATH = os.path.abspath(__file__ + "/../..")
-
 
     def initialize(self, flags: dict, prompt_symbol: str = "(O) ") -> None:
         """Setup config."""
@@ -60,7 +58,6 @@ class Config:
         self.FLAGS = flags
         self.iFlag, self.dFlag, self.pFlag, self.zFlag = flags.values()
 
-        # Prompt color changes to reflect enabled flags
         self.DEFAULT_COLOR = (
             "purple" if self.zFlag 
             else "brown" if self.pFlag 
@@ -76,8 +73,6 @@ class Config:
 
         # Tracks expression comments
         self.COMMENT_COUNTER = 0
-
-        # Initialize extensions
 
         # Save all the original extensions declared when the interpreter starts
         self.ORIGINAL_EXTENSIONS = open(f"{self.PATH}/src/extensions.py").read()
@@ -100,7 +95,7 @@ class Config:
         # The Environment
         self.ENV = env.Environment()
 
-        # Other keyword groups
+        # Keyword groups
         self.REGULAR = kw.REGULAR
         self.IRREGULAR = kw.IRREGULAR
         self.BOOLEAN = kw.BOOLEAN

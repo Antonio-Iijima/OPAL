@@ -22,7 +22,6 @@ class Closable:
         self.parameters = parameters or []
         self.body = body or []
 
-        # Generate randomized id
         self.id = self.generate_id()
 
         # Create closed environment
@@ -42,13 +41,10 @@ class Function(Closable):
     """Custom OPAL function class."""
 
     def __init__(self, name: str, parameters: list = None, body: list = None, isMethod: bool = False) -> None:
-        if isMethod:
-            self.type = "method"
-        elif name == "lambda": 
-            self.type = name
-        else:
-            self.type = "function"
+        """Initialize closable function type."""
 
+        self.type = "method" if isMethod else "lambda" if name == "lambda" else "function"
+        
         super().__init__(name, parameters, body)
             
         if self.type == "lambda": self.name = f"{prs.convert(self.parameters)} {prs.convert(self.body)}" 
@@ -66,17 +62,14 @@ class Function(Closable):
             # Define 'self' as a special local reference to the current function
             self.type in ('lambda', 'self') and cf.config.CLOSURES[self.id].define('self', self.parameters, self.body)
 
-            # Extend the general environment with the current function's closure (i.e. FUNARGs)
             cf.config.ENV.extend(cf.config.CLOSURES[self.id])
 
-            # Evaluate the function
             try:
                 value = ev.evaluate(self.body)
 
                 # If returning a function, give it access to current closure
                 if isinstance(value, Function): cf.config.CLOSURES[value.id] = cf.config.CLOSURES[self.id].clone()
 
-            # Safely end the extended scopes and remove 'self'
             finally:
                 cf.config.ENV.end_scope(len(cf.config.CLOSURES[self.id]))
                 self.type in ('lambda', 'self') and cf.config.CLOSURES[self.id].delete('self')
@@ -129,13 +122,11 @@ class Template(Closable):
             """Evaluate all initialization statements."""
             return kw.evlist(init)
 
-        # Instantiate
         newInstance = Instance(self.name, self.parameters, args)
 
         # Inherit template variables and methods
         cf.config.CLOSURES[newInstance.id].env += cf.config.CLOSURES[self.id].env
 
-        # Run initialization function
         self.init and cf.config.ENV.runClosed(cf.config.CLOSURES[newInstance.id], logic, self.init)
             
         return newInstance
@@ -161,5 +152,4 @@ class Instance(Closable):
             """Method evaluation logic."""
             return cf.config.ENV.lookup(method).eval(args)
         
-        # Execute logic in local scope
         return cf.config.ENV.runClosed(cf.config.CLOSURES[self.id], logic, method, args)
