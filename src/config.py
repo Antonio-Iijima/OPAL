@@ -20,7 +20,7 @@ class Config:
 
         # Technical details
         self.VERSION = 1.2
-        self.NAME = "OPAL"
+        self.NAME = "ΩPAL"
         self.PATH = os.path.abspath(__file__ + "/../..")
 
         # Color customization
@@ -51,7 +51,7 @@ class Config:
         self.MULTILINE_COMMENT_CLOSE = "-/"
 
 
-    def initialize(self, flags: dict, prompt_symbol: str = "(O) ") -> None:
+    def initialize(self, flags: dict, prompt_symbol: str = "(Ω) ") -> None:
         """Setup config."""
 
         # Set flags
