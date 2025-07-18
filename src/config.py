@@ -19,7 +19,7 @@ class Config:
         # Setup constants
 
         # Technical details
-        self.VERSION = "1.0"
+        self.VERSION = "1.1"
         self.NAME = "OPAL"
         self.PATH = os.path.abspath(__file__ + "/../..")
 
@@ -95,35 +95,27 @@ class Config:
         # The Environment
         self.ENV = env.Environment()
 
-        # Keyword groups
-        self.REGULAR = kw.REGULAR
-        self.IRREGULAR = kw.IRREGULAR
-        self.BOOLEAN = kw.BOOLEAN
-        self.SPECIAL = kw.SPECIAL
-        self.EXTENSIONS = {}
-
-        self.ENVIRONMENT = {
-            "def"      : self.ENV.define,
-            "template" : self.ENV.deftemplate,
-            "set"      : self.ENV.set,
-            "update"   : self.ENV.update,
-            "del"      : self.ENV.delete,
-            "burrow"   : self.ENV.begin_scope,
-            "surface"  : self.ENV.end_scope,
-            "delex"    : self.ENV.delex
-        }
-        
+        # Keyword categories
         self.KEYWORDS = {
-            *self.REGULAR, 
-            *self.IRREGULAR,
-            *self.BOOLEAN, 
-            *self.SPECIAL,
-            *self.EXTENSIONS,
-            *self.ENVIRONMENT
+            "REGULAR"     : kw.REGULAR, 
+            "IRREGULAR"   : kw.IRREGULAR,
+            "BOOLEAN"     : kw.BOOLEAN, 
+            "SPECIAL"     : kw.SPECIAL,
+            "ENVIRONMENT" : {
+                            "def"      : self.ENV.define,
+                            "template" : self.ENV.deftemplate,
+                            "set"      : self.ENV.set,
+                            "update"   : self.ENV.update,
+                            "del"      : self.ENV.delete,
+                            "burrow"   : self.ENV.begin_scope,
+                            "surface"  : self.ENV.end_scope,
+                            "delex"    : self.ENV.delex
+                            },
+            "EXTENSIONS"  : {}
         }
         
         # Track keywords
-        self.INITIAL_KEYWORD_NUM = len(self.KEYWORDS)
+        self.INITIAL_KEYWORD_NUM = self.current_keyword_num()
 
         # Load extensions
         intrp.interpreter.extend(self.ORIGINAL_EXTENSIONS, False)
@@ -132,6 +124,11 @@ class Config:
     def set_color(self, text: str, color: str = None) -> str:
         """Return text formatted according to the provided color."""
         return f"{self.COLORS[color or self.DEFAULT_COLOR]}{text}{self.COLORS["end"]}"
+    
+    
+    def current_keyword_num(self) -> int:
+        """Return current total number of keywords in the language."""
+        return sum(len(category) for category in self.KEYWORDS.values())
 
 
 

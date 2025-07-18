@@ -89,7 +89,7 @@ class Environment:
     def delex(self, extension: str) -> None:
         """Delete an extension."""
 
-        if extension in cf.config.EXTENSIONS:
+        if extension in cf.config.KEYWORDS["EXTENSIONS"]:
 
             # Bookend indices
             start = end = 0
@@ -111,8 +111,7 @@ class Environment:
             importlib.reload(ext)
 
             cf.config.EXTENSION_LOG.remove(extension)
-            cf.config.EXTENSIONS.pop(extension)
-            cf.config.KEYWORDS.remove(extension)
+            cf.config.KEYWORDS["EXTENSIONS"].pop(extension)
 
         else: raise NameError(f"extension '{extension}' not found.")
 

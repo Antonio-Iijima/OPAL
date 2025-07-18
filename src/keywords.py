@@ -32,7 +32,7 @@ def isvariable(x: str) -> bool:
     
 def iskeyword(x: str) -> bool: 
     """Unary `keyword` predicate."""
-    return x in cf.config.KEYWORDS or iscxr(x)
+    return any(x in category for category in cf.config.KEYWORDS.values()) or iscxr(x)
 
 
 def isimport(x: str) -> bool:
@@ -144,10 +144,7 @@ def tail(x: list) -> list:
 def evcxr(x: str, output: any) -> any:
     """Tail-recursive evaluation of `cxr` expressions (arbitrary combinations of `car` and `cdr`)."""
 
-    # Return the final output if all head and tail calls have been processed
     if not x: return output
-
-    # Otherwise call head or tail depending on the current letter of the abbreviation
     elif x.endswith("a"): return evcxr(x.removesuffix("a"), head(output))
     elif x.endswith("d"): return evcxr(x.removesuffix("d"), tail(output))
 
@@ -195,7 +192,7 @@ def let(bindings: list, body: list) -> any:
     """Binds all variables in `bindings` and evaluates `body` in a local scope."""
 
     def logic(bindings: list, body: list) -> any:
-        for pair in bindings: cf.config.ENV.set(pair[0], pair[1])
+        for pair in bindings: cf.config.ENV.set(*pair)
         return ev.evaluate(body)
     
     return cf.config.ENV.runlocal(logic, bindings, body)
@@ -221,7 +218,7 @@ def getfile(filepath: str) -> list:
     return open(filepath).readlines()
 
 
-def import_lib(name: str, as_: str = None, alias: str = None) -> None:
+def import_lib(name: str, _as: str = None, alias: str = None) -> None:
     """Import a library with an optional alias."""
 
     alias = alias or name

@@ -84,7 +84,7 @@ https://github.com/Antonio-Iijima/OPAL
         self.exit_extensions()
 
         if cf.config.zFlag:
-            net = cf.config.ERROR_COUNTER - (len(cf.config.KEYWORDS) - cf.config.INITIAL_KEYWORD_NUM)
+            net = cf.config.ERROR_COUNTER - (cf.config.current_keyword_num() - cf.config.INITIAL_KEYWORD_NUM)
             print(f"\n{cf.config.COLORS["purple"]}You made {cf.config.ERROR_COUNTER} error{"s"*(cf.config.ERROR_COUNTER!=1)} with a net loss of {net} function{"s"*(abs(net)!=1)}.{cf.config.COLORS["end"]}")
 
         self.text_box("""Arrivederci!""", centered=True) or exit()
@@ -155,21 +155,14 @@ https://github.com/Antonio-Iijima/OPAL
     def show_keywords(self) -> None:
         """Display all language keywords."""
 
-        if not cf.config.KEYWORDS: print(f"{cf.config.COLORS["red"]}No keywords found."); return
+        if not any(cf.config.KEYWORDS.values()): print(f"{cf.config.COLORS["red"]}No keywords found."); return
 
-        display = f"""KEYWORDS ({len(cf.config.KEYWORDS)}/{cf.config.INITIAL_KEYWORD_NUM})\n\n"""
+        display = f"""KEYWORDS ({cf.config.current_keyword_num()}/{cf.config.INITIAL_KEYWORD_NUM})\n\n"""
 
-        categories = {
-            f"REGULAR ({len(cf.config.REGULAR)})"         : sorted(cf.config.REGULAR),
-            f"IRREGULAR ({len(cf.config.IRREGULAR)})"     : sorted(cf.config.IRREGULAR),
-            f"BOOLEAN ({len(cf.config.BOOLEAN)})"         : sorted(cf.config.BOOLEAN),
-            f"SPECIAL ({len(cf.config.SPECIAL)})"         : sorted(cf.config.SPECIAL),
-            f"ENVIRONMENT ({len(cf.config.ENVIRONMENT)})" : sorted(cf.config.ENVIRONMENT),
-            f"EXTENSIONS ({len(cf.config.EXTENSIONS)})"   : sorted(cf.config.EXTENSIONS)
-            }
+        categories = { f"{c} ({len(cf.config.KEYWORDS[c])})" : sorted(cf.config.KEYWORDS[c]) for c in cf.config.KEYWORDS}
 
         # Calculate the character limit of each word with padding
-        offset = max(len(key) for key in cf.config.KEYWORDS) + 2
+        offset = max(max(len(keyword) for keyword in category) for category in cf.config.KEYWORDS.values()) + 2
 
         for section_idx, section_title in enumerate(categories):
 
@@ -259,8 +252,7 @@ https://github.com/Antonio-Iijima/OPAL
 
             cf.config.EXTENSION_LOG.insert(index, (alias))
             cf.config.EXTENSION_INDEX.insert(index, (alias, len(extension.splitlines())))
-            cf.config.EXTENSIONS[alias] = ext.EXTENSIONS.get(name)
-            cf.config.KEYWORDS.add(alias)
+            cf.config.KEYWORDS["EXTENSIONS"][alias] = ext.EXTENSIONS.get(name)
             
 
     def exit_extensions(self) -> None:
@@ -286,28 +278,16 @@ https://github.com/Antonio-Iijima/OPAL
     def del_random_keyword(self) -> None:
         """Delete a random keyword from the language for the duration of the interpreter instance if the user makes a mistake."""
 
-        keywords = [
-            cf.config.REGULAR, 
-            cf.config.IRREGULAR,
-            cf.config.BOOLEAN, 
-            cf.config.SPECIAL,
-            cf.config.EXTENSIONS,
-            cf.config.ENVIRONMENT
-        ]
-        
-        keywords = [category for category in keywords if len(category) > 0]
-
         print(cf.config.COLORS["purple"], end='')
 
-        if keywords:
+        if any(cf.config.KEYWORDS.values()):
             category = None
-            while not category: category = random.choice(keywords)
+            while not category: category = random.choice(list(cf.config.KEYWORDS.values()))
             item = random.choice(list(category))
 
-            category.pop(item) if isinstance(category, dict) else category.discard(item)
-            cf.config.KEYWORDS.remove(item)
+            category.discard(item) if isinstance(category, set) else category.pop(item)
                              
-            print(f"You just lost the '{item}' function. Number of keywords remaining: {len(cf.config.KEYWORDS)}")
+            print(f"You just lost the '{item}' function. Number of keywords remaining: {cf.config.current_keyword_num()}")
 
         else: print(f"You have nothing left to lose. The language is now utterly and completely broken. Congratulations.")
         

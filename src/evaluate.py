@@ -45,24 +45,27 @@ def evaluate(expr):
 
         # If its a keyword, evaluate each group
         elif kw.iskeyword(HEAD):
-            
-            # Regular or applicative-order n-ary functions
-            if HEAD in kw.REGULAR: return kw.REGULAR[HEAD](*kw.evlist(TAIL))
+            for NAME, CATEGORY in cf.config.KEYWORDS.items():
+                if HEAD in CATEGORY:
+                    match NAME:
 
-            # Irregular or normal-order n-ary functions
-            elif HEAD in kw.IRREGULAR: return kw.IRREGULAR[HEAD](*TAIL)
+                        # Regular or applicative-order n-ary functions
+                        case "REGULAR": return CATEGORY[HEAD](*kw.evlist(TAIL))
 
-            # Environment manipulation functions
-            elif HEAD in cf.config.ENVIRONMENT: return cf.config.ENVIRONMENT[HEAD](*TAIL)
+                        # Irregular or normal-order n-ary functions
+                        case "IRREGULAR": return CATEGORY[HEAD](*TAIL)
 
-            # Boolean functions
-            elif HEAD in kw.BOOLEAN: return kw.BOOLEAN[HEAD](*[bool(arg) for arg in kw.evlist(TAIL)])
+                        # Environment manipulation functions
+                        case "ENVIRONMENT": return CATEGORY[HEAD](*TAIL)
 
-            # Extensions
-            elif HEAD in cf.config.EXTENSIONS: return cf.config.EXTENSIONS[HEAD](*TAIL)
+                        # Boolean functions
+                        case "BOOLEAN": return CATEGORY[HEAD](*[bool(arg) for arg in kw.evlist(TAIL)])
+
+                        # Extensions
+                        case "EXTENSIONS": return CATEGORY[HEAD](*TAIL)
 
             # 'cxr' expressions
-            elif kw.iscxr(HEAD): return kw.evcxr(HEAD[1:-1], evaluate(expr[1]))
+            if kw.iscxr(HEAD): return kw.evcxr(HEAD[1:-1], evaluate(expr[1]))
 
             # Special forms and functions with unique evaluation requirements
             match HEAD:
