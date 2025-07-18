@@ -85,7 +85,7 @@ https://github.com/Antonio-Iijima/OPAL
 
         if cf.config.zFlag:
             net = cf.config.ERROR_COUNTER - (cf.config.current_keyword_num() - cf.config.INITIAL_KEYWORD_NUM)
-            print(f"\n{cf.config.COLORS["purple"]}You made {cf.config.ERROR_COUNTER} error{"s"*(cf.config.ERROR_COUNTER!=1)} with a net loss of {net} function{"s"*(abs(net)!=1)}.{cf.config.COLORS["end"]}")
+            print(f"\n{cf.config.COLORS["purple"]}You made {cf.config.ERROR_COUNTER} error{"s"*(cf.config.ERROR_COUNTER!=1)} with a net of {"-"*(net>0)}{net} function{"s"*(abs(net)!=1)}.{cf.config.COLORS["end"]}")
 
         self.text_box("""Arrivederci!""", centered=True) or exit()
 
@@ -161,8 +161,10 @@ https://github.com/Antonio-Iijima/OPAL
 
         categories = { f"{c} ({len(cf.config.KEYWORDS[c])})" : sorted(cf.config.KEYWORDS[c]) for c in cf.config.KEYWORDS}
 
+        padding = 2
+
         # Calculate the character limit of each word with padding
-        offset = max(max(len(keyword) for keyword in category) for category in cf.config.KEYWORDS.values()) + 2
+        offset = max(max(len(keyword) for keyword in category) for category in cf.config.KEYWORDS.values() if category) + padding
 
         for section_idx, section_title in enumerate(categories):
 
@@ -176,7 +178,7 @@ https://github.com/Antonio-Iijima/OPAL
             for keyword_idx, keyword in enumerate(categories[section_title]):
 
                 # Move to the next row every three keywords
-                if keyword_idx % 3 == 0: display += "\n"
+                if keyword_idx % 3 == 0: display += f"\n{" " * padding}"
 
                 # Add each keyword along with the necessary amount of whitespace to justify the columns
                 display += f"{keyword}{' ' * (offset-len(keyword))}"
@@ -185,7 +187,7 @@ https://github.com/Antonio-Iijima/OPAL
                 column = (keyword_idx + 1) % 3
                 if keyword_idx == len(categories[section_title]) - 1 and column != 0:
                     # Replace the 'missing words' with whitespace to complete the columns
-                    display += ' ' * 2 * offset if column == 1 else ' ' * 1 * offset
+                    display += ' ' * offset * (2 if column == 1 else 1)
 
         # Print the display
         self.text_box(display, centered=True)

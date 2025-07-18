@@ -19,7 +19,7 @@ class Config:
         # Setup constants
 
         # Technical details
-        self.VERSION = "1.1"
+        self.VERSION = 1.2
         self.NAME = "OPAL"
         self.PATH = os.path.abspath(__file__ + "/../..")
 
@@ -114,11 +114,11 @@ class Config:
             "EXTENSIONS"  : {}
         }
         
-        # Track keywords
-        self.INITIAL_KEYWORD_NUM = self.current_keyword_num()
-
         # Load extensions
         intrp.interpreter.extend(self.ORIGINAL_EXTENSIONS, False)
+
+        # Track keywords
+        self.INITIAL_KEYWORD_NUM = self.current_keyword_num()
 
 
     def set_color(self, text: str, color: str = None) -> str:
