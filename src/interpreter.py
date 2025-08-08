@@ -42,23 +42,23 @@ class Interpreter():
         """Display a welcome text box."""
 
         display = """Welcome to OPAL
-Omni-Paradigm Language"""
+Omni-Paradigm Programming Language"""
 
-        self.text_box(display, centered=True)
+    #    self.text_box(display, centered=True)
 
-        cf.config.iFlag and print(f"OPAL v{cf.config.VERSION}, interactive mode", end='\n'*(not cf.config.dFlag))
-        cf.config.dFlag and print(" with debugging")
-        cf.config.pFlag and print("Permanent extensions enabled")
+        cf.config.iFlag and print(f"OPAL v{cf.config.VERSION}, {cf.config.set_color("interactive", "green")}", end="" if cf.config.dFlag else "\n")
+        cf.config.dFlag and print(f" with {cf.config.set_color("debugging", "light cyan")}")
+        cf.config.pFlag and print(f"{cf.config.set_color("Permanent extensions enabled", "brown")}")
 
         print("Enter 'help' to show further information")
 
-        cf.config.zFlag and print(f"{cf.config.COLORS["red"]}WARNING: Random keyword deletion enabled.{cf.config.COLORS["purple"]} Proceed at your own risk.{cf.config.COLORS["end"]}")
+        cf.config.zFlag and print(f"{cf.config.set_color("WARNING: Random keyword deletion enabled.", "red")} {cf.config.set_color("Proceed at your own risk", "purple")}")
 
 
     def help(self) -> None:
         """Display help information."""
 
-        display = f"""OPAL is is a multi-paradigm experimental programming language based on the earlier Alvin Programming Language.
+        display = f"""OPAL is is a multi-paradigm experimental programming language based on the previous Alvin Programming Language.
         
 Documentation can be found on GitHub:
 https://github.com/Antonio-Iijima/OPAL
@@ -84,8 +84,8 @@ https://github.com/Antonio-Iijima/OPAL
         self.exit_extensions()
 
         if cf.config.zFlag:
-            net = cf.config.ERROR_COUNTER - (cf.config.current_keyword_num() - cf.config.INITIAL_KEYWORD_NUM)
-            print(f"\n{cf.config.COLORS["purple"]}You made {cf.config.ERROR_COUNTER} error{"s"*(cf.config.ERROR_COUNTER!=1)} with a net of {"-"*(net>0)}{net} function{"s"*(abs(net)!=1)}.{cf.config.COLORS["end"]}")
+            net = cf.config.current_keyword_num() - cf.config.INITIAL_KEYWORD_NUM
+            print(cf.config.set_color(f"\nYou made {cf.config.ERROR_COUNTER} error{"s" if cf.config.ERROR_COUNTER != 1 else ""} with a net change of {f"+{net}" if net > 0 else net} function{"s" if abs(net)!=1 else ""}", "purple"))
 
         self.text_box("""Arrivederci!""", centered=True) or exit()
 
@@ -94,7 +94,7 @@ https://github.com/Antonio-Iijima/OPAL
         """Display current active and inactive flags."""
 
         display = f"""Flags"""
-        for flag in cf.config.FLAGS: display += f"\n{flag} : {cf.config.FLAGS[flag]}"
+        for flag in cf.config.FLAGS: display += f"\n{flag} : {int(cf.config.FLAGS[flag])}"
 
         self.text_box(display, centered=True)
 

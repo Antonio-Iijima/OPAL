@@ -39,12 +39,8 @@ class Environment:
 
 
     def find_scope(self, var: str, scope: int = 0) -> int:
-        """Find and return the index of the lowest scope in which `var` has been declared.
-        \nIf not found, return -1."""
-
-        if scope == len(self.env): return -1
-        elif var in self.env[scope]: return scope
-        else: return self.find_scope(var, scope+1)
+        """Find and return the index of the lowest scope in which `var` has been declared. If not found, return -1."""
+        return -1 if scope == len(self.env) else scope if var in self.env[scope] else self.find_scope(var, scope+1)
 
 
     def set(self, var: str, val: any, scope: int = 0) -> None: 

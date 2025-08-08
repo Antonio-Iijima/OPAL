@@ -19,7 +19,7 @@ class Config:
         # Setup constants
 
         # Technical details
-        self.VERSION = 1.2
+        self.VERSION = 1.3
         self.NAME = "ΩPAL"
         self.PATH = os.path.abspath(__file__ + "/../..")
 
@@ -61,7 +61,7 @@ class Config:
         self.DEFAULT_COLOR = (
             "purple" if self.zFlag 
             else "brown" if self.pFlag 
-            else "cyan" if self.dFlag 
+            else "light cyan" if self.dFlag 
             else "green"
             )
         
@@ -128,7 +128,7 @@ class Config:
     
     def current_keyword_num(self) -> int:
         """Return current total number of keywords in the language."""
-        return sum(len(category) for category in self.KEYWORDS.values())
+        return sum(map(len, self.KEYWORDS.values()))
 
 
 
