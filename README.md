@@ -4,12 +4,14 @@ OPAL (Omni-Paradigm Programming Language) seeks to unify multiple diverse progra
 
 OPAL is built on the core design of the [Alvin Programming Language](https://github.com/Antonio-Iijima/alvin).
 
-Currently, OPAL supports the following programming paradigms:
+OPAL is under active developement; the following programming paradigms have varying degrees of functionality:
 
 - Imperative
   - Procedural
   - Object-oriented
 - Declarative
-  - Functional
+  - Logic
+- Functional
 - Metaprogramming
   - Reflective
+
