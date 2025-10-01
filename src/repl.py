@@ -6,8 +6,8 @@ import sys
 
 import config as cf
 import parser as prs
-import evaluate as ev
 import keywords as kw
+import evaluate as ev
 import interpreter as intrp
 
 
@@ -109,4 +109,4 @@ def interpret(line: str) -> any:
     elif line in intrp.interpreter.INTERPRETER: intrp.interpreter.INTERPRETER[line]()
 
     # Otherwise parse the line and convert it to Python syntax, evaluate, and return as an OPAL string 
-    else: return prs.convert(ev.evaluate(prs.parse(line)))
+    else: return prs.toOPAL(ev.evaluate(prs.parse(line)))

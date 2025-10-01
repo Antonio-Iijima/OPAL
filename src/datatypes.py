@@ -13,7 +13,7 @@ import environment as env
 
 
 class Closable:
-    """Parent class for all OPAL structures supporting closures, i.e. functions and templates (classes)."""
+    """Parent class for all OPAL structures supporting closures, i.e. functions and templates."""
 
     def __init__(self, name: str, parameters: list = None, body: list = None) -> None:
         """Initialize datatype and generate unique ID."""
@@ -40,14 +40,15 @@ class Closable:
 class Function(Closable):
     """Custom OPAL function class."""
 
-    def __init__(self, name: str, parameters: list = None, body: list = None, isMethod: bool = False) -> None:
+    def __init__(self, name: str, parameters: list = None, body: list = None, isMethod: bool = False, isLazy: bool = False) -> None:
         """Initialize closable function type."""
 
         self.type = "method" if isMethod else "lambda" if name == "lambda" else "function"
-        
+        self.isLazy = isLazy
+
         super().__init__(name, parameters, body)
             
-        if self.type == "lambda": self.name = f"{prs.convert(self.parameters)} {prs.convert(self.body)}" 
+        if self.type == "lambda": self.name = f"{prs.toOPAL(self.parameters)} {prs.toOPAL(self.body)}" 
 
 
     def eval(self, args: list) -> any:
@@ -76,16 +77,16 @@ class Function(Closable):
 
             return value
         
-        # Applicative order evaluation for arguments
-        args = [] if args == None else kw.evlist(args)
-
+        # Evaluation of arguments
+        args = [] if args == None else kw.evlist(args) if not any(map(kw.isfrozen, args)) else args
+        
         # Confirm function arity
         if len(self.parameters) != len(args): 
             raise TypeError(f"{self.name} takes {len(self.parameters)} argument{"s"*bool(len(self.parameters)-1)} but {len(args)} were given")
         
         # Execute the actual function logic in local scope
         return cf.config.CLOSURES[self.id].runlocal(logic, args)
-
+    
 
 
 class Template(Closable):
@@ -152,4 +153,27 @@ class Instance(Closable):
             """Method evaluation logic."""
             return cf.config.ENV.lookup(method).eval(args)
         
-        return cf.config.ENV.runClosed(cf.config.CLOSURES[self.id], logic, method, args)
+        return cf.config.ENV.runClosed(cf.config.CLOSURES[self.id], logic, method, *args)
+
+
+
+class Lazy:
+    def __init__(self, func: str):
+        self.func = func
+
+
+    def eval(self, args: list) -> any: return ev.evaluate([self.func, *map(Frozen, args)])
+
+
+    def __str__(self) -> str: return f"<{self.__class__.__name__.lower()} {self.func}>"
+
+
+
+class Frozen(Lazy):
+    def __init__(self, val: str) -> None:
+        self.value = val
+
+
+    def thaw(self):
+        """Compute the value of a `Frozen` expression."""
+        return ev.evaluate(self.value)

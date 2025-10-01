@@ -12,14 +12,18 @@ import datatypes as dt
 
 
 
-def evaluate(expr):
+def evaluate(expr: any) -> any:
     """Evaluates complete OPAL expressions."""
-
+   # print(expr)
     # Processing a single atom
 
-    # Look up variables in environment, otherwise return as literal
-    if kw.isatom(expr): return cf.config.ENV.lookup(expr) if kw.isvariable(expr) else kw.rebool(expr) if kw.isbool(expr) else expr
-
+    # Look up variables, return literals
+    if kw.isatom(expr): return (
+        cf.config.ENV.lookup(expr) if kw.isvariable(expr)
+        else kw.rebool(expr) if kw.isbool(expr)
+        else expr
+    )
+    
     # Otherwise processing a list
 
     # Empty list
@@ -29,17 +33,19 @@ def evaluate(expr):
     elif kw.isatom(expr[0]):
 
         # Head and tail identifiers for readability
-        HEAD, TAIL = expr[0],  expr[1:]
+        HEAD, *TAIL = expr
 
         # Evaluate methods from imported modules
         if kw.isimport(HEAD): return kw.run_method(HEAD, TAIL)
 
-        # Evaluate function calls
-        elif kw.isfunction(HEAD): return HEAD.eval(TAIL)
+        # Evaluate function calls and lazy wrappers
+        elif isinstance(HEAD, (
+            dt.Function, 
+            dt.Template, 
+            dt.Instance, 
+            dt.Lazy
+        )): return HEAD.eval(TAIL)
 
-        # Evaluate templates
-        elif kw.istemplate(HEAD): return HEAD.eval(*TAIL)
-        
         # If the head is a variable, replace it with its value and re-evaluate the expression
         elif kw.isvariable(HEAD): return evaluate([cf.config.ENV.lookup(HEAD), *TAIL])
 
@@ -59,7 +65,7 @@ def evaluate(expr):
                         case "ENVIRONMENT": return CATEGORY[HEAD](*TAIL)
 
                         # Boolean functions
-                        case "BOOLEAN": return CATEGORY[HEAD](*[bool(arg) for arg in kw.evlist(TAIL)])
+                        case "BOOLEAN": return CATEGORY[HEAD](*map(bool, kw.evlist(TAIL)))
 
                         # Extensions
                         case "EXTENSIONS": return CATEGORY[HEAD](*TAIL)
@@ -69,6 +75,9 @@ def evaluate(expr):
 
             # Special forms and functions with unique evaluation requirements
             match HEAD:
+
+                # Lazy parameter evaluation wrapper for functions
+                case "lazy": return dt.Lazy(*TAIL)
 
                 # Create new template instances
                 case "new" : return cf.config.ENV.lookup(TAIL[0]).new(*TAIL[1:]) 

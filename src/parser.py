@@ -11,7 +11,7 @@ import keywords as kw
 
 
 
-## Basic syntax checking (parentheses, operators, etc.) and typing
+## Basic syntax checking (parentheses, operators, etc.) and low-level processes
 
 
 def iscomment(expr: str) -> bool:
@@ -50,46 +50,12 @@ def syntax_check(expr: list) -> list:
     return expr
 
 
-def get_opp_par(expr: list) -> int | bool:
-    """Get the index of the corresponding parenthesis, otherwise return False."""
-
-    balance = 0
-
-    for index, char in enumerate(expr):
-        if   char == "(": balance += 1
-        elif char == ")": balance -= 1
-
-        if balance == 0: return index
-
-
 def retype(x: str) -> int | float | bool: 
     """Replace int, float, and bool strings with their correct data types."""
 
     if kw.isnumber(x): return float(x) if "." in x else int(x)
     elif x in ("#t", "#f"): return x == "#t"
     return x
-
-
-## Low-level syntax conversion
-
-
-def OPAL_to_list(s: str) -> list: 
-    """Divide OPAL expression into intermediary list of strings."""
-    return s.replace("(", " ( ").replace(")", " ) ").replace("'", " ' ").split()
-
-
-def lst_to_Python(expr: list) -> list:
-    """Convert intermediary list of strings into nested lists."""
-
-    if expr == []: return []
-    elif expr[0] == "(": 
-        closing_idx = get_opp_par(expr)
-
-        # Replace the section from opening to closing with a list, process the contents, process the rest, and return
-        return [lst_to_Python(expr[1:closing_idx]), *lst_to_Python(expr[closing_idx+1:])]
-    
-    # Otherwise leave as is and process the rest
-    return [expr[0], *lst_to_Python(expr[1:])]
 
 
 def preprocess(expr: list) -> list:
@@ -117,16 +83,34 @@ def preprocess(expr: list) -> list:
 
 
 
-def convert(s: any) -> str | None:
+def toPython(expr: str) -> list:
+    """Convert OPAL syntax to Python list."""
+    
+    def convert(expr: list) -> list:
+        """Convert intermediary list of strings into nested lists."""
+        if expr == []: return expr
+        elif expr[0] == "(":
+            balance = 0
+            for idx, char in enumerate(expr):
+                if   char == "(": balance += 1
+                elif char == ")": balance -= 1
+                if balance == 0: i = idx; break      
+            return [convert(expr[1:i]), *convert(expr[i+1:])]
+        return [expr[0], *convert(expr[1:])]
+    
+    return convert(expr.replace("(", " ( ").replace(")", " ) ").replace("'", " ' ").split()).pop()
+
+
+def toOPAL(s: any) -> str | None:
     """Convert Python list to fully-parenthesized OPAL string."""
 
     if s == None: return None
     elif isinstance(s, bool): return "#t" if s else "#f"
 
     # Otherwise replace lists with parentheses and (quote x) with '
-    return f"'{convert(s[1])}" if kw.isquote(s) else f"({' '.join(convert(elem) for elem in s if elem != None)})" if isinstance(s, list) else str(s)
+    return f"'{toOPAL(s[1])}" if kw.isquote(s) else f"({' '.join(toOPAL(elem) for elem in s if elem != None)})" if isinstance(s, list) else str(s)
 
 
 def parse(s: str) -> list: 
     """Perform syntax checking and convert OPAL expression string to manipulable Python lists."""
-    return preprocess(lst_to_Python(syntax_check(OPAL_to_list(s)))).pop()
+    return preprocess(syntax_check(toPython(s)))

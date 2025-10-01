@@ -85,6 +85,10 @@ def isstring(x: list) -> bool:
     return isinstance(x[0], str) and len(x) == 1
 
 
+def isfrozen(x: dt.Frozen) -> bool: 
+    """Unary `Frozen` predicate."""
+    return isinstance(x, dt.Frozen)
+
 
 ## Other basic functions
 
@@ -101,7 +105,7 @@ def cons(x: any, y: list) -> list:
 
 def show(expr: str) -> None:
     """Prints to standard output."""
-    print(prs.convert(expr))
+    print(prs.toOPAL(expr))
 
 
 def usrin(expr: list) -> str:
@@ -132,13 +136,13 @@ def evlist(x: list) -> list:
 def head(x: list) -> any:
     """Returns the head of a list or raises a TypeError."""
     try: return x[0]
-    except: raise TypeError(f"unsupported argument for 'car': {prs.convert(x)}")
+    except: raise TypeError(f"unsupported argument for 'car': {prs.toOPAL(x)}")
 
 
 def tail(x: list) -> list:
     """Returns the tail of a list or raises a TypeError."""
     try: return x[1:]
-    except: raise TypeError(f"unsupported argument for 'cdr': {prs.convert(x)}")
+    except: raise TypeError(f"unsupported argument for 'cdr': {prs.toOPAL(x)}")
     
 
 def evcxr(x: str, output: any) -> any:
@@ -330,4 +334,4 @@ BOOLEAN = {
 
 # Set of all special forms and other functions having 
 # evaluation strategies handled explicitly by evaluate()
-SPECIAL = { "lambda", "until", "string?", "list?", "cond", "quote", "new" }
+SPECIAL = { "lambda", "until", "string?", "list?", "cond", "quote", "new", "lazy" }

@@ -19,7 +19,7 @@ class Config:
         # Setup constants
 
         # Technical details
-        self.VERSION = 1.3
+        self.VERSION = 1.4
         self.NAME = "ΩPAL"
         self.PATH = os.path.abspath(__file__ + "/../..")
 

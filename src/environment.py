@@ -55,7 +55,7 @@ class Environment:
     def define(self, name: str, parameters: list, body: list,) -> None:
         """Define a named function."""
         self.env[0][name] = dt.Function(name, parameters, body)
-    
+
        
     def deftemplate(self, name: str, parameters: list, *body: list,) -> None:
         """Define a new template."""
@@ -125,7 +125,9 @@ class Environment:
         if scope == -1: 
             if var in cf.config.IMPORTS: print(f"'{var}'{"" if cf.config.IMPORTS[var].__name__ == var else f" (or {cf.config.IMPORTS[var].__name__})"} is an imported module.")
             else: raise ValueError(f"variable {var} is not defined.")
-        else: return self.env[scope][var]
+        else: 
+            val = self.env[scope][var]
+            return val.thaw() if isinstance(val, dt.Frozen) else val
 
 
     def runlocal(self, logic: callable, *args) -> any:
