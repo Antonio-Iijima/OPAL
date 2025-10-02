@@ -13,6 +13,5 @@ import config as cf
 import parser as prs
 import keywords as kw
 import evaluate as ev
-import datatypes as dt
 import environment as env
 import interpreter as intrp

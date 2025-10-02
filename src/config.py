@@ -19,7 +19,7 @@ class Config:
         # Setup constants
 
         # Technical details
-        self.VERSION = 1.4
+        self.VERSION = 2.0
         self.NAME = "ΩPAL"
         self.PATH = os.path.abspath(__file__ + "/../..")
 
@@ -105,7 +105,6 @@ class Config:
                             "def"      : self.ENV.define,
                             "template" : self.ENV.deftemplate,
                             "set"      : self.ENV.set,
-                            "update"   : self.ENV.update,
                             "del"      : self.ENV.delete,
                             "burrow"   : self.ENV.begin_scope,
                             "surface"  : self.ENV.end_scope,

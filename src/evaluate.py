@@ -14,7 +14,7 @@ import datatypes as dt
 
 def evaluate(expr: any) -> any:
     """Evaluates complete OPAL expressions."""
-   # print(expr)
+#    print(expr)
     # Processing a single atom
 
     # Look up variables, return literals
@@ -29,7 +29,8 @@ def evaluate(expr: any) -> any:
     # Empty list
     elif kw.isnull(expr): return []
 
-    # Head is an atom
+    # Head is an atom 
+    
     elif kw.isatom(expr[0]):
 
         # Head and tail identifiers for readability
@@ -80,17 +81,13 @@ def evaluate(expr: any) -> any:
                 case "lazy": return dt.Lazy(*TAIL)
 
                 # Create new template instances
-                case "new" : return cf.config.ENV.lookup(TAIL[0]).new(*TAIL[1:]) 
+                case "new": return cf.config.ENV.lookup(TAIL[0]).new(*TAIL[1:]) 
 
                 # Evaluate 'until' expressions
                 case "until": return kw.until(expr[1][0], expr[1][1], expr[2])
 
                 # Lambda function declarations
                 case "lambda": return dt.Function("lambda", expr[1], expr[2])
-
-                # 'string' and 'list' predicates
-                case "string?": return kw.isstring(TAIL)
-                case "list?":  return kw.islist(TAIL)
 
                 # Evaluate conditionals
                 case "cond": return kw.cond(TAIL)

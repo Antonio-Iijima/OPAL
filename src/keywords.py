@@ -45,6 +45,16 @@ def isnumber(x: str | int | float) -> bool:
     return bool(re.match(r"^[-]?[0-9]*[.]?[0-9]+$", str(x)))
 
 
+def isint(x: str | int | float) -> bool: 
+    """Unary `int` predicate."""
+    return bool(re.match(r"^[-]?[0-9]*$", str(x)))
+
+
+def isfloat(x: str | int | float) -> bool: 
+    """Unary `float` predicate."""
+    return bool(re.match(r"^[-]?[0-9]*[.][0-9]+$", str(x)))
+
+
 def isfunction(x: dt.Function) -> bool: 
     """Unary `Function` predicate."""
     return isinstance(x, dt.Function)
@@ -77,17 +87,22 @@ def isbool(x: str) -> bool:
 
 def islist(x: list) -> bool:
     """Unary `list` predicate."""
-    return isinstance(x[0], list) and len(x) == 1
+    return (isquote(x) and isinstance(x[1], list)) or isinstance(x, list)
 
 
 def isstring(x: list) -> bool:
     """Unary `string` predicate."""
-    return isinstance(x[0], str) and len(x) == 1
+    return isquote(x) or isinstance(x, str)
 
 
 def isfrozen(x: dt.Frozen) -> bool: 
     """Unary `Frozen` predicate."""
     return isinstance(x, dt.Frozen)
+
+
+def islazy(x: dt.Lazy) -> bool: 
+    """Unary `Frozen` predicate."""
+    return isinstance(x, dt.Lazy)
 
 
 ## Other basic functions
@@ -320,7 +335,8 @@ IRREGULAR = {
     "repeat"  : repeat,       "let"     : let,          
     "do"      : do,           "eval"    : OPAL_eval,   
     "getfile" : getfile,      "global"  : globals,      
-    "import"  : import_lib,   "load"    : load
+    "import"  : import_lib,   "load"    : load, 
+    "list?"   : islist,       "string?" : isstring
 }
 
 

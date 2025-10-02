@@ -12,6 +12,85 @@ import environment as env
 
 
 
+##### Typing #####
+
+
+
+class Variable:
+    def __new__(cls, var: str|list, val: any) -> "TypedVariable":
+        """Constructs a `Strict` or `Latent` variable object based on the specification of `var` with the value `val`."""
+        return Strict(var, val) if isinstance(var, list) else Latent(var, val)
+
+
+
+class TypedVariable:
+    def __init__(self, var: any = None, val: any = None):
+        self.name = var
+        self.val = val
+
+        self.types = {
+            "int"       : kw.isint,
+            "float"     : kw.isfloat,
+            "str"       : kw.isstring,
+            "lazy"      : kw.islazy,
+            "list"      : kw.islist,
+            "frozen"    : kw.isfrozen,
+            "function"  : kw.isfunction,
+            "bool"      : kw.isbool
+        }
+
+
+    def getVal(self) -> any: return self.val.thaw() if isinstance(self.val, Frozen) else self.val
+
+
+    def _getType(self, val) -> str:
+        for type, check in self.types.items():
+            if check(val): return type
+
+
+    def __repr__(self): return str(self)
+
+
+
+class Strict(TypedVariable):
+    def __init__(self, var: list, val: any) -> None:
+        super().__init__(var[1], val)
+        
+        self.type = var[0]
+        self.typeCheck()
+
+
+    def getType(self) -> str: return self.type
+        
+
+    def typeCheck(self) -> any:
+        """Raises `TypeError` if currently contained variable type is not `self.type`."""
+        if not self.types[self.type](self.val): 
+            raise TypeError(f"variable {self.name} requires value of type <{self.type}> but received <{self._getType(self.val)}>")
+
+
+    def setVal(self, val: any) -> "Strict":
+        self.val = val
+        self.typeCheck()
+
+
+    def __str__(self) -> str: return f"<strict {self.type} {self.name}>"
+
+
+
+class Latent(TypedVariable):
+    def getType(self):
+        return self._getType(self.val)
+
+
+    def setVal(self, val: any):
+        self.val = val
+
+
+    def __str__(self) -> str: return f"<latent {self.getType()} {self.name}>"
+    
+
+
 class Closable:
     """Parent class for all OPAL structures supporting closures, i.e. functions and templates."""
 
@@ -34,6 +113,9 @@ class Closable:
     
 
     def __str__(self) -> str: return f"<{self.type} {self.name}>"
+
+
+    def __repr__(self): return str(self)
     
 
 
@@ -78,7 +160,7 @@ class Function(Closable):
             return value
         
         # Evaluation of arguments
-        args = [] if args == None else kw.evlist(args) if not any(map(kw.isfrozen, args)) else args
+        args = [] if args == None else args if any(map(kw.isfrozen, args)) else kw.evlist(args)
         
         # Confirm function arity
         if len(self.parameters) != len(args): 
@@ -168,8 +250,11 @@ class Lazy:
     def __str__(self) -> str: return f"<{self.__class__.__name__.lower()} {self.func}>"
 
 
+    def __repr__(self): return str(self)
 
-class Frozen(Lazy):
+
+
+class Frozen:
     def __init__(self, val: str) -> None:
         self.value = val
 
@@ -177,3 +262,9 @@ class Frozen(Lazy):
     def thaw(self):
         """Compute the value of a `Frozen` expression."""
         return ev.evaluate(self.value)
+    
+
+    def __str__(self): return f"<frozen {self.value}>"
+
+
+    def __repr__(self): return str(self)
