@@ -24,7 +24,7 @@ class Variable:
 
 
 class TypedVariable:
-    def __init__(self, var: any = None, val: any = None):
+    def __init__(self, var: any, val: any):
         self.name = var
         self.val = val
 
