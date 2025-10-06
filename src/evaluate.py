@@ -80,6 +80,9 @@ def evaluate(expr: any) -> any:
                 # Lazy parameter evaluation wrapper for functions
                 case "lazy": return dt.Lazy(*TAIL)
 
+                # Freeze expressions for lazy evaluation
+                case "freeze": return dt.Frozen(*TAIL)
+
                 # Create new template instances
                 case "new": return cf.config.ENV.lookup(TAIL[0]).new(*TAIL[1:]) 
 
