@@ -10,6 +10,7 @@ import os
 def build(path: str = "OPAL/docs") -> None:
     """Build the documentation for OPAL."""
     
+    sys.path.append(os.path.abspath(f"{__file__}/..")) 
     sys.path.append(os.path.abspath(f"{__file__}/../src")) 
     sys.path.append(os.path.abspath(f"{__file__}/../src/ide")) 
     sys.path.append(os.path.abspath(f"{__file__}/../src/lang")) 
@@ -32,7 +33,7 @@ def build(path: str = "OPAL/docs") -> None:
 
     for mod in modules:
         for module_name, html in recursive_htmls(mod):
-            with open(f"{path}/{module_name.rsplit(".")[-1]}.html", "x") as file:
+            with open(f"{path}/{".".join(module_name.split(".")[-2:])}.html", "x") as file:
                 file.write(html)
 
 
