@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>ide.terminal API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ide.terminal</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ide.terminal.OptionsPanel"><code class="flex name class">
+<span>class <span class="ident">OptionsPanel</span></span>
+<span>(</span><span>*children: Widget,<br>name: str | None = None,<br>id: str | None = None,<br>classes: str | None = None,<br>disabled: bool = False,<br>markup: bool = True)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class OptionsPanel(Horizontal):
+
+    def compose(self) -&gt; ComposeResult:
+        
+        flags = [
+            &#39;-d&#39;,
+            &#39;-p&#39;,
+            &#39;-z&#39;
+        ]
+
+        # -i flag is just for show and consistency, so hardcode it
+        yield Horizontal(
+            Static(&#34; -i &#34;, classes=&#34;label secondary&#34;),
+            Switch(disabled=True, id=&#34;-i&#34;, value=True, classes=&#34;switch primary&#34;)
+        )
+
+        for flag in flags:
+            yield Horizontal(
+                Static(f&#34; {flag} &#34;, classes=&#34;label secondary&#34;),
+                Switch(animate=True, id=flag, classes=&#34;switch primary&#34;),
+            )</code></pre>
+</details>
+<div class="desc"><p>An expanding container with horizontal layout and no scrollbars.</p>
+<p>Initialize a Widget.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>*children</code></strong></dt>
+<dd>Child widgets.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the widget.</dd>
+<dt><strong><code>id</code></strong></dt>
+<dd>The ID of the widget in the DOM.</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd>The CSS classes for the widget.</dd>
+<dt><strong><code>disabled</code></strong></dt>
+<dd>Whether the widget is disabled or not.</dd>
+<dt><strong><code>markup</code></strong></dt>
+<dd>Enable content markup?</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>textual.containers.Horizontal</li>
+<li>textual.widget.Widget</li>
+<li>textual.dom.DOMNode</li>
+<li>textual.message_pump.MessagePump</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="ide.terminal.OptionsPanel.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ide.terminal.OptionsPanel.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="ide.terminal.OptionsPanel.compose"><code class="name flex">
+<span>def <span class="ident">compose</span></span>(<span>self) ‑> Iterable[textual.widget.Widget]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compose(self) -&gt; ComposeResult:
+    
+    flags = [
+        &#39;-d&#39;,
+        &#39;-p&#39;,
+        &#39;-z&#39;
+    ]
+
+    # -i flag is just for show and consistency, so hardcode it
+    yield Horizontal(
+        Static(&#34; -i &#34;, classes=&#34;label secondary&#34;),
+        Switch(disabled=True, id=&#34;-i&#34;, value=True, classes=&#34;switch primary&#34;)
+    )
+
+    for flag in flags:
+        yield Horizontal(
+            Static(f&#34; {flag} &#34;, classes=&#34;label secondary&#34;),
+            Switch(animate=True, id=flag, classes=&#34;switch primary&#34;),
+        )</code></pre>
+</details>
+<div class="desc"><p>Called by Textual to create child widgets.</p>
+<p>This method is called when a widget is mounted or by setting <code>recompose=True</code> when
+calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
+<p>Note that you don't typically need to explicitly call this method.</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python">def compose(self) -&gt; ComposeResult:
+    yield Header()
+    yield Label(&quot;Press the button below:&quot;)
+    yield Button()
+    yield Footer()
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+<dt id="ide.terminal.Terminal"><code class="flex name class">
+<span>class <span class="ident">Terminal</span></span>
+<span>(</span><span>*children,<br>name=None,<br>id=None,<br>classes=None,<br>disabled=False,<br>can_focus=None,<br>can_focus_children=None,<br>can_maximize=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Terminal(VerticalScroll):
+
+    def __init__(self, *children, name = None, id = None, classes = None, disabled = False, can_focus = None, can_focus_children = None, can_maximize = None):
+        super().__init__(*children, name=name, id=id, classes=classes, disabled=disabled, can_focus=can_focus, can_focus_children=can_focus_children, can_maximize=can_maximize)
+
+
+    def compose(self):
+        yield TerminalLog()
+        yield TerminalInputRow()
+
+
+    def _on_focus(self, event):
+        self.query_one(TerminalInput).focus(False)
+        return super()._on_focus(event)</code></pre>
+</details>
+<div class="desc"><p>A container with vertical layout and an automatic scrollbar on the Y axis.</p>
+<p>Construct a scrollable container.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>*children</code></strong></dt>
+<dd>Child widgets.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the widget.</dd>
+<dt><strong><code>id</code></strong></dt>
+<dd>The ID of the widget in the DOM.</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd>The CSS classes for the widget.</dd>
+<dt><strong><code>disabled</code></strong></dt>
+<dd>Whether the widget is disabled or not.</dd>
+<dt><strong><code>can_focus</code></strong></dt>
+<dd>Can this container be focused?</dd>
+<dt><strong><code>can_focus_children</code></strong></dt>
+<dd>Can this container's children be focused?</dd>
+<dt><strong><code>can_maximized</code></strong></dt>
+<dd>Allow this container to maximize? <code>None</code> to use default logic.,</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>textual.containers.VerticalScroll</li>
+<li>textual.containers.ScrollableContainer</li>
+<li>textual.widget.Widget</li>
+<li>textual.dom.DOMNode</li>
+<li>textual.message_pump.MessagePump</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="ide.terminal.Terminal.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ide.terminal.Terminal.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="ide.terminal.Terminal.compose"><code class="name flex">
+<span>def <span class="ident">compose</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compose(self):
+    yield TerminalLog()
+    yield TerminalInputRow()</code></pre>
+</details>
+<div class="desc"><p>Called by Textual to create child widgets.</p>
+<p>This method is called when a widget is mounted or by setting <code>recompose=True</code> when
+calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
+<p>Note that you don't typically need to explicitly call this method.</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python">def compose(self) -&gt; ComposeResult:
+    yield Header()
+    yield Label(&quot;Press the button below:&quot;)
+    yield Button()
+    yield Footer()
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+<dt id="ide.terminal.TerminalFrame"><code class="flex name class">
+<span>class <span class="ident">TerminalFrame</span></span>
+<span>(</span><span>*children, name=None, id=None, classes=None, disabled=False, markup=True)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TerminalFrame(Vertical):
+
+    def __init__(self, *children, name = None, id = None, classes = None, disabled = False, markup = True):
+        super().__init__(*children, name=name, id=id, classes=classes, disabled=disabled, markup=markup)
+        self.border_title = &#34;Terminal&#34;
+
+
+    def compose(self) -&gt; ComposeResult:
+        yield TerminalPanel(id=&#34;TerminalPanel&#34;)
+        yield OptionsPanel(id=&#34;OptionsPanel&#34;, classes=&#34;secondary&#34;)</code></pre>
+</details>
+<div class="desc"><p>An expanding container with vertical layout and no scrollbars.</p>
+<p>Initialize a Widget.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>*children</code></strong></dt>
+<dd>Child widgets.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the widget.</dd>
+<dt><strong><code>id</code></strong></dt>
+<dd>The ID of the widget in the DOM.</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd>The CSS classes for the widget.</dd>
+<dt><strong><code>disabled</code></strong></dt>
+<dd>Whether the widget is disabled or not.</dd>
+<dt><strong><code>markup</code></strong></dt>
+<dd>Enable content markup?</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>textual.containers.Vertical</li>
+<li>textual.widget.Widget</li>
+<li>textual.dom.DOMNode</li>
+<li>textual.message_pump.MessagePump</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="ide.terminal.TerminalFrame.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ide.terminal.TerminalFrame.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="ide.terminal.TerminalFrame.compose"><code class="name flex">
+<span>def <span class="ident">compose</span></span>(<span>self) ‑> Iterable[textual.widget.Widget]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compose(self) -&gt; ComposeResult:
+    yield TerminalPanel(id=&#34;TerminalPanel&#34;)
+    yield OptionsPanel(id=&#34;OptionsPanel&#34;, classes=&#34;secondary&#34;)</code></pre>
+</details>
+<div class="desc"><p>Called by Textual to create child widgets.</p>
+<p>This method is called when a widget is mounted or by setting <code>recompose=True</code> when
+calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
+<p>Note that you don't typically need to explicitly call this method.</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python">def compose(self) -&gt; ComposeResult:
+    yield Header()
+    yield Label(&quot;Press the button below:&quot;)
+    yield Button()
+    yield Footer()
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+<dt id="ide.terminal.TerminalInput"><code class="flex name class">
+<span>class <span class="ident">TerminalInput</span></span>
+<span>(</span><span>value=None,<br>placeholder='',<br>highlighter=None,<br>password=False,<br>*,<br>restrict=None,<br>type='text',<br>max_length=0,<br>suggester=None,<br>validators=None,<br>validate_on=None,<br>valid_empty=False,<br>select_on_focus=True,<br>name=None,<br>id='TerminalInput',<br>classes=None,<br>disabled=False,<br>tooltip=None,<br>compact=True)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TerminalInput(Input):
+    
+    def __init__(
+            self, 
+            value = None,
+            placeholder = &#34;&#34;, 
+            highlighter = None, 
+            password = False, *, 
+            restrict = None, 
+            type = &#34;text&#34;, 
+            max_length = 0, 
+            suggester = None, 
+            validators = None, 
+            validate_on = None, 
+            valid_empty = False, 
+            select_on_focus = True, 
+            name = None, 
+            id = &#34;TerminalInput&#34;, 
+            classes = None, 
+            disabled = False, 
+            tooltip = None, 
+            compact = True
+            ):
+        
+        super().__init__(
+            value,
+            placeholder,
+            highlighter,
+            password,
+            restrict=restrict,
+            type=type,
+            max_length=max_length,
+            suggester=suggester,
+            validators=validators,
+            validate_on=validate_on,
+            valid_empty=valid_empty,
+            select_on_focus=select_on_focus,
+            name=name, 
+            id=id,
+            classes=classes,
+            disabled=disabled,
+            tooltip=tooltip,
+            compact=compact
+            )</code></pre>
+</details>
+<div class="desc"><p>A text input widget.</p>
+<p>Initialise the <code>Input</code> widget.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong></dt>
+<dd>An optional default value for the input.</dd>
+<dt><strong><code>placeholder</code></strong></dt>
+<dd>Optional placeholder text for the input.</dd>
+<dt><strong><code>highlighter</code></strong></dt>
+<dd>An optional highlighter for the input.</dd>
+<dt><strong><code>password</code></strong></dt>
+<dd>Flag to say if the field should obfuscate its content.</dd>
+<dt><strong><code>restrict</code></strong></dt>
+<dd>A regex to restrict character inputs.</dd>
+<dt><strong><code>type</code></strong></dt>
+<dd>The type of the input.</dd>
+<dt><strong><code>max_length</code></strong></dt>
+<dd>The maximum length of the input, or 0 for no maximum length.</dd>
+<dt><strong><code>suggester</code></strong></dt>
+<dd>[<code>Suggester</code>][textual.suggester.Suggester] associated with this
+input instance.</dd>
+<dt><strong><code>validators</code></strong></dt>
+<dd>An iterable of validators that the Input value will be checked against.</dd>
+<dt><strong><code>validate_on</code></strong></dt>
+<dd>Zero or more of the values "blur", "changed", and "submitted",
+which determine when to do input validation. The default is to do
+validation for all messages.</dd>
+<dt><strong><code>valid_empty</code></strong></dt>
+<dd>Empty values are valid.</dd>
+<dt><strong><code>select_on_focus</code></strong></dt>
+<dd>Whether to select all text on focus.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>Optional name for the input widget.</dd>
+<dt><strong><code>id</code></strong></dt>
+<dd>Optional ID for the widget.</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd>Optional initial classes for the widget.</dd>
+<dt><strong><code>disabled</code></strong></dt>
+<dd>Whether the input is disabled or not.</dd>
+<dt><strong><code>tooltip</code></strong></dt>
+<dd>Optional tooltip.</dd>
+<dt><strong><code>compact</code></strong></dt>
+<dd>Enable compact style (without borders).</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>textual.widgets._input.Input</li>
+<li>textual.scroll_view.ScrollView</li>
+<li>textual.containers.ScrollableContainer</li>
+<li>textual.widget.Widget</li>
+<li>textual.dom.DOMNode</li>
+<li>textual.message_pump.MessagePump</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="ide.terminal.TerminalInput.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ide.terminal.TerminalInput.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="ide.terminal.TerminalInputRow"><code class="flex name class">
+<span>class <span class="ident">TerminalInputRow</span></span>
+<span>(</span><span>*children: Widget,<br>name: str | None = None,<br>id: str | None = None,<br>classes: str | None = None,<br>disabled: bool = False,<br>markup: bool = True)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TerminalInputRow(Horizontal):
+
+    def compose(self):
+        yield Static(&#34;(Ω) &#34;)
+        yield TerminalInput()</code></pre>
+</details>
+<div class="desc"><p>An expanding container with horizontal layout and no scrollbars.</p>
+<p>Initialize a Widget.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>*children</code></strong></dt>
+<dd>Child widgets.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the widget.</dd>
+<dt><strong><code>id</code></strong></dt>
+<dd>The ID of the widget in the DOM.</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd>The CSS classes for the widget.</dd>
+<dt><strong><code>disabled</code></strong></dt>
+<dd>Whether the widget is disabled or not.</dd>
+<dt><strong><code>markup</code></strong></dt>
+<dd>Enable content markup?</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>textual.containers.Horizontal</li>
+<li>textual.widget.Widget</li>
+<li>textual.dom.DOMNode</li>
+<li>textual.message_pump.MessagePump</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="ide.terminal.TerminalInputRow.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ide.terminal.TerminalInputRow.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="ide.terminal.TerminalInputRow.compose"><code class="name flex">
+<span>def <span class="ident">compose</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compose(self):
+    yield Static(&#34;(Ω) &#34;)
+    yield TerminalInput()</code></pre>
+</details>
+<div class="desc"><p>Called by Textual to create child widgets.</p>
+<p>This method is called when a widget is mounted or by setting <code>recompose=True</code> when
+calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
+<p>Note that you don't typically need to explicitly call this method.</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python">def compose(self) -&gt; ComposeResult:
+    yield Header()
+    yield Label(&quot;Press the button below:&quot;)
+    yield Button()
+    yield Footer()
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+<dt id="ide.terminal.TerminalLog"><code class="flex name class">
+<span>class <span class="ident">TerminalLog</span></span>
+<span>(</span><span>*,<br>max_lines=None,<br>min_width=78,<br>wrap=False,<br>highlight=False,<br>markup=False,<br>auto_scroll=True,<br>name=None,<br>id='TerminalLog',<br>classes=None,<br>disabled=False)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TerminalLog(RichLog):
+    
+    def __init__(self, *, max_lines = None, min_width = 78, wrap = False, highlight = False, markup = False, auto_scroll = True, name = None, id = &#34;TerminalLog&#34;, classes = None, disabled = False):
+        super().__init__(max_lines=max_lines, min_width=min_width, wrap=wrap, highlight=highlight, markup=markup, auto_scroll=auto_scroll, name=name, id=id, classes=classes, disabled=disabled)</code></pre>
+</details>
+<div class="desc"><p>A widget for logging Rich renderables and text.</p>
+<p>Create a <code>RichLog</code> widget.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>max_lines</code></strong></dt>
+<dd>Maximum number of lines in the log or <code>None</code> for no maximum.</dd>
+<dt><strong><code>min_width</code></strong></dt>
+<dd>Width to use for calls to <code>write</code> with no specified <code>width</code>.</dd>
+<dt><strong><code>wrap</code></strong></dt>
+<dd>Enable word wrapping (default is off).</dd>
+<dt><strong><code>highlight</code></strong></dt>
+<dd>Automatically highlight content. By default, the <code>ReprHighlighter</code> is used.
+To customize highlighting, set <code>highlight=True</code> and then set the <code>highlighter</code>
+attribute to an instance of <code>Highlighter</code>.</dd>
+<dt><strong><code>markup</code></strong></dt>
+<dd>Apply Rich console markup.</dd>
+<dt><strong><code>auto_scroll</code></strong></dt>
+<dd>Enable automatic scrolling to end.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the text log.</dd>
+<dt><strong><code>id</code></strong></dt>
+<dd>The ID of the text log in the DOM.</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd>The CSS classes of the text log.</dd>
+<dt><strong><code>disabled</code></strong></dt>
+<dd>Whether the text log is disabled or not.</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>textual.widgets._rich_log.RichLog</li>
+<li>textual.scroll_view.ScrollView</li>
+<li>textual.containers.ScrollableContainer</li>
+<li>textual.widget.Widget</li>
+<li>textual.dom.DOMNode</li>
+<li>textual.message_pump.MessagePump</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="ide.terminal.TerminalLog.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ide.terminal.TerminalLog.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="ide.terminal.TerminalOpt"><code class="flex name class">
+<span>class <span class="ident">TerminalOpt</span></span>
+<span>(</span><span>*children: Widget,<br>name: str | None = None,<br>id: str | None = None,<br>classes: str | None = None,<br>disabled: bool = False,<br>markup: bool = True)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TerminalOpt(Horizontal):
+    pass</code></pre>
+</details>
+<div class="desc"><p>An expanding container with horizontal layout and no scrollbars.</p>
+<p>Initialize a Widget.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>*children</code></strong></dt>
+<dd>Child widgets.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the widget.</dd>
+<dt><strong><code>id</code></strong></dt>
+<dd>The ID of the widget in the DOM.</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd>The CSS classes for the widget.</dd>
+<dt><strong><code>disabled</code></strong></dt>
+<dd>Whether the widget is disabled or not.</dd>
+<dt><strong><code>markup</code></strong></dt>
+<dd>Enable content markup?</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>textual.containers.Horizontal</li>
+<li>textual.widget.Widget</li>
+<li>textual.dom.DOMNode</li>
+<li>textual.message_pump.MessagePump</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="ide.terminal.TerminalOpt.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ide.terminal.TerminalOpt.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="ide.terminal.TerminalPanel"><code class="flex name class">
+<span>class <span class="ident">TerminalPanel</span></span>
+<span>(</span><span>*children: Widget,<br>name: str | None = None,<br>id: str | None = None,<br>classes: str | None = None,<br>disabled: bool = False,<br>markup: bool = True)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TerminalPanel(Vertical):
+
+    def compose(self) -&gt; ComposeResult:
+        yield TerminalOpt(id=&#34;TerminalOpt&#34;, classes=&#34;extendedTopPanel secondary&#34;)
+        yield Terminal(id=&#34;Terminal&#34;, classes=&#34;secondary&#34;)</code></pre>
+</details>
+<div class="desc"><p>An expanding container with vertical layout and no scrollbars.</p>
+<p>Initialize a Widget.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>*children</code></strong></dt>
+<dd>Child widgets.</dd>
+<dt><strong><code>name</code></strong></dt>
+<dd>The name of the widget.</dd>
+<dt><strong><code>id</code></strong></dt>
+<dd>The ID of the widget in the DOM.</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd>The CSS classes for the widget.</dd>
+<dt><strong><code>disabled</code></strong></dt>
+<dd>Whether the widget is disabled or not.</dd>
+<dt><strong><code>markup</code></strong></dt>
+<dd>Enable content markup?</dd>
+</dl></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>textual.containers.Vertical</li>
+<li>textual.widget.Widget</li>
+<li>textual.dom.DOMNode</li>
+<li>textual.message_pump.MessagePump</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="ide.terminal.TerminalPanel.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ide.terminal.TerminalPanel.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="ide.terminal.TerminalPanel.compose"><code class="name flex">
+<span>def <span class="ident">compose</span></span>(<span>self) ‑> Iterable[textual.widget.Widget]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compose(self) -&gt; ComposeResult:
+    yield TerminalOpt(id=&#34;TerminalOpt&#34;, classes=&#34;extendedTopPanel secondary&#34;)
+    yield Terminal(id=&#34;Terminal&#34;, classes=&#34;secondary&#34;)</code></pre>
+</details>
+<div class="desc"><p>Called by Textual to create child widgets.</p>
+<p>This method is called when a widget is mounted or by setting <code>recompose=True</code> when
+calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
+<p>Note that you don't typically need to explicitly call this method.</p>
+<h2 id="example">Example</h2>
+<pre><code class="language-python">def compose(self) -&gt; ComposeResult:
+    yield Header()
+    yield Label(&quot;Press the button below:&quot;)
+    yield Button()
+    yield Footer()
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ide" href="index.html">ide</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ide.terminal.OptionsPanel" href="#ide.terminal.OptionsPanel">OptionsPanel</a></code></h4>
+<ul class="">
+<li><code><a title="ide.terminal.OptionsPanel.can_focus" href="#ide.terminal.OptionsPanel.can_focus">can_focus</a></code></li>
+<li><code><a title="ide.terminal.OptionsPanel.can_focus_children" href="#ide.terminal.OptionsPanel.can_focus_children">can_focus_children</a></code></li>
+<li><code><a title="ide.terminal.OptionsPanel.compose" href="#ide.terminal.OptionsPanel.compose">compose</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ide.terminal.Terminal" href="#ide.terminal.Terminal">Terminal</a></code></h4>
+<ul class="">
+<li><code><a title="ide.terminal.Terminal.can_focus" href="#ide.terminal.Terminal.can_focus">can_focus</a></code></li>
+<li><code><a title="ide.terminal.Terminal.can_focus_children" href="#ide.terminal.Terminal.can_focus_children">can_focus_children</a></code></li>
+<li><code><a title="ide.terminal.Terminal.compose" href="#ide.terminal.Terminal.compose">compose</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ide.terminal.TerminalFrame" href="#ide.terminal.TerminalFrame">TerminalFrame</a></code></h4>
+<ul class="">
+<li><code><a title="ide.terminal.TerminalFrame.can_focus" href="#ide.terminal.TerminalFrame.can_focus">can_focus</a></code></li>
+<li><code><a title="ide.terminal.TerminalFrame.can_focus_children" href="#ide.terminal.TerminalFrame.can_focus_children">can_focus_children</a></code></li>
+<li><code><a title="ide.terminal.TerminalFrame.compose" href="#ide.terminal.TerminalFrame.compose">compose</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ide.terminal.TerminalInput" href="#ide.terminal.TerminalInput">TerminalInput</a></code></h4>
+<ul class="">
+<li><code><a title="ide.terminal.TerminalInput.can_focus" href="#ide.terminal.TerminalInput.can_focus">can_focus</a></code></li>
+<li><code><a title="ide.terminal.TerminalInput.can_focus_children" href="#ide.terminal.TerminalInput.can_focus_children">can_focus_children</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ide.terminal.TerminalInputRow" href="#ide.terminal.TerminalInputRow">TerminalInputRow</a></code></h4>
+<ul class="">
+<li><code><a title="ide.terminal.TerminalInputRow.can_focus" href="#ide.terminal.TerminalInputRow.can_focus">can_focus</a></code></li>
+<li><code><a title="ide.terminal.TerminalInputRow.can_focus_children" href="#ide.terminal.TerminalInputRow.can_focus_children">can_focus_children</a></code></li>
+<li><code><a title="ide.terminal.TerminalInputRow.compose" href="#ide.terminal.TerminalInputRow.compose">compose</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ide.terminal.TerminalLog" href="#ide.terminal.TerminalLog">TerminalLog</a></code></h4>
+<ul class="">
+<li><code><a title="ide.terminal.TerminalLog.can_focus" href="#ide.terminal.TerminalLog.can_focus">can_focus</a></code></li>
+<li><code><a title="ide.terminal.TerminalLog.can_focus_children" href="#ide.terminal.TerminalLog.can_focus_children">can_focus_children</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ide.terminal.TerminalOpt" href="#ide.terminal.TerminalOpt">TerminalOpt</a></code></h4>
+<ul class="">
+<li><code><a title="ide.terminal.TerminalOpt.can_focus" href="#ide.terminal.TerminalOpt.can_focus">can_focus</a></code></li>
+<li><code><a title="ide.terminal.TerminalOpt.can_focus_children" href="#ide.terminal.TerminalOpt.can_focus_children">can_focus_children</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ide.terminal.TerminalPanel" href="#ide.terminal.TerminalPanel">TerminalPanel</a></code></h4>
+<ul class="">
+<li><code><a title="ide.terminal.TerminalPanel.can_focus" href="#ide.terminal.TerminalPanel.can_focus">can_focus</a></code></li>
+<li><code><a title="ide.terminal.TerminalPanel.can_focus_children" href="#ide.terminal.TerminalPanel.can_focus_children">can_focus_children</a></code></li>
+<li><code><a title="ide.terminal.TerminalPanel.compose" href="#ide.terminal.TerminalPanel.compose">compose</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

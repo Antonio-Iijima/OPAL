@@ -6,7 +6,7 @@ def factorial(n: int) -> int:
     """Return the factorial of n"""
     return 1 if n <= 1 else n * factorial(n-1)
     
-def generate_factorials(n: int) -> int:
+def generate_factorials(n: int) -> list:
     return [ factorial(i) for i in range(n) ]
 
 

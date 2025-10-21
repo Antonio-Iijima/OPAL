@@ -5,7 +5,7 @@ def f(x): return x + 1
 
 #INCLUDE g as inc2
 def g(x): 
-    return ev.evaluate(x) + 1
+    return EVA.evaluate(x) + 1
 @end
 
 (inc 1)

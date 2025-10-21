@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>lang.repl API documentation</title>
+<meta name="description" content="Read, Eval, Print, Loop.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>lang.repl</code></h1>
+</header>
+<section id="section-intro">
+<p>Read, Eval, Print, Loop.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="lang.repl.REPL"><code class="flex name class">
+<span>class <span class="ident">REPL</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class REPL:
+
+    def __init__(self):
+
+        self.COMMANDS = {
+            &#34;help&#34;          : self.help,
+            &#34;keywords&#34;      : self.show_keywords,
+            &#34;exit&#34;          : self.quit,
+            &#34;quit&#34;          : self.quit,
+            &#34;flags&#34;         : self.flags,
+            &#34;clear&#34;         : self.clear,
+            &#34;dev.info&#34;      : self.show_dev,
+            &#34;dev.closures&#34;  : self.show_closures,
+            &#34;dev.globals&#34;   : self.show_globals,
+            &#34;dev.imports&#34;   : self.show_imports,
+            &#34;dev.env&#34;       : self.show_env
+        }
+        &#34;Internal REPL commands&#34;
+
+
+    class Message:
+        &#34;&#34;&#34;Base class for internal REPL messages.&#34;&#34;&#34;
+
+        def __init__(self, msg: any = None): self.msg = msg
+        
+        def get(self) -&gt; any: return self.msg
+
+    class Comment(Message): 
+        &#34;&#34;&#34;Expression is commented.&#34;&#34;&#34;
+
+    class Complete(Message):
+        &#34;&#34;&#34;Expression is complete and evaluated.&#34;&#34;&#34;
+
+    class Incomplete(Message):
+        &#34;&#34;&#34;Expression is incomplete.&#34;&#34;&#34;
+
+    class Error(Message):
+        &#34;&#34;&#34;Error in evaluating expression.&#34;&#34;&#34;
+
+
+    def RER(self, expr) -&gt; Comment|Complete|Incomplete|Error:
+        &#34;&#34;&#34;Read-Evaluate-Return function. Meant to be looped.&#34;&#34;&#34;
+        
+        if PAR.iscommented(expr):
+            if INT.interpreter.MULTILINE_COMMENT_CLOSE in expr:
+                if INT.interpreter.COMMENT_COUNTER: INT.interpreter.COMMENT_COUNTER -= 1
+                else: raise SyntaxError(f&#34;unmatched closing comment in {expr}&#34;)
+            elif INT.interpreter.MULTILINE_COMMENT_OPEN in expr: INT.interpreter.COMMENT_COUNTER += 1
+
+            return self.Comment()
+               
+        elif PAR.iscomplete(expr):
+            try:
+                return self.Complete(self.interpret(expr))
+            except Exception as e: 
+                if INT.interpreter.dFlag: raise e                
+                else: 
+                    msg = Text(f&#34;{type(e).__name__}: {e}&#34;)
+                    if INT.interpreter.zFlag: msg.append_text(INT.interpreter.del_random_keyword())
+            
+                    return self.Error(msg)
+                                    
+        return self.Incomplete()
+            
+
+    def RERL(self, stream: str = sys.stdin):
+        &#34;&#34;&#34;Read-Evaluate-Return-Loop. Wrapper for `RER`. Yields a continuous stream of output (generator).&#34;&#34;&#34;
+
+        expr = &#34;&#34;
+
+        for line in stream:
+
+            expr += f&#34;{line}\n&#34;
+
+            output = self.RER(expr.strip())
+
+            # Reset expression during comments and on completion/error
+            if not isinstance(output, self.Incomplete): expr = &#34;&#34;
+            if not isinstance(output, self.Comment): yield output
+
+
+    def REPL(self, stream = sys.stdin, suppress = False) -&gt; None:
+        &#34;&#34;&#34;Read-Evaluate-Print-Loop. Converts `RERL` output to interactive stdout.&#34;&#34;&#34;
+
+        # Suppress prompts if reading from file 
+        if suppress: 
+
+            # Completely silent if continuing into interactive shell
+            if INT.interpreter.iFlag: list(self.RERL(stream))
+            # Otherwise print banner
+            else: print(f&#34;--- OPAL v{INT.interpreter.VERSION} ---&#34;)
+
+        # If unsuppressed and interactive, proceed as normal
+        elif INT.interpreter.iFlag:
+            print(self.welcome())
+            print(self.prompt(), end=&#39;&#39;)
+
+        for line in self.RERL(stream):
+            if line.get() != None: print(line.get())
+            if not suppress: print(self.prompt(interim=isinstance(line, self.Incomplete)), end=&#39;&#39;)
+
+
+    def interpret(self, expr: str) -&gt; str | Text:
+        &#34;&#34;&#34;Fully interpret a complete expression.&#34;&#34;&#34;
+        
+        # Ignore empty lines
+        if expr == &#34;&#34;: return None
+        
+        # Interpret using the Python interpreter
+        elif expr.startswith(&#34;python&#34;): return f&#34;{eval(expr.removeprefix(&#34;python&#34;))}&#34;
+        
+        # Handle language extensions
+        elif expr.startswith(&#34;@start&#34;): return INT.interpreter.extend(expr)
+        
+        # Identify solitary keywords
+        elif KEY.iskeyword(expr): return f&#34;{expr} is an operator, built-in function or reserved word.&#34;
+
+        # Match repl-level commands
+        elif expr in self.COMMANDS: return self.COMMANDS[expr]()
+
+        # Otherwise parse the line and convert it to Python syntax, evaluate, and return as an OPAL string 
+        return PAR.toOPAL(EVA.evaluate(PAR.parse(expr)))
+
+
+
+##### Helper Functions #####
+
+
+
+    def prompt(self, interim: str = None) -&gt; Text:
+        &#34;&#34;&#34;Returns the interpreter prompt.&#34;&#34;&#34;
+        prompt = f&#34;[{INT.interpreter.DEFAULT_COLOR}]{&#34; &#34;*(len(INT.interpreter.PROMPT_SYMBOL)-1)}&gt; &#34; if interim else INT.interpreter.PROMPT
+        return Text.from_markup(prompt)
+
+
+    def welcome(self) -&gt; Text:
+        &#34;&#34;&#34;Build a welcome text box.&#34;&#34;&#34;
+
+        msg = &#34;&#34;
+
+        if INT.interpreter.iFlag: 
+            msg += f&#34;OPAL v{INT.interpreter.VERSION}, [green]interactive[/green]&#34;
+
+            if INT.interpreter.dFlag: msg += f&#34; with [cyan]debugging[/cyan]&#34;
+        
+        if INT.interpreter.pFlag: msg += f&#34;\n[yellow]Permanent extensions enabled[/yellow]&#34;
+
+        msg += &#34;\nEnter &#39;help&#39; to show further information&#34;
+
+        if INT.interpreter.zFlag: msg += f&#34;\n[red]WARNING: Random keyword deletion enabled. [purple]Proceed at your own risk.&#34;
+
+        return Text.from_markup(msg)
+
+
+    def help(self) -&gt; Panel:
+        &#34;&#34;&#34;Display help information.&#34;&#34;&#34;
+
+        msg = f&#34;&#34;&#34;OPAL is a multi-paradigm experimental programming language based on the previous Alvin Programming Language.
+        
+Documentation can be found on GitHub:
+https://github.com/Antonio-Iijima/OPAL
+
+{INT.interpreter.PROMPT}clear     : clear the terminal 
+{INT.interpreter.PROMPT}exit/quit : exit the interpreter
+{INT.interpreter.PROMPT}python *. : evaluate *. using Python
+{INT.interpreter.PROMPT}flags     : display interpreter flags
+{INT.interpreter.PROMPT}keywords  : display all language keywords
+{INT.interpreter.PROMPT}dev.info  : useful development/debugging tools&#34;&#34;&#34;
+        
+        return Group(
+            &#34;&#34;,
+            Panel.fit(
+                msg,
+                box=INT.interpreter.DEFAULT_OUTLINE,
+                border_style=INT.interpreter.DEFAULT_COLOR
+            ),
+            &#34;&#34;
+        )
+
+
+    def clear(self) -&gt; Text:
+        &#34;&#34;&#34;Clear the terminal.&#34;&#34;&#34;
+        os.system(&#39;cls&#39; if os.name == &#39;nt&#39; else &#39;clear&#39;)
+        return self.welcome()
+
+
+    def quit(self) -&gt; None:
+        &#34;&#34;&#34;Exit the interactive interpreter.&#34;&#34;&#34;
+
+        INT.interpreter.exit_extensions()
+
+        msg = &#34;&#34;
+
+        if INT.interpreter.zFlag:
+            net = INT.interpreter.current_keyword_num() - INT.interpreter.INITIAL_KEYWORD_NUM
+            msg = f&#34;\n[purple]You made {INT.interpreter.ERROR_COUNTER} error{&#34;s&#34; if INT.interpreter.ERROR_COUNTER != 1 else &#34;&#34;} with a net change of {f&#34;+{net}&#34; if net &gt; 0 else net} function{&#34;s&#34; if abs(net)!=1 else &#34;&#34;}\n&#34; + msg
+
+        print(
+            Group(
+                msg,
+                Panel.fit(
+                    &#34;Arrivederci!&#34;,
+                    box=INT.interpreter.DEFAULT_OUTLINE,
+                    border_style=INT.interpreter.DEFAULT_COLOR
+                )
+            )
+        ) or quit()
+
+
+    def flags(self) -&gt; Panel:
+        &#34;&#34;&#34;Display current active and inactive flags.&#34;&#34;&#34;
+
+        msg = &#34;\n&#34;.join(f&#34;{flag} : {int(INT.interpreter.FLAGS[flag])}&#34; for flag in INT.interpreter.FLAGS)
+
+        return Group(
+            &#34;&#34;,
+            Panel.fit(
+                msg,
+                title=&#34;Flags&#34;,
+                box=INT.interpreter.DEFAULT_OUTLINE,
+                border_style=INT.interpreter.DEFAULT_COLOR,
+                highlight=True
+            ),
+            &#34;&#34;
+        )
+
+
+    def show_closures(self) -&gt;Pretty:
+        &#34;&#34;&#34;Display the current closures.&#34;&#34;&#34;    
+        return Pretty(INT.interpreter.CLOSURES) if INT.interpreter.CLOSURES else &#34;No function environments found.&#34;
+    
+              
+    def show_globals(self) -&gt; Pretty:
+        &#34;&#34;&#34;Display all global variables.&#34;&#34;&#34;
+        return Pretty(INT.interpreter.GLOBALS) if INT.interpreter.GLOBALS else &#34;No global variables found.&#34;
+
+
+    def show_imports(self) -&gt; Pretty:
+        &#34;&#34;&#34;Display all currently imported modules and libraries.&#34;&#34;&#34;
+        return Pretty(INT.interpreter.IMPORTS) if INT.interpreter.IMPORTS else &#34;No imported modules found.&#34;
+
+
+    def show_env(self) -&gt; Pretty:
+        &#34;Display current environment.&#34;
+        return Group(
+            Pretty(INT.interpreter.ENV),
+            &#34;&#34;
+        )
+
+
+    def show_dev(self) -&gt; Panel:
+        &#34;&#34;&#34;Display useful dev tools.&#34;&#34;&#34;
+
+        msg = f&#34;&#34;&#34;useful tools
+                
+{INT.interpreter.PROMPT}dev.closures : closures
+{INT.interpreter.PROMPT}dev.env      : environment
+{INT.interpreter.PROMPT}dev.globals  : global variables
+{INT.interpreter.PROMPT}dev.imports  : imported modules&#34;&#34;&#34;
+        
+        return Group(
+            &#34;&#34;,
+            Panel.fit(
+                msg,
+                box=INT.interpreter.DEFAULT_OUTLINE,
+                border_style=INT.interpreter.DEFAULT_COLOR
+            ),
+            &#34;&#34;
+        )
+
+
+    def show_keywords(self) -&gt; str|Table:
+        &#34;&#34;&#34;Display all language keywords.&#34;&#34;&#34;
+
+        if not any(INT.interpreter.KEYWORDS.values()): return &#34;[red]No keywords found.&#34;
+
+        padding = 2
+
+        # Calculate the character limit of each word with padding
+        offset = max(max(len(keyword) for keyword in category) for category in INT.interpreter.KEYWORDS.values() if category) + padding
+
+        title = f&#34;KEYWORDS ({INT.interpreter.current_keyword_num()}/{INT.interpreter.INITIAL_KEYWORD_NUM})&#34;
+        msg = &#34;&#34;
+
+        categories = { f&#34;{c} ({len(INT.interpreter.KEYWORDS[c])})&#34; : sorted(INT.interpreter.KEYWORDS[c]) for c in INT.interpreter.KEYWORDS}
+
+        for section_idx, section_title in enumerate(categories):
+
+            # Add spacing between categories
+            if section_idx &gt; 0: msg += &#34;\n\n&#34;
+
+            # Add the section title
+            msg += f&#34;{&#34; &#34;*((offset*3-len(section_title))//2)}{section_title}\n&#34;
+
+            # Iterate through the keywords in the section to organize into columns
+            for keyword_idx, keyword in enumerate(categories[section_title]):
+
+                # Move to the next row every three keywords
+                if keyword_idx % 3 == 0: msg += f&#34;\n{&#34; &#34; * padding}&#34;
+
+                # Add each keyword along with the necessary amount of whitespace to justify the columns
+                msg += f&#34;{keyword}{&#39; &#39; * (offset-len(keyword))}&#34;
+
+                # If it is the end of a section and the keywords need to be justified
+                column = (keyword_idx + 1) % 3
+                if keyword_idx == len(categories[section_title]) - 1 and column != 0:
+                    # Replace the &#39;missing words&#39; with whitespace to complete the columns
+                    msg += &#39; &#39; * offset * (2 if column == 1 else 1)
+        
+        return Group(
+            &#34;&#34;,
+            Panel.fit(
+                msg,
+                title=title,    
+                box=INT.interpreter.DEFAULT_OUTLINE,
+                border_style=INT.interpreter.DEFAULT_COLOR,
+            ),
+            &#34;&#34;
+        )</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="lang.repl.REPL.Comment"><code class="name">var <span class="ident">Comment</span></code></dt>
+<dd>
+<div class="desc"><p>Expression is commented.</p></div>
+</dd>
+<dt id="lang.repl.REPL.Complete"><code class="name">var <span class="ident">Complete</span></code></dt>
+<dd>
+<div class="desc"><p>Expression is complete and evaluated.</p></div>
+</dd>
+<dt id="lang.repl.REPL.Error"><code class="name">var <span class="ident">Error</span></code></dt>
+<dd>
+<div class="desc"><p>Error in evaluating expression.</p></div>
+</dd>
+<dt id="lang.repl.REPL.Incomplete"><code class="name">var <span class="ident">Incomplete</span></code></dt>
+<dd>
+<div class="desc"><p>Expression is incomplete.</p></div>
+</dd>
+<dt id="lang.repl.REPL.Message"><code class="name">var <span class="ident">Message</span></code></dt>
+<dd>
+<div class="desc"><p>Base class for internal REPL messages.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="lang.repl.REPL.COMMANDS"><code class="name">var <span class="ident">COMMANDS</span></code></dt>
+<dd>
+<div class="desc"><p>Internal REPL commands</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="lang.repl.REPL.REPL"><code class="name flex">
+<span>def <span class="ident">REPL</span></span>(<span>self, stream=sys.stdin, suppress=False) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def REPL(self, stream = sys.stdin, suppress = False) -&gt; None:
+    &#34;&#34;&#34;Read-Evaluate-Print-Loop. Converts `RERL` output to interactive stdout.&#34;&#34;&#34;
+
+    # Suppress prompts if reading from file 
+    if suppress: 
+
+        # Completely silent if continuing into interactive shell
+        if INT.interpreter.iFlag: list(self.RERL(stream))
+        # Otherwise print banner
+        else: print(f&#34;--- OPAL v{INT.interpreter.VERSION} ---&#34;)
+
+    # If unsuppressed and interactive, proceed as normal
+    elif INT.interpreter.iFlag:
+        print(self.welcome())
+        print(self.prompt(), end=&#39;&#39;)
+
+    for line in self.RERL(stream):
+        if line.get() != None: print(line.get())
+        if not suppress: print(self.prompt(interim=isinstance(line, self.Incomplete)), end=&#39;&#39;)</code></pre>
+</details>
+<div class="desc"><p>Read-Evaluate-Print-Loop. Converts <code>RERL</code> output to interactive stdout.</p></div>
+</dd>
+<dt id="lang.repl.REPL.RER"><code class="name flex">
+<span>def <span class="ident">RER</span></span>(<span>self, expr) ‑> <a title="lang.repl.REPL.Comment" href="#lang.repl.REPL.Comment">REPL.Comment</a> | <a title="lang.repl.REPL.Complete" href="#lang.repl.REPL.Complete">REPL.Complete</a> | <a title="lang.repl.REPL.Incomplete" href="#lang.repl.REPL.Incomplete">REPL.Incomplete</a> | <a title="lang.repl.REPL.Error" href="#lang.repl.REPL.Error">REPL.Error</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def RER(self, expr) -&gt; Comment|Complete|Incomplete|Error:
+    &#34;&#34;&#34;Read-Evaluate-Return function. Meant to be looped.&#34;&#34;&#34;
+    
+    if PAR.iscommented(expr):
+        if INT.interpreter.MULTILINE_COMMENT_CLOSE in expr:
+            if INT.interpreter.COMMENT_COUNTER: INT.interpreter.COMMENT_COUNTER -= 1
+            else: raise SyntaxError(f&#34;unmatched closing comment in {expr}&#34;)
+        elif INT.interpreter.MULTILINE_COMMENT_OPEN in expr: INT.interpreter.COMMENT_COUNTER += 1
+
+        return self.Comment()
+           
+    elif PAR.iscomplete(expr):
+        try:
+            return self.Complete(self.interpret(expr))
+        except Exception as e: 
+            if INT.interpreter.dFlag: raise e                
+            else: 
+                msg = Text(f&#34;{type(e).__name__}: {e}&#34;)
+                if INT.interpreter.zFlag: msg.append_text(INT.interpreter.del_random_keyword())
+        
+                return self.Error(msg)
+                                
+    return self.Incomplete()</code></pre>
+</details>
+<div class="desc"><p>Read-Evaluate-Return function. Meant to be looped.</p></div>
+</dd>
+<dt id="lang.repl.REPL.RERL"><code class="name flex">
+<span>def <span class="ident">RERL</span></span>(<span>self, stream: str = sys.stdin)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def RERL(self, stream: str = sys.stdin):
+    &#34;&#34;&#34;Read-Evaluate-Return-Loop. Wrapper for `RER`. Yields a continuous stream of output (generator).&#34;&#34;&#34;
+
+    expr = &#34;&#34;
+
+    for line in stream:
+
+        expr += f&#34;{line}\n&#34;
+
+        output = self.RER(expr.strip())
+
+        # Reset expression during comments and on completion/error
+        if not isinstance(output, self.Incomplete): expr = &#34;&#34;
+        if not isinstance(output, self.Comment): yield output</code></pre>
+</details>
+<div class="desc"><p>Read-Evaluate-Return-Loop. Wrapper for <code>RER</code>. Yields a continuous stream of output (generator).</p></div>
+</dd>
+<dt id="lang.repl.REPL.clear"><code class="name flex">
+<span>def <span class="ident">clear</span></span>(<span>self) ‑> rich.text.Text</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clear(self) -&gt; Text:
+    &#34;&#34;&#34;Clear the terminal.&#34;&#34;&#34;
+    os.system(&#39;cls&#39; if os.name == &#39;nt&#39; else &#39;clear&#39;)
+    return self.welcome()</code></pre>
+</details>
+<div class="desc"><p>Clear the terminal.</p></div>
+</dd>
+<dt id="lang.repl.REPL.flags"><code class="name flex">
+<span>def <span class="ident">flags</span></span>(<span>self) ‑> rich.panel.Panel</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def flags(self) -&gt; Panel:
+    &#34;&#34;&#34;Display current active and inactive flags.&#34;&#34;&#34;
+
+    msg = &#34;\n&#34;.join(f&#34;{flag} : {int(INT.interpreter.FLAGS[flag])}&#34; for flag in INT.interpreter.FLAGS)
+
+    return Group(
+        &#34;&#34;,
+        Panel.fit(
+            msg,
+            title=&#34;Flags&#34;,
+            box=INT.interpreter.DEFAULT_OUTLINE,
+            border_style=INT.interpreter.DEFAULT_COLOR,
+            highlight=True
+        ),
+        &#34;&#34;
+    )</code></pre>
+</details>
+<div class="desc"><p>Display current active and inactive flags.</p></div>
+</dd>
+<dt id="lang.repl.REPL.help"><code class="name flex">
+<span>def <span class="ident">help</span></span>(<span>self) ‑> rich.panel.Panel</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">    def help(self) -&gt; Panel:
+        &#34;&#34;&#34;Display help information.&#34;&#34;&#34;
+
+        msg = f&#34;&#34;&#34;OPAL is a multi-paradigm experimental programming language based on the previous Alvin Programming Language.
+        
+Documentation can be found on GitHub:
+https://github.com/Antonio-Iijima/OPAL
+
+{INT.interpreter.PROMPT}clear     : clear the terminal 
+{INT.interpreter.PROMPT}exit/quit : exit the interpreter
+{INT.interpreter.PROMPT}python *. : evaluate *. using Python
+{INT.interpreter.PROMPT}flags     : display interpreter flags
+{INT.interpreter.PROMPT}keywords  : display all language keywords
+{INT.interpreter.PROMPT}dev.info  : useful development/debugging tools&#34;&#34;&#34;
+        
+        return Group(
+            &#34;&#34;,
+            Panel.fit(
+                msg,
+                box=INT.interpreter.DEFAULT_OUTLINE,
+                border_style=INT.interpreter.DEFAULT_COLOR
+            ),
+            &#34;&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>Display help information.</p></div>
+</dd>
+<dt id="lang.repl.REPL.interpret"><code class="name flex">
+<span>def <span class="ident">interpret</span></span>(<span>self, expr: str) ‑> str | rich.text.Text</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def interpret(self, expr: str) -&gt; str | Text:
+    &#34;&#34;&#34;Fully interpret a complete expression.&#34;&#34;&#34;
+    
+    # Ignore empty lines
+    if expr == &#34;&#34;: return None
+    
+    # Interpret using the Python interpreter
+    elif expr.startswith(&#34;python&#34;): return f&#34;{eval(expr.removeprefix(&#34;python&#34;))}&#34;
+    
+    # Handle language extensions
+    elif expr.startswith(&#34;@start&#34;): return INT.interpreter.extend(expr)
+    
+    # Identify solitary keywords
+    elif KEY.iskeyword(expr): return f&#34;{expr} is an operator, built-in function or reserved word.&#34;
+
+    # Match repl-level commands
+    elif expr in self.COMMANDS: return self.COMMANDS[expr]()
+
+    # Otherwise parse the line and convert it to Python syntax, evaluate, and return as an OPAL string 
+    return PAR.toOPAL(EVA.evaluate(PAR.parse(expr)))</code></pre>
+</details>
+<div class="desc"><p>Fully interpret a complete expression.</p></div>
+</dd>
+<dt id="lang.repl.REPL.prompt"><code class="name flex">
+<span>def <span class="ident">prompt</span></span>(<span>self, interim: str = None) ‑> rich.text.Text</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prompt(self, interim: str = None) -&gt; Text:
+    &#34;&#34;&#34;Returns the interpreter prompt.&#34;&#34;&#34;
+    prompt = f&#34;[{INT.interpreter.DEFAULT_COLOR}]{&#34; &#34;*(len(INT.interpreter.PROMPT_SYMBOL)-1)}&gt; &#34; if interim else INT.interpreter.PROMPT
+    return Text.from_markup(prompt)</code></pre>
+</details>
+<div class="desc"><p>Returns the interpreter prompt.</p></div>
+</dd>
+<dt id="lang.repl.REPL.quit"><code class="name flex">
+<span>def <span class="ident">quit</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def quit(self) -&gt; None:
+    &#34;&#34;&#34;Exit the interactive interpreter.&#34;&#34;&#34;
+
+    INT.interpreter.exit_extensions()
+
+    msg = &#34;&#34;
+
+    if INT.interpreter.zFlag:
+        net = INT.interpreter.current_keyword_num() - INT.interpreter.INITIAL_KEYWORD_NUM
+        msg = f&#34;\n[purple]You made {INT.interpreter.ERROR_COUNTER} error{&#34;s&#34; if INT.interpreter.ERROR_COUNTER != 1 else &#34;&#34;} with a net change of {f&#34;+{net}&#34; if net &gt; 0 else net} function{&#34;s&#34; if abs(net)!=1 else &#34;&#34;}\n&#34; + msg
+
+    print(
+        Group(
+            msg,
+            Panel.fit(
+                &#34;Arrivederci!&#34;,
+                box=INT.interpreter.DEFAULT_OUTLINE,
+                border_style=INT.interpreter.DEFAULT_COLOR
+            )
+        )
+    ) or quit()</code></pre>
+</details>
+<div class="desc"><p>Exit the interactive interpreter.</p></div>
+</dd>
+<dt id="lang.repl.REPL.show_closures"><code class="name flex">
+<span>def <span class="ident">show_closures</span></span>(<span>self) ‑> rich.pretty.Pretty</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_closures(self) -&gt;Pretty:
+    &#34;&#34;&#34;Display the current closures.&#34;&#34;&#34;    
+    return Pretty(INT.interpreter.CLOSURES) if INT.interpreter.CLOSURES else &#34;No function environments found.&#34;</code></pre>
+</details>
+<div class="desc"><p>Display the current closures.</p></div>
+</dd>
+<dt id="lang.repl.REPL.show_dev"><code class="name flex">
+<span>def <span class="ident">show_dev</span></span>(<span>self) ‑> rich.panel.Panel</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">    def show_dev(self) -&gt; Panel:
+        &#34;&#34;&#34;Display useful dev tools.&#34;&#34;&#34;
+
+        msg = f&#34;&#34;&#34;useful tools
+                
+{INT.interpreter.PROMPT}dev.closures : closures
+{INT.interpreter.PROMPT}dev.env      : environment
+{INT.interpreter.PROMPT}dev.globals  : global variables
+{INT.interpreter.PROMPT}dev.imports  : imported modules&#34;&#34;&#34;
+        
+        return Group(
+            &#34;&#34;,
+            Panel.fit(
+                msg,
+                box=INT.interpreter.DEFAULT_OUTLINE,
+                border_style=INT.interpreter.DEFAULT_COLOR
+            ),
+            &#34;&#34;
+        )</code></pre>
+</details>
+<div class="desc"><p>Display useful dev tools.</p></div>
+</dd>
+<dt id="lang.repl.REPL.show_env"><code class="name flex">
+<span>def <span class="ident">show_env</span></span>(<span>self) ‑> rich.pretty.Pretty</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_env(self) -&gt; Pretty:
+    &#34;Display current environment.&#34;
+    return Group(
+        Pretty(INT.interpreter.ENV),
+        &#34;&#34;
+    )</code></pre>
+</details>
+<div class="desc"><p>Display current environment.</p></div>
+</dd>
+<dt id="lang.repl.REPL.show_globals"><code class="name flex">
+<span>def <span class="ident">show_globals</span></span>(<span>self) ‑> rich.pretty.Pretty</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_globals(self) -&gt; Pretty:
+    &#34;&#34;&#34;Display all global variables.&#34;&#34;&#34;
+    return Pretty(INT.interpreter.GLOBALS) if INT.interpreter.GLOBALS else &#34;No global variables found.&#34;</code></pre>
+</details>
+<div class="desc"><p>Display all global variables.</p></div>
+</dd>
+<dt id="lang.repl.REPL.show_imports"><code class="name flex">
+<span>def <span class="ident">show_imports</span></span>(<span>self) ‑> rich.pretty.Pretty</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_imports(self) -&gt; Pretty:
+    &#34;&#34;&#34;Display all currently imported modules and libraries.&#34;&#34;&#34;
+    return Pretty(INT.interpreter.IMPORTS) if INT.interpreter.IMPORTS else &#34;No imported modules found.&#34;</code></pre>
+</details>
+<div class="desc"><p>Display all currently imported modules and libraries.</p></div>
+</dd>
+<dt id="lang.repl.REPL.show_keywords"><code class="name flex">
+<span>def <span class="ident">show_keywords</span></span>(<span>self) ‑> str | rich.table.Table</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_keywords(self) -&gt; str|Table:
+    &#34;&#34;&#34;Display all language keywords.&#34;&#34;&#34;
+
+    if not any(INT.interpreter.KEYWORDS.values()): return &#34;[red]No keywords found.&#34;
+
+    padding = 2
+
+    # Calculate the character limit of each word with padding
+    offset = max(max(len(keyword) for keyword in category) for category in INT.interpreter.KEYWORDS.values() if category) + padding
+
+    title = f&#34;KEYWORDS ({INT.interpreter.current_keyword_num()}/{INT.interpreter.INITIAL_KEYWORD_NUM})&#34;
+    msg = &#34;&#34;
+
+    categories = { f&#34;{c} ({len(INT.interpreter.KEYWORDS[c])})&#34; : sorted(INT.interpreter.KEYWORDS[c]) for c in INT.interpreter.KEYWORDS}
+
+    for section_idx, section_title in enumerate(categories):
+
+        # Add spacing between categories
+        if section_idx &gt; 0: msg += &#34;\n\n&#34;
+
+        # Add the section title
+        msg += f&#34;{&#34; &#34;*((offset*3-len(section_title))//2)}{section_title}\n&#34;
+
+        # Iterate through the keywords in the section to organize into columns
+        for keyword_idx, keyword in enumerate(categories[section_title]):
+
+            # Move to the next row every three keywords
+            if keyword_idx % 3 == 0: msg += f&#34;\n{&#34; &#34; * padding}&#34;
+
+            # Add each keyword along with the necessary amount of whitespace to justify the columns
+            msg += f&#34;{keyword}{&#39; &#39; * (offset-len(keyword))}&#34;
+
+            # If it is the end of a section and the keywords need to be justified
+            column = (keyword_idx + 1) % 3
+            if keyword_idx == len(categories[section_title]) - 1 and column != 0:
+                # Replace the &#39;missing words&#39; with whitespace to complete the columns
+                msg += &#39; &#39; * offset * (2 if column == 1 else 1)
+    
+    return Group(
+        &#34;&#34;,
+        Panel.fit(
+            msg,
+            title=title,    
+            box=INT.interpreter.DEFAULT_OUTLINE,
+            border_style=INT.interpreter.DEFAULT_COLOR,
+        ),
+        &#34;&#34;
+    )</code></pre>
+</details>
+<div class="desc"><p>Display all language keywords.</p></div>
+</dd>
+<dt id="lang.repl.REPL.welcome"><code class="name flex">
+<span>def <span class="ident">welcome</span></span>(<span>self) ‑> rich.text.Text</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def welcome(self) -&gt; Text:
+    &#34;&#34;&#34;Build a welcome text box.&#34;&#34;&#34;
+
+    msg = &#34;&#34;
+
+    if INT.interpreter.iFlag: 
+        msg += f&#34;OPAL v{INT.interpreter.VERSION}, [green]interactive[/green]&#34;
+
+        if INT.interpreter.dFlag: msg += f&#34; with [cyan]debugging[/cyan]&#34;
+    
+    if INT.interpreter.pFlag: msg += f&#34;\n[yellow]Permanent extensions enabled[/yellow]&#34;
+
+    msg += &#34;\nEnter &#39;help&#39; to show further information&#34;
+
+    if INT.interpreter.zFlag: msg += f&#34;\n[red]WARNING: Random keyword deletion enabled. [purple]Proceed at your own risk.&#34;
+
+    return Text.from_markup(msg)</code></pre>
+</details>
+<div class="desc"><p>Build a welcome text box.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="lang" href="index.html">lang</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="lang.repl.REPL" href="#lang.repl.REPL">REPL</a></code></h4>
+<ul class="two-column">
+<li><code><a title="lang.repl.REPL.COMMANDS" href="#lang.repl.REPL.COMMANDS">COMMANDS</a></code></li>
+<li><code><a title="lang.repl.REPL.Comment" href="#lang.repl.REPL.Comment">Comment</a></code></li>
+<li><code><a title="lang.repl.REPL.Complete" href="#lang.repl.REPL.Complete">Complete</a></code></li>
+<li><code><a title="lang.repl.REPL.Error" href="#lang.repl.REPL.Error">Error</a></code></li>
+<li><code><a title="lang.repl.REPL.Incomplete" href="#lang.repl.REPL.Incomplete">Incomplete</a></code></li>
+<li><code><a title="lang.repl.REPL.Message" href="#lang.repl.REPL.Message">Message</a></code></li>
+<li><code><a title="lang.repl.REPL.REPL" href="#lang.repl.REPL.REPL">REPL</a></code></li>
+<li><code><a title="lang.repl.REPL.RER" href="#lang.repl.REPL.RER">RER</a></code></li>
+<li><code><a title="lang.repl.REPL.RERL" href="#lang.repl.REPL.RERL">RERL</a></code></li>
+<li><code><a title="lang.repl.REPL.clear" href="#lang.repl.REPL.clear">clear</a></code></li>
+<li><code><a title="lang.repl.REPL.flags" href="#lang.repl.REPL.flags">flags</a></code></li>
+<li><code><a title="lang.repl.REPL.help" href="#lang.repl.REPL.help">help</a></code></li>
+<li><code><a title="lang.repl.REPL.interpret" href="#lang.repl.REPL.interpret">interpret</a></code></li>
+<li><code><a title="lang.repl.REPL.prompt" href="#lang.repl.REPL.prompt">prompt</a></code></li>
+<li><code><a title="lang.repl.REPL.quit" href="#lang.repl.REPL.quit">quit</a></code></li>
+<li><code><a title="lang.repl.REPL.show_closures" href="#lang.repl.REPL.show_closures">show_closures</a></code></li>
+<li><code><a title="lang.repl.REPL.show_dev" href="#lang.repl.REPL.show_dev">show_dev</a></code></li>
+<li><code><a title="lang.repl.REPL.show_env" href="#lang.repl.REPL.show_env">show_env</a></code></li>
+<li><code><a title="lang.repl.REPL.show_globals" href="#lang.repl.REPL.show_globals">show_globals</a></code></li>
+<li><code><a title="lang.repl.REPL.show_imports" href="#lang.repl.REPL.show_imports">show_imports</a></code></li>
+<li><code><a title="lang.repl.REPL.show_keywords" href="#lang.repl.REPL.show_keywords">show_keywords</a></code></li>
+<li><code><a title="lang.repl.REPL.welcome" href="#lang.repl.REPL.welcome">welcome</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
