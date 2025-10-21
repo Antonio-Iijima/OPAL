@@ -16,9 +16,9 @@ if len(sys.argv) > 1:
         shutil.rmtree(f"{PATH}/docs/src")
 
     elif "ide" in sys.argv:
-        os.system(f"python3 {PATH}/../src/ide/app.py")
+        os.system(f"python3 {PATH}/src/ide/app.py")
     else:
-        os.system(f"python3 {PATH}/../src/lang/main.py {" ".join(sys.argv[1:])}")
+        os.system(f"python3 {PATH}/src/lang/main.py {" ".join(sys.argv[1:])}")
 
 else: print("""
 Command-line args:
