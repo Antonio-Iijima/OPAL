@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>lang.datatypes API documentation</title>
+<title>src.lang.datatypes API documentation</title>
 <meta name="description" content="Custom datatype classes.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>lang.datatypes</code></h1>
+<h1 class="title">Module <code>src.lang.datatypes</code></h1>
 </header>
 <section id="section-intro">
 <p>Custom datatype classes.</p>
@@ -47,7 +47,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="lang.datatypes.Closable"><code class="flex name class">
+<dt id="src.lang.datatypes.Closable"><code class="flex name class">
 <span>class <span class="ident">Closable</span></span>
 <span>(</span><span>name: str, parameters: list = None, body: list = None)</span>
 </code></dt>
@@ -86,13 +86,13 @@ el.replaceWith(d);
 <p>Initialize datatype and generate unique ID.</p></div>
 <h3>Subclasses</h3>
 <ul class="hlist">
-<li><a title="lang.datatypes.Function" href="#lang.datatypes.Function">Function</a></li>
-<li><a title="lang.datatypes.Instance" href="#lang.datatypes.Instance">Instance</a></li>
-<li><a title="lang.datatypes.Template" href="#lang.datatypes.Template">Template</a></li>
+<li><a title="src.lang.datatypes.Function" href="#src.lang.datatypes.Function">Function</a></li>
+<li><a title="src.lang.datatypes.Instance" href="#src.lang.datatypes.Instance">Instance</a></li>
+<li><a title="src.lang.datatypes.Template" href="#src.lang.datatypes.Template">Template</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.Closable.generate_id"><code class="name flex">
+<dt id="src.lang.datatypes.Closable.generate_id"><code class="name flex">
 <span>def <span class="ident">generate_id</span></span>(<span>self, k: int = 15) ‑> str</span>
 </code></dt>
 <dd>
@@ -108,7 +108,7 @@ el.replaceWith(d);
 </dd>
 </dl>
 </dd>
-<dt id="lang.datatypes.Frozen"><code class="flex name class">
+<dt id="src.lang.datatypes.Frozen"><code class="flex name class">
 <span>class <span class="ident">Frozen</span></span>
 <span>(</span><span>val: str)</span>
 </code></dt>
@@ -135,7 +135,7 @@ el.replaceWith(d);
 <div class="desc"></div>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.Frozen.thaw"><code class="name flex">
+<dt id="src.lang.datatypes.Frozen.thaw"><code class="name flex">
 <span>def <span class="ident">thaw</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -147,11 +147,11 @@ el.replaceWith(d);
     &#34;&#34;&#34;Compute the value of a `Frozen` expression.&#34;&#34;&#34;
     return EVA.evaluate(self.value)</code></pre>
 </details>
-<div class="desc"><p>Compute the value of a <code><a title="lang.datatypes.Frozen" href="#lang.datatypes.Frozen">Frozen</a></code> expression.</p></div>
+<div class="desc"><p>Compute the value of a <code><a title="src.lang.datatypes.Frozen" href="#src.lang.datatypes.Frozen">Frozen</a></code> expression.</p></div>
 </dd>
 </dl>
 </dd>
-<dt id="lang.datatypes.Function"><code class="flex name class">
+<dt id="src.lang.datatypes.Function"><code class="flex name class">
 <span>class <span class="ident">Function</span></span>
 <span>(</span><span>name: str,<br>parameters: list = None,<br>body: list = None,<br>isMethod: bool = False,<br>isLazy: bool = False)</span>
 </code></dt>
@@ -214,11 +214,11 @@ el.replaceWith(d);
 <p>Initialize closable function type.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="lang.datatypes.Closable" href="#lang.datatypes.Closable">Closable</a></li>
+<li><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.Function.eval"><code class="name flex">
+<dt id="src.lang.datatypes.Function.eval"><code class="name flex">
 <span>def <span class="ident">eval</span></span>(<span>self, args: list) ‑> <built-in function any></span>
 </code></dt>
 <dd>
@@ -267,14 +267,14 @@ el.replaceWith(d);
 </dl>
 <h3>Inherited members</h3>
 <ul class="hlist">
-<li><code><b><a title="lang.datatypes.Closable" href="#lang.datatypes.Closable">Closable</a></b></code>:
+<li><code><b><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></b></code>:
 <ul class="hlist">
-<li><code><a title="lang.datatypes.Closable.generate_id" href="#lang.datatypes.Closable.generate_id">generate_id</a></code></li>
+<li><code><a title="src.lang.datatypes.Closable.generate_id" href="#src.lang.datatypes.Closable.generate_id">generate_id</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
-<dt id="lang.datatypes.Instance"><code class="flex name class">
+<dt id="src.lang.datatypes.Instance"><code class="flex name class">
 <span>class <span class="ident">Instance</span></span>
 <span>(</span><span>name: str, parameters: list, args: list)</span>
 </code></dt>
@@ -308,11 +308,11 @@ el.replaceWith(d);
 <p>Initialize datatype and generate unique ID.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="lang.datatypes.Closable" href="#lang.datatypes.Closable">Closable</a></li>
+<li><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.Instance.eval"><code class="name flex">
+<dt id="src.lang.datatypes.Instance.eval"><code class="name flex">
 <span>def <span class="ident">eval</span></span>(<span>self, method: str, args: list = None)</span>
 </code></dt>
 <dd>
@@ -334,14 +334,14 @@ el.replaceWith(d);
 </dl>
 <h3>Inherited members</h3>
 <ul class="hlist">
-<li><code><b><a title="lang.datatypes.Closable" href="#lang.datatypes.Closable">Closable</a></b></code>:
+<li><code><b><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></b></code>:
 <ul class="hlist">
-<li><code><a title="lang.datatypes.Closable.generate_id" href="#lang.datatypes.Closable.generate_id">generate_id</a></code></li>
+<li><code><a title="src.lang.datatypes.Closable.generate_id" href="#src.lang.datatypes.Closable.generate_id">generate_id</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
-<dt id="lang.datatypes.Latent"><code class="flex name class">
+<dt id="src.lang.datatypes.Latent"><code class="flex name class">
 <span>class <span class="ident">Latent</span></span>
 <span>(</span><span>var: <built-in function any>, val: <built-in function any>)</span>
 </code></dt>
@@ -366,11 +366,11 @@ el.replaceWith(d);
 <div class="desc"></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="lang.datatypes.TypedVariable" href="#lang.datatypes.TypedVariable">TypedVariable</a></li>
+<li><a title="src.lang.datatypes.TypedVariable" href="#src.lang.datatypes.TypedVariable">TypedVariable</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.Latent.getType"><code class="name flex">
+<dt id="src.lang.datatypes.Latent.getType"><code class="name flex">
 <span>def <span class="ident">getType</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -383,7 +383,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="lang.datatypes.Latent.setVal"><code class="name flex">
+<dt id="src.lang.datatypes.Latent.setVal"><code class="name flex">
 <span>def <span class="ident">setVal</span></span>(<span>self, val: <built-in function any>)</span>
 </code></dt>
 <dd>
@@ -399,7 +399,7 @@ el.replaceWith(d);
 </dd>
 </dl>
 </dd>
-<dt id="lang.datatypes.Lazy"><code class="flex name class">
+<dt id="src.lang.datatypes.Lazy"><code class="flex name class">
 <span>class <span class="ident">Lazy</span></span>
 <span>(</span><span>func: str)</span>
 </code></dt>
@@ -424,7 +424,7 @@ el.replaceWith(d);
 <div class="desc"></div>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.Lazy.eval"><code class="name flex">
+<dt id="src.lang.datatypes.Lazy.eval"><code class="name flex">
 <span>def <span class="ident">eval</span></span>(<span>self, args: list) ‑> <built-in function any></span>
 </code></dt>
 <dd>
@@ -438,7 +438,7 @@ el.replaceWith(d);
 </dd>
 </dl>
 </dd>
-<dt id="lang.datatypes.Strict"><code class="flex name class">
+<dt id="src.lang.datatypes.Strict"><code class="flex name class">
 <span>class <span class="ident">Strict</span></span>
 <span>(</span><span>var: list, val: <built-in function any>)</span>
 </code></dt>
@@ -475,11 +475,11 @@ el.replaceWith(d);
 <div class="desc"></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="lang.datatypes.TypedVariable" href="#lang.datatypes.TypedVariable">TypedVariable</a></li>
+<li><a title="src.lang.datatypes.TypedVariable" href="#src.lang.datatypes.TypedVariable">TypedVariable</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.Strict.getType"><code class="name flex">
+<dt id="src.lang.datatypes.Strict.getType"><code class="name flex">
 <span>def <span class="ident">getType</span></span>(<span>self) ‑> str</span>
 </code></dt>
 <dd>
@@ -491,8 +491,8 @@ el.replaceWith(d);
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="lang.datatypes.Strict.setVal"><code class="name flex">
-<span>def <span class="ident">setVal</span></span>(<span>self, val: <built-in function any>) ‑> <a title="lang.datatypes.Strict" href="#lang.datatypes.Strict">Strict</a></span>
+<dt id="src.lang.datatypes.Strict.setVal"><code class="name flex">
+<span>def <span class="ident">setVal</span></span>(<span>self, val: <built-in function any>) ‑> <a title="src.lang.datatypes.Strict" href="#src.lang.datatypes.Strict">Strict</a></span>
 </code></dt>
 <dd>
 <details class="source">
@@ -505,7 +505,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="lang.datatypes.Strict.typeCheck"><code class="name flex">
+<dt id="src.lang.datatypes.Strict.typeCheck"><code class="name flex">
 <span>def <span class="ident">typeCheck</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -522,7 +522,7 @@ el.replaceWith(d);
 </dd>
 </dl>
 </dd>
-<dt id="lang.datatypes.Template"><code class="flex name class">
+<dt id="src.lang.datatypes.Template"><code class="flex name class">
 <span>class <span class="ident">Template</span></span>
 <span>(</span><span>name: str, parameters: list = None, body: list = None)</span>
 </code></dt>
@@ -578,12 +578,12 @@ el.replaceWith(d);
 <p>Initialize datatype and generate unique ID.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="lang.datatypes.Closable" href="#lang.datatypes.Closable">Closable</a></li>
+<li><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.Template.new"><code class="name flex">
-<span>def <span class="ident">new</span></span>(<span>self, args: list) ‑> <a title="lang.datatypes.Instance" href="#lang.datatypes.Instance">Instance</a></span>
+<dt id="src.lang.datatypes.Template.new"><code class="name flex">
+<span>def <span class="ident">new</span></span>(<span>self, args: list) ‑> <a title="src.lang.datatypes.Instance" href="#src.lang.datatypes.Instance">Instance</a></span>
 </code></dt>
 <dd>
 <details class="source">
@@ -611,14 +611,14 @@ el.replaceWith(d);
 </dl>
 <h3>Inherited members</h3>
 <ul class="hlist">
-<li><code><b><a title="lang.datatypes.Closable" href="#lang.datatypes.Closable">Closable</a></b></code>:
+<li><code><b><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></b></code>:
 <ul class="hlist">
-<li><code><a title="lang.datatypes.Closable.generate_id" href="#lang.datatypes.Closable.generate_id">generate_id</a></code></li>
+<li><code><a title="src.lang.datatypes.Closable.generate_id" href="#src.lang.datatypes.Closable.generate_id">generate_id</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
-<dt id="lang.datatypes.TypedVariable"><code class="flex name class">
+<dt id="src.lang.datatypes.TypedVariable"><code class="flex name class">
 <span>class <span class="ident">TypedVariable</span></span>
 <span>(</span><span>var: <built-in function any>, val: <built-in function any>)</span>
 </code></dt>
@@ -663,12 +663,12 @@ el.replaceWith(d);
 <div class="desc"></div>
 <h3>Subclasses</h3>
 <ul class="hlist">
-<li><a title="lang.datatypes.Latent" href="#lang.datatypes.Latent">Latent</a></li>
-<li><a title="lang.datatypes.Strict" href="#lang.datatypes.Strict">Strict</a></li>
+<li><a title="src.lang.datatypes.Latent" href="#src.lang.datatypes.Latent">Latent</a></li>
+<li><a title="src.lang.datatypes.Strict" href="#src.lang.datatypes.Strict">Strict</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.datatypes.TypedVariable.getVal"><code class="name flex">
+<dt id="src.lang.datatypes.TypedVariable.getVal"><code class="name flex">
 <span>def <span class="ident">getVal</span></span>(<span>self) ‑> <built-in function any></span>
 </code></dt>
 <dd>
@@ -680,7 +680,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="lang.datatypes.TypedVariable.setVal"><code class="name flex">
+<dt id="src.lang.datatypes.TypedVariable.setVal"><code class="name flex">
 <span>def <span class="ident">setVal</span></span>(<span>self, val: <built-in function any>)</span>
 </code></dt>
 <dd>
@@ -696,7 +696,7 @@ el.replaceWith(d);
 </dd>
 </dl>
 </dd>
-<dt id="lang.datatypes.Variable"><code class="flex name class">
+<dt id="src.lang.datatypes.Variable"><code class="flex name class">
 <span>class <span class="ident">Variable</span></span>
 <span>(</span><span>var: str | list, val: <built-in function any>)</span>
 </code></dt>
@@ -723,71 +723,71 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="lang" href="index.html">lang</a></code></li>
+<li><code><a title="src.lang" href="index.html">src.lang</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="lang.datatypes.Closable" href="#lang.datatypes.Closable">Closable</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.Closable.generate_id" href="#lang.datatypes.Closable.generate_id">generate_id</a></code></li>
+<li><code><a title="src.lang.datatypes.Closable.generate_id" href="#src.lang.datatypes.Closable.generate_id">generate_id</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.Frozen" href="#lang.datatypes.Frozen">Frozen</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Frozen" href="#src.lang.datatypes.Frozen">Frozen</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.Frozen.thaw" href="#lang.datatypes.Frozen.thaw">thaw</a></code></li>
+<li><code><a title="src.lang.datatypes.Frozen.thaw" href="#src.lang.datatypes.Frozen.thaw">thaw</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.Function" href="#lang.datatypes.Function">Function</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Function" href="#src.lang.datatypes.Function">Function</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.Function.eval" href="#lang.datatypes.Function.eval">eval</a></code></li>
+<li><code><a title="src.lang.datatypes.Function.eval" href="#src.lang.datatypes.Function.eval">eval</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.Instance" href="#lang.datatypes.Instance">Instance</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Instance" href="#src.lang.datatypes.Instance">Instance</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.Instance.eval" href="#lang.datatypes.Instance.eval">eval</a></code></li>
+<li><code><a title="src.lang.datatypes.Instance.eval" href="#src.lang.datatypes.Instance.eval">eval</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.Latent" href="#lang.datatypes.Latent">Latent</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Latent" href="#src.lang.datatypes.Latent">Latent</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.Latent.getType" href="#lang.datatypes.Latent.getType">getType</a></code></li>
-<li><code><a title="lang.datatypes.Latent.setVal" href="#lang.datatypes.Latent.setVal">setVal</a></code></li>
+<li><code><a title="src.lang.datatypes.Latent.getType" href="#src.lang.datatypes.Latent.getType">getType</a></code></li>
+<li><code><a title="src.lang.datatypes.Latent.setVal" href="#src.lang.datatypes.Latent.setVal">setVal</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.Lazy" href="#lang.datatypes.Lazy">Lazy</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Lazy" href="#src.lang.datatypes.Lazy">Lazy</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.Lazy.eval" href="#lang.datatypes.Lazy.eval">eval</a></code></li>
+<li><code><a title="src.lang.datatypes.Lazy.eval" href="#src.lang.datatypes.Lazy.eval">eval</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.Strict" href="#lang.datatypes.Strict">Strict</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Strict" href="#src.lang.datatypes.Strict">Strict</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.Strict.getType" href="#lang.datatypes.Strict.getType">getType</a></code></li>
-<li><code><a title="lang.datatypes.Strict.setVal" href="#lang.datatypes.Strict.setVal">setVal</a></code></li>
-<li><code><a title="lang.datatypes.Strict.typeCheck" href="#lang.datatypes.Strict.typeCheck">typeCheck</a></code></li>
+<li><code><a title="src.lang.datatypes.Strict.getType" href="#src.lang.datatypes.Strict.getType">getType</a></code></li>
+<li><code><a title="src.lang.datatypes.Strict.setVal" href="#src.lang.datatypes.Strict.setVal">setVal</a></code></li>
+<li><code><a title="src.lang.datatypes.Strict.typeCheck" href="#src.lang.datatypes.Strict.typeCheck">typeCheck</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.Template" href="#lang.datatypes.Template">Template</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Template" href="#src.lang.datatypes.Template">Template</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.Template.new" href="#lang.datatypes.Template.new">new</a></code></li>
+<li><code><a title="src.lang.datatypes.Template.new" href="#src.lang.datatypes.Template.new">new</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.TypedVariable" href="#lang.datatypes.TypedVariable">TypedVariable</a></code></h4>
+<h4><code><a title="src.lang.datatypes.TypedVariable" href="#src.lang.datatypes.TypedVariable">TypedVariable</a></code></h4>
 <ul class="">
-<li><code><a title="lang.datatypes.TypedVariable.getVal" href="#lang.datatypes.TypedVariable.getVal">getVal</a></code></li>
-<li><code><a title="lang.datatypes.TypedVariable.setVal" href="#lang.datatypes.TypedVariable.setVal">setVal</a></code></li>
+<li><code><a title="src.lang.datatypes.TypedVariable.getVal" href="#src.lang.datatypes.TypedVariable.getVal">getVal</a></code></li>
+<li><code><a title="src.lang.datatypes.TypedVariable.setVal" href="#src.lang.datatypes.TypedVariable.setVal">setVal</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="lang.datatypes.Variable" href="#lang.datatypes.Variable">Variable</a></code></h4>
+<h4><code><a title="src.lang.datatypes.Variable" href="#src.lang.datatypes.Variable">Variable</a></code></h4>
 </li>
 </ul>
 </li>

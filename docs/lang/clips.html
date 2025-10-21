@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>lang.clips API documentation</title>
+<title>src.lang.clips API documentation</title>
 <meta name="description" content="Integration for CLIPS-style propositional logic.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>lang.clips</code></h1>
+<h1 class="title">Module <code>src.lang.clips</code></h1>
 </header>
 <section id="section-intro">
 <p>Integration for CLIPS-style propositional logic.</p>
@@ -45,7 +45,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="lang.clips.announce"><code class="name flex">
+<dt id="src.lang.clips.announce"><code class="name flex">
 <span>def <span class="ident">announce</span></span>(<span>)</span>
 </code></dt>
 <dd>
@@ -58,7 +58,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Create a new CLIPS instance.</p></div>
 </dd>
-<dt id="lang.clips.renounce"><code class="name flex">
+<dt id="src.lang.clips.renounce"><code class="name flex">
 <span>def <span class="ident">renounce</span></span>(<span>)</span>
 </code></dt>
 <dd>
@@ -76,7 +76,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="lang.clips.CLIPS"><code class="flex name class">
+<dt id="src.lang.clips.CLIPS"><code class="flex name class">
 <span>class <span class="ident">CLIPS</span></span>
 </code></dt>
 <dd>
@@ -136,7 +136,7 @@ el.replaceWith(d);
 <div class="desc"><p>General class for all self-contained CLIPS instances.</p></div>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.clips.CLIPS.ASSERT"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.ASSERT"><code class="name flex">
 <span>def <span class="ident">ASSERT</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -149,7 +149,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Declare a new fact.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.DECLARE"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.DECLARE"><code class="name flex">
 <span>def <span class="ident">DECLARE</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -162,7 +162,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Declare a Boolean variable.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.DEFRULE"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.DEFRULE"><code class="name flex">
 <span>def <span class="ident">DEFRULE</span></span>(<span>self, name: str)</span>
 </code></dt>
 <dd>
@@ -175,7 +175,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Create a new logical relation.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.IMPLIES"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.IMPLIES"><code class="name flex">
 <span>def <span class="ident">IMPLIES</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -188,7 +188,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Logical implication.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.INFERENCE"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.INFERENCE"><code class="name flex">
 <span>def <span class="ident">INFERENCE</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -201,7 +201,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Run resolution on the entire database to a depth of <code>n</code>. If not provided runs until no more relations found.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.NOT"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.NOT"><code class="name flex">
 <span>def <span class="ident">NOT</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -214,7 +214,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Logical negation.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.RESET"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.RESET"><code class="name flex">
 <span>def <span class="ident">RESET</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -229,7 +229,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Reset the current CLIPS instance.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.RETRACT"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.RETRACT"><code class="name flex">
 <span>def <span class="ident">RETRACT</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -242,7 +242,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Retract an asserted fact.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.UNWATCH"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.UNWATCH"><code class="name flex">
 <span>def <span class="ident">UNWATCH</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -255,7 +255,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Undo the <code>WATCH</code> function.</p></div>
 </dd>
-<dt id="lang.clips.CLIPS.WATCH"><code class="name flex">
+<dt id="src.lang.clips.CLIPS.WATCH"><code class="name flex">
 <span>def <span class="ident">WATCH</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -280,30 +280,30 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="lang" href="index.html">lang</a></code></li>
+<li><code><a title="src.lang" href="index.html">src.lang</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="lang.clips.announce" href="#lang.clips.announce">announce</a></code></li>
-<li><code><a title="lang.clips.renounce" href="#lang.clips.renounce">renounce</a></code></li>
+<li><code><a title="src.lang.clips.announce" href="#src.lang.clips.announce">announce</a></code></li>
+<li><code><a title="src.lang.clips.renounce" href="#src.lang.clips.renounce">renounce</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="lang.clips.CLIPS" href="#lang.clips.CLIPS">CLIPS</a></code></h4>
+<h4><code><a title="src.lang.clips.CLIPS" href="#src.lang.clips.CLIPS">CLIPS</a></code></h4>
 <ul class="two-column">
-<li><code><a title="lang.clips.CLIPS.ASSERT" href="#lang.clips.CLIPS.ASSERT">ASSERT</a></code></li>
-<li><code><a title="lang.clips.CLIPS.DECLARE" href="#lang.clips.CLIPS.DECLARE">DECLARE</a></code></li>
-<li><code><a title="lang.clips.CLIPS.DEFRULE" href="#lang.clips.CLIPS.DEFRULE">DEFRULE</a></code></li>
-<li><code><a title="lang.clips.CLIPS.IMPLIES" href="#lang.clips.CLIPS.IMPLIES">IMPLIES</a></code></li>
-<li><code><a title="lang.clips.CLIPS.INFERENCE" href="#lang.clips.CLIPS.INFERENCE">INFERENCE</a></code></li>
-<li><code><a title="lang.clips.CLIPS.NOT" href="#lang.clips.CLIPS.NOT">NOT</a></code></li>
-<li><code><a title="lang.clips.CLIPS.RESET" href="#lang.clips.CLIPS.RESET">RESET</a></code></li>
-<li><code><a title="lang.clips.CLIPS.RETRACT" href="#lang.clips.CLIPS.RETRACT">RETRACT</a></code></li>
-<li><code><a title="lang.clips.CLIPS.UNWATCH" href="#lang.clips.CLIPS.UNWATCH">UNWATCH</a></code></li>
-<li><code><a title="lang.clips.CLIPS.WATCH" href="#lang.clips.CLIPS.WATCH">WATCH</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.ASSERT" href="#src.lang.clips.CLIPS.ASSERT">ASSERT</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.DECLARE" href="#src.lang.clips.CLIPS.DECLARE">DECLARE</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.DEFRULE" href="#src.lang.clips.CLIPS.DEFRULE">DEFRULE</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.IMPLIES" href="#src.lang.clips.CLIPS.IMPLIES">IMPLIES</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.INFERENCE" href="#src.lang.clips.CLIPS.INFERENCE">INFERENCE</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.NOT" href="#src.lang.clips.CLIPS.NOT">NOT</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.RESET" href="#src.lang.clips.CLIPS.RESET">RESET</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.RETRACT" href="#src.lang.clips.CLIPS.RETRACT">RETRACT</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.UNWATCH" href="#src.lang.clips.CLIPS.UNWATCH">UNWATCH</a></code></li>
+<li><code><a title="src.lang.clips.CLIPS.WATCH" href="#src.lang.clips.CLIPS.WATCH">WATCH</a></code></li>
 </ul>
 </li>
 </ul>

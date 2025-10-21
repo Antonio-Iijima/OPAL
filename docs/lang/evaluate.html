@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>lang.main API documentation</title>
-<meta name="description" content="Main program to run the OPAL interpreter.">
+<title>src.lang.evaluate API documentation</title>
+<meta name="description" content="Evaluation function.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -33,16 +33,121 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>lang.main</code></h1>
+<h1 class="title">Module <code>src.lang.evaluate</code></h1>
 </header>
 <section id="section-intro">
-<p>Main program to run the OPAL interpreter.</p>
+<p>Evaluation function.</p>
 </section>
 <section>
 </section>
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="src.lang.evaluate.evaluate"><code class="name flex">
+<span>def <span class="ident">evaluate</span></span>(<span>expr: <built-in function any>) ‑> <built-in function any></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def evaluate(expr: any) -&gt; any:
+    &#34;&#34;&#34;Evaluates complete OPAL expressions.&#34;&#34;&#34;
+#    print(expr)
+    # Processing a single atom
+
+    # Look up variables, return literals
+    if KEY.isatom(expr): return (
+        INT.interpreter.ENV.lookup(expr) if KEY.isvariable(expr)
+        else KEY.rebool(expr) if KEY.isbool(expr)
+        else expr
+    )
+        
+    # Otherwise processing a list
+
+    # Empty list
+    if KEY.isnull(expr): return []
+    
+    # Head and tail identifiers for readability
+    HEAD, *TAIL = expr
+
+    # Head is an atom 
+    if KEY.isatom(HEAD):
+
+        # Evaluate methods from imported modules
+        if KEY.isimport(HEAD): return KEY.run_method(HEAD, TAIL)
+
+        # Evaluate function calls and lazy wrappers
+        elif isinstance(HEAD, (
+            DAT.Function, 
+            DAT.Template, 
+            DAT.Instance, 
+            DAT.Lazy
+        )): return HEAD.eval(TAIL)
+
+        # If the head is a variable, replace it with its value and re-evaluate the expression
+        elif KEY.isvariable(HEAD): return evaluate([INT.interpreter.ENV.lookup(HEAD), *TAIL])
+
+        # If its a keyword, evaluate each group
+        elif KEY.iskeyword(HEAD):
+            for NAME, CATEGORY in INT.interpreter.KEYWORDS.items():
+                if HEAD in CATEGORY:
+                    match NAME:
+
+                        # Regular or applicative-order n-ary functions
+                        case &#34;REGULAR&#34;: return CATEGORY[HEAD](*KEY.evlist(TAIL))
+
+                        # Boolean functions
+                        case &#34;BOOLEAN&#34;: return CATEGORY[HEAD](*map(bool, KEY.evlist(TAIL)))
+
+                        # Irregular or normal-order n-ary functions; Environment; Extensions
+                        case &#34;IRREGULAR&#34;|&#34;ENVIRONMENT&#34;|&#34;EXTENSIONS&#34;: return CATEGORY[HEAD](*TAIL)
+                        
+            # &#39;cxr&#39; expressions
+            if KEY.iscxr(HEAD): return KEY.evcxr(HEAD[1:-1], evaluate(expr[1]))
+
+            # Special forms and functions with unique evaluation requirements
+            match HEAD:
+
+                case &#34;set&#34;: return INT.interpreter.ENV.set(
+                    TAIL[0], 
+                    evaluate(TAIL[1]), 
+                    0 if isinstance(TAIL[0], list) 
+                    else INT.interpreter.ENV.find_scope(TAIL[0])
+                )
+
+                # Lazy parameter evaluation wrapper for functions
+                case &#34;lazy&#34;: return DAT.Lazy(*TAIL)
+
+                # Freeze expressions for lazy evaluation
+                case &#34;freeze&#34;: return DAT.Frozen(*TAIL)
+
+                # Create new template instances
+                case &#34;new&#34;: return INT.interpreter.ENV.lookup(TAIL[0]).new(*TAIL[1:]) 
+
+                # Evaluate &#39;until&#39; expressions
+                case &#34;until&#34;: return KEY.until(expr[1][0], expr[1][1], expr[2])
+
+                # Lambda function declarations
+                case &#34;lambda&#34;: return DAT.Function(&#34;lambda&#34;, expr[1], expr[2])
+
+                # Evaluate conditionals
+                case &#34;cond&#34;: return KEY.cond(TAIL)
+
+                # Evaluate &#39;quote&#39; expressions
+                case &#34;quote&#34;: return expr[1]
+        
+        # Otherwise head is a literal
+        return KEY.evlist(expr)
+
+    # Otherwise head is a list
+    evaluated = [evaluate(HEAD), *TAIL]; return expr if expr == evaluated else evaluate(evaluated)</code></pre>
+</details>
+<div class="desc"><p>Evaluates complete OPAL expressions.</p></div>
+</dd>
+</dl>
 </section>
 <section>
 </section>
@@ -54,7 +159,12 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="lang" href="index.html">lang</a></code></li>
+<li><code><a title="src.lang" href="index.html">src.lang</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="src.lang.evaluate.evaluate" href="#src.lang.evaluate.evaluate">evaluate</a></code></li>
 </ul>
 </li>
 </ul>

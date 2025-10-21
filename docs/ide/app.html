@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>ide.app API documentation</title>
+<title>src.ide.app API documentation</title>
 <meta name="description" content="">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>ide.app</code></h1>
+<h1 class="title">Module <code>src.ide.app</code></h1>
 </header>
 <section id="section-intro">
 </section>
@@ -46,7 +46,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="ide.app.IDE"><code class="flex name class">
+<dt id="src.ide.app.IDE"><code class="flex name class">
 <span>class <span class="ident">IDE</span></span>
 <span>(</span><span>driver_class=None, css_path=None, watch_css=False, ansi_color=False)</span>
 </code></dt>
@@ -98,7 +98,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="ide.app.IDE.compose"><code class="name flex">
+<dt id="src.ide.app.IDE.compose"><code class="name flex">
 <span>def <span class="ident">compose</span></span>(<span>self) ‑> Iterable[textual.widget.Widget]</span>
 </code></dt>
 <dd>
@@ -115,7 +115,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 </dd>
 </dl>
 </dd>
-<dt id="ide.app.IDEFrame"><code class="flex name class">
+<dt id="src.ide.app.IDEFrame"><code class="flex name class">
 <span>class <span class="ident">IDEFrame</span></span>
 <span>(</span><span>*children, name=None, id=None, classes=None, disabled=False, markup=True)</span>
 </code></dt>
@@ -331,22 +331,22 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="ide.app.IDEFrame.BINDINGS"><code class="name">var <span class="ident">BINDINGS</span></code></dt>
+<dt id="src.ide.app.IDEFrame.BINDINGS"><code class="name">var <span class="ident">BINDINGS</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
+<dt id="src.ide.app.IDEFrame.can_focus"><code class="name">var <span class="ident">can_focus</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
+<dt id="src.ide.app.IDEFrame.can_focus_children"><code class="name">var <span class="ident">can_focus_children</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="ide.app.IDEFrame.action_close_tab"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.action_close_tab"><code class="name flex">
 <span>def <span class="ident">action_close_tab</span></span>(<span>self) ‑> bool</span>
 </code></dt>
 <dd>
@@ -359,7 +359,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.action_run_file"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.action_run_file"><code class="name flex">
 <span>def <span class="ident">action_run_file</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -375,7 +375,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.action_save_file"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.action_save_file"><code class="name flex">
 <span>def <span class="ident">action_save_file</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -389,7 +389,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.compose"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.compose"><code class="name flex">
 <span>def <span class="ident">compose</span></span>(<span>self) ‑> Iterable[textual.widget.Widget]</span>
 </code></dt>
 <dd>
@@ -413,7 +413,7 @@ calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
     yield Footer()
 </code></pre></div>
 </dd>
-<dt id="ide.app.IDEFrame.init_opal_interpreter"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.init_opal_interpreter"><code class="name flex">
 <span>def <span class="ident">init_opal_interpreter</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -434,7 +434,7 @@ calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.open_in_new_tab"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.open_in_new_tab"><code class="name flex">
 <span>def <span class="ident">open_in_new_tab</span></span>(<span>self, selected: editor.FilteredDirectoryTree.Selected)</span>
 </code></dt>
 <dd>
@@ -451,7 +451,7 @@ def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected):
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.process_input"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.process_input"><code class="name flex">
 <span>def <span class="ident">process_input</span></span>(<span>self, stream, fromTerminal: bool = True) ‑> None</span>
 </code></dt>
 <dd>
@@ -473,7 +473,7 @@ def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected):
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.select_new_tab_info"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.select_new_tab_info"><code class="name flex">
 <span>def <span class="ident">select_new_tab_info</span></span>(<span>self, event)</span>
 </code></dt>
 <dd>
@@ -492,7 +492,7 @@ def select_new_tab_info(self, event):
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="ide.app.IDEFrame.write_input_to_terminal"><code class="name flex">
+<dt id="src.ide.app.IDEFrame.write_input_to_terminal"><code class="name flex">
 <span>def <span class="ident">write_input_to_terminal</span></span>(<span>self, event)</span>
 </code></dt>
 <dd>
@@ -528,32 +528,32 @@ def write_input_to_terminal(self, event):
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="ide" href="index.html">ide</a></code></li>
+<li><code><a title="src.ide" href="index.html">src.ide</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="ide.app.IDE" href="#ide.app.IDE">IDE</a></code></h4>
+<h4><code><a title="src.ide.app.IDE" href="#src.ide.app.IDE">IDE</a></code></h4>
 <ul class="">
-<li><code><a title="ide.app.IDE.compose" href="#ide.app.IDE.compose">compose</a></code></li>
+<li><code><a title="src.ide.app.IDE.compose" href="#src.ide.app.IDE.compose">compose</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="ide.app.IDEFrame" href="#ide.app.IDEFrame">IDEFrame</a></code></h4>
+<h4><code><a title="src.ide.app.IDEFrame" href="#src.ide.app.IDEFrame">IDEFrame</a></code></h4>
 <ul class="">
-<li><code><a title="ide.app.IDEFrame.BINDINGS" href="#ide.app.IDEFrame.BINDINGS">BINDINGS</a></code></li>
-<li><code><a title="ide.app.IDEFrame.action_close_tab" href="#ide.app.IDEFrame.action_close_tab">action_close_tab</a></code></li>
-<li><code><a title="ide.app.IDEFrame.action_run_file" href="#ide.app.IDEFrame.action_run_file">action_run_file</a></code></li>
-<li><code><a title="ide.app.IDEFrame.action_save_file" href="#ide.app.IDEFrame.action_save_file">action_save_file</a></code></li>
-<li><code><a title="ide.app.IDEFrame.can_focus" href="#ide.app.IDEFrame.can_focus">can_focus</a></code></li>
-<li><code><a title="ide.app.IDEFrame.can_focus_children" href="#ide.app.IDEFrame.can_focus_children">can_focus_children</a></code></li>
-<li><code><a title="ide.app.IDEFrame.compose" href="#ide.app.IDEFrame.compose">compose</a></code></li>
-<li><code><a title="ide.app.IDEFrame.init_opal_interpreter" href="#ide.app.IDEFrame.init_opal_interpreter">init_opal_interpreter</a></code></li>
-<li><code><a title="ide.app.IDEFrame.open_in_new_tab" href="#ide.app.IDEFrame.open_in_new_tab">open_in_new_tab</a></code></li>
-<li><code><a title="ide.app.IDEFrame.process_input" href="#ide.app.IDEFrame.process_input">process_input</a></code></li>
-<li><code><a title="ide.app.IDEFrame.select_new_tab_info" href="#ide.app.IDEFrame.select_new_tab_info">select_new_tab_info</a></code></li>
-<li><code><a title="ide.app.IDEFrame.write_input_to_terminal" href="#ide.app.IDEFrame.write_input_to_terminal">write_input_to_terminal</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.BINDINGS" href="#src.ide.app.IDEFrame.BINDINGS">BINDINGS</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.action_close_tab" href="#src.ide.app.IDEFrame.action_close_tab">action_close_tab</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.action_run_file" href="#src.ide.app.IDEFrame.action_run_file">action_run_file</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.action_save_file" href="#src.ide.app.IDEFrame.action_save_file">action_save_file</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.can_focus" href="#src.ide.app.IDEFrame.can_focus">can_focus</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.can_focus_children" href="#src.ide.app.IDEFrame.can_focus_children">can_focus_children</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.compose" href="#src.ide.app.IDEFrame.compose">compose</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.init_opal_interpreter" href="#src.ide.app.IDEFrame.init_opal_interpreter">init_opal_interpreter</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.open_in_new_tab" href="#src.ide.app.IDEFrame.open_in_new_tab">open_in_new_tab</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.process_input" href="#src.ide.app.IDEFrame.process_input">process_input</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.select_new_tab_info" href="#src.ide.app.IDEFrame.select_new_tab_info">select_new_tab_info</a></code></li>
+<li><code><a title="src.ide.app.IDEFrame.write_input_to_terminal" href="#src.ide.app.IDEFrame.write_input_to_terminal">write_input_to_terminal</a></code></li>
 </ul>
 </li>
 </ul>

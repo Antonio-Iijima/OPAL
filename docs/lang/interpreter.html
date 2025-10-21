@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>lang.interpreter API documentation</title>
+<title>src.lang.interpreter API documentation</title>
 <meta name="description" content="Manage interaction with the interpreter command-line.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>lang.interpreter</code></h1>
+<h1 class="title">Module <code>src.lang.interpreter</code></h1>
 </header>
 <section id="section-intro">
 <p>Manage interaction with the interpreter command-line.</p>
@@ -47,7 +47,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="lang.interpreter.Interpreter"><code class="flex name class">
+<dt id="src.lang.interpreter.Interpreter"><code class="flex name class">
 <span>class <span class="ident">Interpreter</span></span>
 <span>(</span><span>prompt_symbol: str = '(Ω)',<br>default_color: str = 'green',<br>single_comment: str = '--',<br>multiline_comment_open: str = '/-',<br>multiline_comment_close: str = '-/',<br>flags: dict = None)</span>
 </code></dt>
@@ -236,53 +236,53 @@ el.replaceWith(d);
         return Text.from_markup(msg)</code></pre>
 </details>
 <div class="desc"><p>Interpreter command-line management.</p>
-<p>Boilerplate setup for <code><a title="lang.interpreter.Interpreter" href="#lang.interpreter.Interpreter">Interpreter</a></code> instance.</p></div>
+<p>Boilerplate setup for <code><a title="src.lang.interpreter.Interpreter" href="#src.lang.interpreter.Interpreter">Interpreter</a></code> instance.</p></div>
 <h3>Instance variables</h3>
 <dl>
-<dt id="lang.interpreter.Interpreter.CLOSURES"><code class="name">var <span class="ident">CLOSURES</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.CLOSURES"><code class="name">var <span class="ident">CLOSURES</span></code></dt>
 <dd>
 <div class="desc"><p>Closure environments, accessed by ID.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.COMMENT_COUNTER"><code class="name">var <span class="ident">COMMENT_COUNTER</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.COMMENT_COUNTER"><code class="name">var <span class="ident">COMMENT_COUNTER</span></code></dt>
 <dd>
 <div class="desc"><p>Tracks expression comments for balancing.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.ENV"><code class="name">var <span class="ident">ENV</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.ENV"><code class="name">var <span class="ident">ENV</span></code></dt>
 <dd>
 <div class="desc"><p>The global <code>Environment</code> instance.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.ERROR_COUNTER"><code class="name">var <span class="ident">ERROR_COUNTER</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.ERROR_COUNTER"><code class="name">var <span class="ident">ERROR_COUNTER</span></code></dt>
 <dd>
 <div class="desc"><p>Track the number of programming errors by the user for use with -z flag.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.EXTENSION_INDEX"><code class="name">var <span class="ident">EXTENSION_INDEX</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.EXTENSION_INDEX"><code class="name">var <span class="ident">EXTENSION_INDEX</span></code></dt>
 <dd>
 <div class="desc"><p>Extension log.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.EXTENSION_LOG"><code class="name">var <span class="ident">EXTENSION_LOG</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.EXTENSION_LOG"><code class="name">var <span class="ident">EXTENSION_LOG</span></code></dt>
 <dd>
 <div class="desc"><p>Tracks new extension names.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.GLOBALS"><code class="name">var <span class="ident">GLOBALS</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.GLOBALS"><code class="name">var <span class="ident">GLOBALS</span></code></dt>
 <dd>
 <div class="desc"><p>Global variables.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.IMPORTS"><code class="name">var <span class="ident">IMPORTS</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.IMPORTS"><code class="name">var <span class="ident">IMPORTS</span></code></dt>
 <dd>
 <div class="desc"><p>Imported modules.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.INITIAL_KEYWORD_NUM"><code class="name">var <span class="ident">INITIAL_KEYWORD_NUM</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.INITIAL_KEYWORD_NUM"><code class="name">var <span class="ident">INITIAL_KEYWORD_NUM</span></code></dt>
 <dd>
 <div class="desc"><p>Total number of built-in / extension keywords on interpreter start.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.KEYWORDS"><code class="name">var <span class="ident">KEYWORDS</span></code></dt>
+<dt id="src.lang.interpreter.Interpreter.KEYWORDS"><code class="name">var <span class="ident">KEYWORDS</span></code></dt>
 <dd>
 <div class="desc"><p>Keywords stored by category.</p></div>
 </dd>
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.interpreter.Interpreter.current_keyword_num"><code class="name flex">
+<dt id="src.lang.interpreter.Interpreter.current_keyword_num"><code class="name flex">
 <span>def <span class="ident">current_keyword_num</span></span>(<span>self) ‑> int</span>
 </code></dt>
 <dd>
@@ -296,7 +296,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Return current total number of keywords in the language.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.del_random_keyword"><code class="name flex">
+<dt id="src.lang.interpreter.Interpreter.del_random_keyword"><code class="name flex">
 <span>def <span class="ident">del_random_keyword</span></span>(<span>self) ‑> rich.text.Text</span>
 </code></dt>
 <dd>
@@ -324,7 +324,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Delete a random keyword from the language for the duration of the interpreter instance if the user makes a mistake.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.exit_extensions"><code class="name flex">
+<dt id="src.lang.interpreter.Interpreter.exit_extensions"><code class="name flex">
 <span>def <span class="ident">exit_extensions</span></span>(<span>self) ‑> rich.text.Text | None</span>
 </code></dt>
 <dd>
@@ -353,7 +353,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Safely save or remove any extensions added in an interactive interpreter session.</p></div>
 </dd>
-<dt id="lang.interpreter.Interpreter.extend"><code class="name flex">
+<dt id="src.lang.interpreter.Interpreter.extend"><code class="name flex">
 <span>def <span class="ident">extend</span></span>(<span>self, code: str, writable: bool = True) ‑> None</span>
 </code></dt>
 <dd>
@@ -404,28 +404,28 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="lang" href="index.html">lang</a></code></li>
+<li><code><a title="src.lang" href="index.html">src.lang</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="lang.interpreter.Interpreter" href="#lang.interpreter.Interpreter">Interpreter</a></code></h4>
+<h4><code><a title="src.lang.interpreter.Interpreter" href="#src.lang.interpreter.Interpreter">Interpreter</a></code></h4>
 <ul class="two-column">
-<li><code><a title="lang.interpreter.Interpreter.CLOSURES" href="#lang.interpreter.Interpreter.CLOSURES">CLOSURES</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.COMMENT_COUNTER" href="#lang.interpreter.Interpreter.COMMENT_COUNTER">COMMENT_COUNTER</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.ENV" href="#lang.interpreter.Interpreter.ENV">ENV</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.ERROR_COUNTER" href="#lang.interpreter.Interpreter.ERROR_COUNTER">ERROR_COUNTER</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.EXTENSION_INDEX" href="#lang.interpreter.Interpreter.EXTENSION_INDEX">EXTENSION_INDEX</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.EXTENSION_LOG" href="#lang.interpreter.Interpreter.EXTENSION_LOG">EXTENSION_LOG</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.GLOBALS" href="#lang.interpreter.Interpreter.GLOBALS">GLOBALS</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.IMPORTS" href="#lang.interpreter.Interpreter.IMPORTS">IMPORTS</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.INITIAL_KEYWORD_NUM" href="#lang.interpreter.Interpreter.INITIAL_KEYWORD_NUM">INITIAL_KEYWORD_NUM</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.KEYWORDS" href="#lang.interpreter.Interpreter.KEYWORDS">KEYWORDS</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.current_keyword_num" href="#lang.interpreter.Interpreter.current_keyword_num">current_keyword_num</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.del_random_keyword" href="#lang.interpreter.Interpreter.del_random_keyword">del_random_keyword</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.exit_extensions" href="#lang.interpreter.Interpreter.exit_extensions">exit_extensions</a></code></li>
-<li><code><a title="lang.interpreter.Interpreter.extend" href="#lang.interpreter.Interpreter.extend">extend</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.CLOSURES" href="#src.lang.interpreter.Interpreter.CLOSURES">CLOSURES</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.COMMENT_COUNTER" href="#src.lang.interpreter.Interpreter.COMMENT_COUNTER">COMMENT_COUNTER</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.ENV" href="#src.lang.interpreter.Interpreter.ENV">ENV</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.ERROR_COUNTER" href="#src.lang.interpreter.Interpreter.ERROR_COUNTER">ERROR_COUNTER</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.EXTENSION_INDEX" href="#src.lang.interpreter.Interpreter.EXTENSION_INDEX">EXTENSION_INDEX</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.EXTENSION_LOG" href="#src.lang.interpreter.Interpreter.EXTENSION_LOG">EXTENSION_LOG</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.GLOBALS" href="#src.lang.interpreter.Interpreter.GLOBALS">GLOBALS</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.IMPORTS" href="#src.lang.interpreter.Interpreter.IMPORTS">IMPORTS</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.INITIAL_KEYWORD_NUM" href="#src.lang.interpreter.Interpreter.INITIAL_KEYWORD_NUM">INITIAL_KEYWORD_NUM</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.KEYWORDS" href="#src.lang.interpreter.Interpreter.KEYWORDS">KEYWORDS</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.current_keyword_num" href="#src.lang.interpreter.Interpreter.current_keyword_num">current_keyword_num</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.del_random_keyword" href="#src.lang.interpreter.Interpreter.del_random_keyword">del_random_keyword</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.exit_extensions" href="#src.lang.interpreter.Interpreter.exit_extensions">exit_extensions</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.extend" href="#src.lang.interpreter.Interpreter.extend">extend</a></code></li>
 </ul>
 </li>
 </ul>

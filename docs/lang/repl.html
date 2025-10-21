@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>lang.repl API documentation</title>
+<title>src.lang.repl API documentation</title>
 <meta name="description" content="Read, Eval, Print, Loop.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>lang.repl</code></h1>
+<h1 class="title">Module <code>src.lang.repl</code></h1>
 </header>
 <section id="section-intro">
 <p>Read, Eval, Print, Loop.</p>
@@ -47,7 +47,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="lang.repl.REPL"><code class="flex name class">
+<dt id="src.lang.repl.REPL"><code class="flex name class">
 <span>class <span class="ident">REPL</span></span>
 </code></dt>
 <dd>
@@ -378,37 +378,37 @@ https://github.com/Antonio-Iijima/OPAL
 <div class="desc"></div>
 <h3>Class variables</h3>
 <dl>
-<dt id="lang.repl.REPL.Comment"><code class="name">var <span class="ident">Comment</span></code></dt>
+<dt id="src.lang.repl.REPL.Comment"><code class="name">var <span class="ident">Comment</span></code></dt>
 <dd>
 <div class="desc"><p>Expression is commented.</p></div>
 </dd>
-<dt id="lang.repl.REPL.Complete"><code class="name">var <span class="ident">Complete</span></code></dt>
+<dt id="src.lang.repl.REPL.Complete"><code class="name">var <span class="ident">Complete</span></code></dt>
 <dd>
 <div class="desc"><p>Expression is complete and evaluated.</p></div>
 </dd>
-<dt id="lang.repl.REPL.Error"><code class="name">var <span class="ident">Error</span></code></dt>
+<dt id="src.lang.repl.REPL.Error"><code class="name">var <span class="ident">Error</span></code></dt>
 <dd>
 <div class="desc"><p>Error in evaluating expression.</p></div>
 </dd>
-<dt id="lang.repl.REPL.Incomplete"><code class="name">var <span class="ident">Incomplete</span></code></dt>
+<dt id="src.lang.repl.REPL.Incomplete"><code class="name">var <span class="ident">Incomplete</span></code></dt>
 <dd>
 <div class="desc"><p>Expression is incomplete.</p></div>
 </dd>
-<dt id="lang.repl.REPL.Message"><code class="name">var <span class="ident">Message</span></code></dt>
+<dt id="src.lang.repl.REPL.Message"><code class="name">var <span class="ident">Message</span></code></dt>
 <dd>
 <div class="desc"><p>Base class for internal REPL messages.</p></div>
 </dd>
 </dl>
 <h3>Instance variables</h3>
 <dl>
-<dt id="lang.repl.REPL.COMMANDS"><code class="name">var <span class="ident">COMMANDS</span></code></dt>
+<dt id="src.lang.repl.REPL.COMMANDS"><code class="name">var <span class="ident">COMMANDS</span></code></dt>
 <dd>
 <div class="desc"><p>Internal REPL commands</p></div>
 </dd>
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="lang.repl.REPL.REPL"><code class="name flex">
+<dt id="src.lang.repl.REPL.REPL"><code class="name flex">
 <span>def <span class="ident">REPL</span></span>(<span>self, stream=sys.stdin, suppress=False) ‑> None</span>
 </code></dt>
 <dd>
@@ -438,8 +438,8 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Read-Evaluate-Print-Loop. Converts <code>RERL</code> output to interactive stdout.</p></div>
 </dd>
-<dt id="lang.repl.REPL.RER"><code class="name flex">
-<span>def <span class="ident">RER</span></span>(<span>self, expr) ‑> <a title="lang.repl.REPL.Comment" href="#lang.repl.REPL.Comment">REPL.Comment</a> | <a title="lang.repl.REPL.Complete" href="#lang.repl.REPL.Complete">REPL.Complete</a> | <a title="lang.repl.REPL.Incomplete" href="#lang.repl.REPL.Incomplete">REPL.Incomplete</a> | <a title="lang.repl.REPL.Error" href="#lang.repl.REPL.Error">REPL.Error</a></span>
+<dt id="src.lang.repl.REPL.RER"><code class="name flex">
+<span>def <span class="ident">RER</span></span>(<span>self, expr) ‑> <a title="src.lang.repl.REPL.Comment" href="#src.lang.repl.REPL.Comment">REPL.Comment</a> | <a title="src.lang.repl.REPL.Complete" href="#src.lang.repl.REPL.Complete">REPL.Complete</a> | <a title="src.lang.repl.REPL.Incomplete" href="#src.lang.repl.REPL.Incomplete">REPL.Incomplete</a> | <a title="src.lang.repl.REPL.Error" href="#src.lang.repl.REPL.Error">REPL.Error</a></span>
 </code></dt>
 <dd>
 <details class="source">
@@ -472,7 +472,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Read-Evaluate-Return function. Meant to be looped.</p></div>
 </dd>
-<dt id="lang.repl.REPL.RERL"><code class="name flex">
+<dt id="src.lang.repl.REPL.RERL"><code class="name flex">
 <span>def <span class="ident">RERL</span></span>(<span>self, stream: str = sys.stdin)</span>
 </code></dt>
 <dd>
@@ -497,7 +497,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Read-Evaluate-Return-Loop. Wrapper for <code>RER</code>. Yields a continuous stream of output (generator).</p></div>
 </dd>
-<dt id="lang.repl.REPL.clear"><code class="name flex">
+<dt id="src.lang.repl.REPL.clear"><code class="name flex">
 <span>def <span class="ident">clear</span></span>(<span>self) ‑> rich.text.Text</span>
 </code></dt>
 <dd>
@@ -512,7 +512,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Clear the terminal.</p></div>
 </dd>
-<dt id="lang.repl.REPL.flags"><code class="name flex">
+<dt id="src.lang.repl.REPL.flags"><code class="name flex">
 <span>def <span class="ident">flags</span></span>(<span>self) ‑> rich.panel.Panel</span>
 </code></dt>
 <dd>
@@ -539,7 +539,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Display current active and inactive flags.</p></div>
 </dd>
-<dt id="lang.repl.REPL.help"><code class="name flex">
+<dt id="src.lang.repl.REPL.help"><code class="name flex">
 <span>def <span class="ident">help</span></span>(<span>self) ‑> rich.panel.Panel</span>
 </code></dt>
 <dd>
@@ -574,7 +574,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Display help information.</p></div>
 </dd>
-<dt id="lang.repl.REPL.interpret"><code class="name flex">
+<dt id="src.lang.repl.REPL.interpret"><code class="name flex">
 <span>def <span class="ident">interpret</span></span>(<span>self, expr: str) ‑> str | rich.text.Text</span>
 </code></dt>
 <dd>
@@ -605,7 +605,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Fully interpret a complete expression.</p></div>
 </dd>
-<dt id="lang.repl.REPL.prompt"><code class="name flex">
+<dt id="src.lang.repl.REPL.prompt"><code class="name flex">
 <span>def <span class="ident">prompt</span></span>(<span>self, interim: str = None) ‑> rich.text.Text</span>
 </code></dt>
 <dd>
@@ -620,7 +620,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Returns the interpreter prompt.</p></div>
 </dd>
-<dt id="lang.repl.REPL.quit"><code class="name flex">
+<dt id="src.lang.repl.REPL.quit"><code class="name flex">
 <span>def <span class="ident">quit</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -652,7 +652,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Exit the interactive interpreter.</p></div>
 </dd>
-<dt id="lang.repl.REPL.show_closures"><code class="name flex">
+<dt id="src.lang.repl.REPL.show_closures"><code class="name flex">
 <span>def <span class="ident">show_closures</span></span>(<span>self) ‑> rich.pretty.Pretty</span>
 </code></dt>
 <dd>
@@ -666,7 +666,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Display the current closures.</p></div>
 </dd>
-<dt id="lang.repl.REPL.show_dev"><code class="name flex">
+<dt id="src.lang.repl.REPL.show_dev"><code class="name flex">
 <span>def <span class="ident">show_dev</span></span>(<span>self) ‑> rich.panel.Panel</span>
 </code></dt>
 <dd>
@@ -696,7 +696,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Display useful dev tools.</p></div>
 </dd>
-<dt id="lang.repl.REPL.show_env"><code class="name flex">
+<dt id="src.lang.repl.REPL.show_env"><code class="name flex">
 <span>def <span class="ident">show_env</span></span>(<span>self) ‑> rich.pretty.Pretty</span>
 </code></dt>
 <dd>
@@ -713,7 +713,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Display current environment.</p></div>
 </dd>
-<dt id="lang.repl.REPL.show_globals"><code class="name flex">
+<dt id="src.lang.repl.REPL.show_globals"><code class="name flex">
 <span>def <span class="ident">show_globals</span></span>(<span>self) ‑> rich.pretty.Pretty</span>
 </code></dt>
 <dd>
@@ -727,7 +727,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Display all global variables.</p></div>
 </dd>
-<dt id="lang.repl.REPL.show_imports"><code class="name flex">
+<dt id="src.lang.repl.REPL.show_imports"><code class="name flex">
 <span>def <span class="ident">show_imports</span></span>(<span>self) ‑> rich.pretty.Pretty</span>
 </code></dt>
 <dd>
@@ -741,7 +741,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Display all currently imported modules and libraries.</p></div>
 </dd>
-<dt id="lang.repl.REPL.show_keywords"><code class="name flex">
+<dt id="src.lang.repl.REPL.show_keywords"><code class="name flex">
 <span>def <span class="ident">show_keywords</span></span>(<span>self) ‑> str | rich.table.Table</span>
 </code></dt>
 <dd>
@@ -800,7 +800,7 @@ https://github.com/Antonio-Iijima/OPAL
 </details>
 <div class="desc"><p>Display all language keywords.</p></div>
 </dd>
-<dt id="lang.repl.REPL.welcome"><code class="name flex">
+<dt id="src.lang.repl.REPL.welcome"><code class="name flex">
 <span>def <span class="ident">welcome</span></span>(<span>self) ‑> rich.text.Text</span>
 </code></dt>
 <dd>
@@ -840,36 +840,36 @@ https://github.com/Antonio-Iijima/OPAL
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="lang" href="index.html">lang</a></code></li>
+<li><code><a title="src.lang" href="index.html">src.lang</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="lang.repl.REPL" href="#lang.repl.REPL">REPL</a></code></h4>
+<h4><code><a title="src.lang.repl.REPL" href="#src.lang.repl.REPL">REPL</a></code></h4>
 <ul class="two-column">
-<li><code><a title="lang.repl.REPL.COMMANDS" href="#lang.repl.REPL.COMMANDS">COMMANDS</a></code></li>
-<li><code><a title="lang.repl.REPL.Comment" href="#lang.repl.REPL.Comment">Comment</a></code></li>
-<li><code><a title="lang.repl.REPL.Complete" href="#lang.repl.REPL.Complete">Complete</a></code></li>
-<li><code><a title="lang.repl.REPL.Error" href="#lang.repl.REPL.Error">Error</a></code></li>
-<li><code><a title="lang.repl.REPL.Incomplete" href="#lang.repl.REPL.Incomplete">Incomplete</a></code></li>
-<li><code><a title="lang.repl.REPL.Message" href="#lang.repl.REPL.Message">Message</a></code></li>
-<li><code><a title="lang.repl.REPL.REPL" href="#lang.repl.REPL.REPL">REPL</a></code></li>
-<li><code><a title="lang.repl.REPL.RER" href="#lang.repl.REPL.RER">RER</a></code></li>
-<li><code><a title="lang.repl.REPL.RERL" href="#lang.repl.REPL.RERL">RERL</a></code></li>
-<li><code><a title="lang.repl.REPL.clear" href="#lang.repl.REPL.clear">clear</a></code></li>
-<li><code><a title="lang.repl.REPL.flags" href="#lang.repl.REPL.flags">flags</a></code></li>
-<li><code><a title="lang.repl.REPL.help" href="#lang.repl.REPL.help">help</a></code></li>
-<li><code><a title="lang.repl.REPL.interpret" href="#lang.repl.REPL.interpret">interpret</a></code></li>
-<li><code><a title="lang.repl.REPL.prompt" href="#lang.repl.REPL.prompt">prompt</a></code></li>
-<li><code><a title="lang.repl.REPL.quit" href="#lang.repl.REPL.quit">quit</a></code></li>
-<li><code><a title="lang.repl.REPL.show_closures" href="#lang.repl.REPL.show_closures">show_closures</a></code></li>
-<li><code><a title="lang.repl.REPL.show_dev" href="#lang.repl.REPL.show_dev">show_dev</a></code></li>
-<li><code><a title="lang.repl.REPL.show_env" href="#lang.repl.REPL.show_env">show_env</a></code></li>
-<li><code><a title="lang.repl.REPL.show_globals" href="#lang.repl.REPL.show_globals">show_globals</a></code></li>
-<li><code><a title="lang.repl.REPL.show_imports" href="#lang.repl.REPL.show_imports">show_imports</a></code></li>
-<li><code><a title="lang.repl.REPL.show_keywords" href="#lang.repl.REPL.show_keywords">show_keywords</a></code></li>
-<li><code><a title="lang.repl.REPL.welcome" href="#lang.repl.REPL.welcome">welcome</a></code></li>
+<li><code><a title="src.lang.repl.REPL.COMMANDS" href="#src.lang.repl.REPL.COMMANDS">COMMANDS</a></code></li>
+<li><code><a title="src.lang.repl.REPL.Comment" href="#src.lang.repl.REPL.Comment">Comment</a></code></li>
+<li><code><a title="src.lang.repl.REPL.Complete" href="#src.lang.repl.REPL.Complete">Complete</a></code></li>
+<li><code><a title="src.lang.repl.REPL.Error" href="#src.lang.repl.REPL.Error">Error</a></code></li>
+<li><code><a title="src.lang.repl.REPL.Incomplete" href="#src.lang.repl.REPL.Incomplete">Incomplete</a></code></li>
+<li><code><a title="src.lang.repl.REPL.Message" href="#src.lang.repl.REPL.Message">Message</a></code></li>
+<li><code><a title="src.lang.repl.REPL.REPL" href="#src.lang.repl.REPL.REPL">REPL</a></code></li>
+<li><code><a title="src.lang.repl.REPL.RER" href="#src.lang.repl.REPL.RER">RER</a></code></li>
+<li><code><a title="src.lang.repl.REPL.RERL" href="#src.lang.repl.REPL.RERL">RERL</a></code></li>
+<li><code><a title="src.lang.repl.REPL.clear" href="#src.lang.repl.REPL.clear">clear</a></code></li>
+<li><code><a title="src.lang.repl.REPL.flags" href="#src.lang.repl.REPL.flags">flags</a></code></li>
+<li><code><a title="src.lang.repl.REPL.help" href="#src.lang.repl.REPL.help">help</a></code></li>
+<li><code><a title="src.lang.repl.REPL.interpret" href="#src.lang.repl.REPL.interpret">interpret</a></code></li>
+<li><code><a title="src.lang.repl.REPL.prompt" href="#src.lang.repl.REPL.prompt">prompt</a></code></li>
+<li><code><a title="src.lang.repl.REPL.quit" href="#src.lang.repl.REPL.quit">quit</a></code></li>
+<li><code><a title="src.lang.repl.REPL.show_closures" href="#src.lang.repl.REPL.show_closures">show_closures</a></code></li>
+<li><code><a title="src.lang.repl.REPL.show_dev" href="#src.lang.repl.REPL.show_dev">show_dev</a></code></li>
+<li><code><a title="src.lang.repl.REPL.show_env" href="#src.lang.repl.REPL.show_env">show_env</a></code></li>
+<li><code><a title="src.lang.repl.REPL.show_globals" href="#src.lang.repl.REPL.show_globals">show_globals</a></code></li>
+<li><code><a title="src.lang.repl.REPL.show_imports" href="#src.lang.repl.REPL.show_imports">show_imports</a></code></li>
+<li><code><a title="src.lang.repl.REPL.show_keywords" href="#src.lang.repl.REPL.show_keywords">show_keywords</a></code></li>
+<li><code><a title="src.lang.repl.REPL.welcome" href="#src.lang.repl.REPL.welcome">welcome</a></code></li>
 </ul>
 </li>
 </ul>

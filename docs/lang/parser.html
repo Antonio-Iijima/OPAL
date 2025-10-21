@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>lang.parser API documentation</title>
+<title>src.lang.parser API documentation</title>
 <meta name="description" content="Parser and basic syntax checker.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>lang.parser</code></h1>
+<h1 class="title">Module <code>src.lang.parser</code></h1>
 </header>
 <section id="section-intro">
 <p>Parser and basic syntax checker.</p>
@@ -45,7 +45,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="lang.parser.iscommented"><code class="name flex">
+<dt id="src.lang.parser.iscommented"><code class="name flex">
 <span>def <span class="ident">iscommented</span></span>(<span>expr: str) ‑> bool</span>
 </code></dt>
 <dd>
@@ -59,7 +59,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Checks for single- or multiline comments.</p></div>
 </dd>
-<dt id="lang.parser.iscomplete"><code class="name flex">
+<dt id="src.lang.parser.iscomplete"><code class="name flex">
 <span>def <span class="ident">iscomplete</span></span>(<span>expr: str) ‑> bool</span>
 </code></dt>
 <dd>
@@ -77,7 +77,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Checks for <em>hopefully</em> complete expressions in the REPL.</p></div>
 </dd>
-<dt id="lang.parser.isperfectlybalanced"><code class="name flex">
+<dt id="src.lang.parser.isperfectlybalanced"><code class="name flex">
 <span>def <span class="ident">isperfectlybalanced</span></span>(<span>expr: list) ‑> bool</span>
 </code></dt>
 <dd>
@@ -100,7 +100,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Check for balanced parentheses in an OPAL expression.</p></div>
 </dd>
-<dt id="lang.parser.parse"><code class="name flex">
+<dt id="src.lang.parser.parse"><code class="name flex">
 <span>def <span class="ident">parse</span></span>(<span>s: str) ‑> list</span>
 </code></dt>
 <dd>
@@ -114,7 +114,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Perform syntax checking and convert OPAL expression string to manipulable Python lists.</p></div>
 </dd>
-<dt id="lang.parser.preprocess"><code class="name flex">
+<dt id="src.lang.parser.preprocess"><code class="name flex">
 <span>def <span class="ident">preprocess</span></span>(<span>expr: list) ‑> list</span>
 </code></dt>
 <dd>
@@ -134,7 +134,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Replace all special data types.</p></div>
 </dd>
-<dt id="lang.parser.retype"><code class="name flex">
+<dt id="src.lang.parser.retype"><code class="name flex">
 <span>def <span class="ident">retype</span></span>(<span>x: str) ‑> int | float | bool</span>
 </code></dt>
 <dd>
@@ -153,7 +153,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Replace int, float, and bool strings with their correct data types.</p></div>
 </dd>
-<dt id="lang.parser.syntax_check"><code class="name flex">
+<dt id="src.lang.parser.syntax_check"><code class="name flex">
 <span>def <span class="ident">syntax_check</span></span>(<span>expr: list) ‑> list</span>
 </code></dt>
 <dd>
@@ -170,7 +170,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Checks balanced parentheses, proper expression nesting, etc. Raises errors if any conditions not met, otherwise returns <code>expr</code>.</p></div>
 </dd>
-<dt id="lang.parser.toOPAL"><code class="name flex">
+<dt id="src.lang.parser.toOPAL"><code class="name flex">
 <span>def <span class="ident">toOPAL</span></span>(<span>s: <built-in function any>) ‑> None | str</span>
 </code></dt>
 <dd>
@@ -191,7 +191,7 @@ el.replaceWith(d);
 </details>
 <div class="desc"><p>Convert Python list to fully-parenthesized OPAL string.</p></div>
 </dd>
-<dt id="lang.parser.toPython"><code class="name flex">
+<dt id="src.lang.parser.toPython"><code class="name flex">
 <span>def <span class="ident">toPython</span></span>(<span>expr: str) ‑> list</span>
 </code></dt>
 <dd>
@@ -230,20 +230,20 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="lang" href="index.html">lang</a></code></li>
+<li><code><a title="src.lang" href="index.html">src.lang</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="two-column">
-<li><code><a title="lang.parser.iscommented" href="#lang.parser.iscommented">iscommented</a></code></li>
-<li><code><a title="lang.parser.iscomplete" href="#lang.parser.iscomplete">iscomplete</a></code></li>
-<li><code><a title="lang.parser.isperfectlybalanced" href="#lang.parser.isperfectlybalanced">isperfectlybalanced</a></code></li>
-<li><code><a title="lang.parser.parse" href="#lang.parser.parse">parse</a></code></li>
-<li><code><a title="lang.parser.preprocess" href="#lang.parser.preprocess">preprocess</a></code></li>
-<li><code><a title="lang.parser.retype" href="#lang.parser.retype">retype</a></code></li>
-<li><code><a title="lang.parser.syntax_check" href="#lang.parser.syntax_check">syntax_check</a></code></li>
-<li><code><a title="lang.parser.toOPAL" href="#lang.parser.toOPAL">toOPAL</a></code></li>
-<li><code><a title="lang.parser.toPython" href="#lang.parser.toPython">toPython</a></code></li>
+<li><code><a title="src.lang.parser.iscommented" href="#src.lang.parser.iscommented">iscommented</a></code></li>
+<li><code><a title="src.lang.parser.iscomplete" href="#src.lang.parser.iscomplete">iscomplete</a></code></li>
+<li><code><a title="src.lang.parser.isperfectlybalanced" href="#src.lang.parser.isperfectlybalanced">isperfectlybalanced</a></code></li>
+<li><code><a title="src.lang.parser.parse" href="#src.lang.parser.parse">parse</a></code></li>
+<li><code><a title="src.lang.parser.preprocess" href="#src.lang.parser.preprocess">preprocess</a></code></li>
+<li><code><a title="src.lang.parser.retype" href="#src.lang.parser.retype">retype</a></code></li>
+<li><code><a title="src.lang.parser.syntax_check" href="#src.lang.parser.syntax_check">syntax_check</a></code></li>
+<li><code><a title="src.lang.parser.toOPAL" href="#src.lang.parser.toOPAL">toOPAL</a></code></li>
+<li><code><a title="src.lang.parser.toPython" href="#src.lang.parser.toPython">toPython</a></code></li>
 </ul>
 </li>
 </ul>
