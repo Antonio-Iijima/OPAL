@@ -1,6 +1,6 @@
 <p align=center><img src=https://github.com/Antonio-Iijima/OPAL/blob/main/logo.png width=75%></p>
 
-View in [Github Pages](https://antonio-iijima.github.io/OPAL/) or directly on [Github](https://github.com/Antonio-Iijima/OPAL).
+View [Documentation](https://antonio-iijima.github.io/OPAL/).
 
 OPAL (Omni-Paradigm Programming Language) seeks to unify multiple diverse programming paradigms through a consistent syntax and intuitive semantics.
 
@@ -16,6 +16,7 @@ OPAL is under active developement; the following programming paradigms have vary
 - Functional
 - Metaprogramming
   - Reflective
+
 
 
 
