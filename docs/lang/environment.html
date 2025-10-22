@@ -177,6 +177,7 @@ el.replaceWith(d);
         &#34;&#34;&#34;Define a named function.&#34;&#34;&#34;
         self.set(name, DAT.Function(name, parameters, body))
        
+
     def deftemplate(self, name: str, parameters: list, *body: list,) -&gt; None:
         &#34;&#34;&#34;Define a new template.&#34;&#34;&#34;
         self.set(name, DAT.Template(name, parameters, body))
@@ -185,7 +186,6 @@ el.replaceWith(d);
     def match_arguments(self, parameters: list, args: list) -&gt; None:
         &#34;&#34;&#34;Matches a list of parameters with a list of arguments for use in functions.&#34;&#34;&#34;
         for var, val in zip(parameters, args): self.set(var, val)
-
 
 
     ### Other Methods ###
