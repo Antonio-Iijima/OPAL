@@ -3,10 +3,8 @@
 
 
 from src.lang  import interpreter as INT
-from src.lang import extensions as EXT
 from src.lang import datatypes as DAT
 
-import importlib
 import copy
 
 
@@ -136,6 +134,7 @@ class Environment:
         """Define a named function."""
         self.set(name, DAT.Function(name, parameters, body))
        
+
     def deftemplate(self, name: str, parameters: list, *body: list,) -> None:
         """Define a new template."""
         self.set(name, DAT.Template(name, parameters, body))
@@ -144,7 +143,6 @@ class Environment:
     def match_arguments(self, parameters: list, args: list) -> None:
         """Matches a list of parameters with a list of arguments for use in functions."""
         for var, val in zip(parameters, args): self.set(var, val)
-
 
 
     ### Other Methods ###
