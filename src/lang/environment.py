@@ -2,13 +2,12 @@
 
 
 
-import copy
-import importlib
+from src.lang  import interpreter as INT
+from src.lang import extensions as EXT
+from src.lang import datatypes as DAT
 
-import evaluate as EVA
-import datatypes as DAT
-import extensions as EXT
-import interpreter as INT
+import importlib
+import copy
 
 
 

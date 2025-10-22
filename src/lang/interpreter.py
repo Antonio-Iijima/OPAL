@@ -2,16 +2,16 @@
 
 
 
-import os
-import random
-import importlib
+from src.lang import environment as ENV
+from src.lang import extensions as EXT
+from src.lang import keywords as KEY
 
-import keywords as KEY
-import extensions as EXT
-import environment as ENV
-
-from rich import box
 from rich.text import Text
+from rich import box
+
+import importlib
+import random
+import os
 
 
 
@@ -33,7 +33,7 @@ class Interpreter:
         
         self.VERSION = 3.0
         self.NAME = "ΩPAL"
-        self.PATH = os.path.abspath(__file__ + "/..")
+        self.PATH = os.path.dirname(__file__)
         self.EXTENSIONS_PATH = self.PATH + "/extensions.py"
 
 

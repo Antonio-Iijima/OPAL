@@ -2,9 +2,9 @@
 
 
 
-import keywords as KEY
-import datatypes as DAT
-import interpreter as INT
+from src.lang  import interpreter as INT
+from src.lang import datatypes as DAT
+from src.lang import keywords as KEY
 
 
 

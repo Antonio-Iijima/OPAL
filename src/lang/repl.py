@@ -2,20 +2,20 @@
 
 
 
+from src.lang import interpreter as INT
+from src.lang import evaluate as EVA
+from src.lang import keywords as KEY
+from src.lang import parser as PAR
+
+from rich.console import Group
+from rich.pretty import Pretty
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
+from rich import print
+
 import os
 import sys
-
-import parser as PAR
-import evaluate as EVA
-import keywords as KEY
-import interpreter as INT
-
-from rich import print
-from rich.text import Text
-from rich.table import Table
-from rich.panel import Panel
-from rich.pretty import Pretty
-from rich.console import Group
 
 
 

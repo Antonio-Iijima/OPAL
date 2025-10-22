@@ -2,7 +2,7 @@
 
 
 
-from app import IDE
+from src.ide.app import IDE
 
 
 

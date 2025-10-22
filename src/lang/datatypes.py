@@ -2,13 +2,13 @@
 
 
 
-import random
+from src.lang  import interpreter as INT
+from src.lang import environment as ENV
+from src.lang import evaluate as EVA
+from src.lang import keywords as KEY
+from src.lang import parser as PAR
 
-import parser as PAR
-import evaluate as EVA
-import keywords as KEY
-import interpreter as INT
-import environment as ENV
+import random
 
 
 

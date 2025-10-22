@@ -2,14 +2,14 @@
 
 
 
-import re
-import importlib
+from src.lang  import interpreter as INT
+from src.lang import datatypes as DAT
+from src.lang import evaluate as EVA
+from src.lang import parser as PAR
+from src.lang import repl as REP
 
-import repl as REP
-import parser as PAR
-import evaluate as EVA
-import datatypes as DAT
-import interpreter as INT
+import importlib
+import re
 
 
 
@@ -55,12 +55,12 @@ def isfloat(x: str | int | float) -> bool:
     return bool(re.match(r"^[-]?[0-9]*[.][0-9]+$", str(x)))
 
 
-def isfunction(x: DAT.Function) -> bool: 
+def isfunction(x: "DAT.Function") -> bool: 
     """Unary `Function` predicate."""
     return isinstance(x, DAT.Function)
 
 
-def istemplate(x: DAT.Template | DAT.Instance) -> bool:
+def istemplate(x) -> bool:
     """Unary `Template` and `Instance` predicate."""
     return isinstance(x, (DAT.Template, DAT.Instance))
 
@@ -95,12 +95,12 @@ def isstring(x: list) -> bool:
     return isquote(x) or isinstance(x, str)
 
 
-def isfrozen(x: DAT.Frozen) -> bool: 
+def isfrozen(x: "DAT.Frozen") -> bool: 
     """Unary `Frozen` predicate."""
     return isinstance(x, DAT.Frozen)
 
 
-def islazy(x: DAT.Lazy) -> bool: 
+def islazy(x: "DAT.Lazy") -> bool: 
     """Unary `Frozen` predicate."""
     return isinstance(x, DAT.Lazy)
 

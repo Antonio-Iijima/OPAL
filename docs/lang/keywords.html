@@ -457,28 +457,28 @@ el.replaceWith(d);
 <div class="desc"><p>Unary <code>float</code> predicate.</p></div>
 </dd>
 <dt id="src.lang.keywords.isfrozen"><code class="name flex">
-<span>def <span class="ident">isfrozen</span></span>(<span>x: datatypes.Frozen) ‑> bool</span>
+<span>def <span class="ident">isfrozen</span></span>(<span>x: DAT.Frozen) ‑> bool</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def isfrozen(x: DAT.Frozen) -&gt; bool: 
+<pre><code class="python">def isfrozen(x: &#34;DAT.Frozen&#34;) -&gt; bool: 
     &#34;&#34;&#34;Unary `Frozen` predicate.&#34;&#34;&#34;
     return isinstance(x, DAT.Frozen)</code></pre>
 </details>
 <div class="desc"><p>Unary <code>Frozen</code> predicate.</p></div>
 </dd>
 <dt id="src.lang.keywords.isfunction"><code class="name flex">
-<span>def <span class="ident">isfunction</span></span>(<span>x: datatypes.Function) ‑> bool</span>
+<span>def <span class="ident">isfunction</span></span>(<span>x: DAT.Function) ‑> bool</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def isfunction(x: DAT.Function) -&gt; bool: 
+<pre><code class="python">def isfunction(x: &#34;DAT.Function&#34;) -&gt; bool: 
     &#34;&#34;&#34;Unary `Function` predicate.&#34;&#34;&#34;
     return isinstance(x, DAT.Function)</code></pre>
 </details>
@@ -527,14 +527,14 @@ el.replaceWith(d);
 <div class="desc"><p>Unary <code>keyword</code> predicate.</p></div>
 </dd>
 <dt id="src.lang.keywords.islazy"><code class="name flex">
-<span>def <span class="ident">islazy</span></span>(<span>x: datatypes.Lazy) ‑> bool</span>
+<span>def <span class="ident">islazy</span></span>(<span>x: DAT.Lazy) ‑> bool</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def islazy(x: DAT.Lazy) -&gt; bool: 
+<pre><code class="python">def islazy(x: &#34;DAT.Lazy&#34;) -&gt; bool: 
     &#34;&#34;&#34;Unary `Frozen` predicate.&#34;&#34;&#34;
     return isinstance(x, DAT.Lazy)</code></pre>
 </details>
@@ -611,14 +611,14 @@ el.replaceWith(d);
 <div class="desc"><p>Unary <code>string</code> predicate.</p></div>
 </dd>
 <dt id="src.lang.keywords.istemplate"><code class="name flex">
-<span>def <span class="ident">istemplate</span></span>(<span>x: datatypes.Template | datatypes.Instance) ‑> bool</span>
+<span>def <span class="ident">istemplate</span></span>(<span>x) ‑> bool</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def istemplate(x: DAT.Template | DAT.Instance) -&gt; bool:
+<pre><code class="python">def istemplate(x) -&gt; bool:
     &#34;&#34;&#34;Unary `Template` and `Instance` predicate.&#34;&#34;&#34;
     return isinstance(x, (DAT.Template, DAT.Instance))</code></pre>
 </details>

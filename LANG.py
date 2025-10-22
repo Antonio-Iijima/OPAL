@@ -2,14 +2,14 @@
 
 
 
-import sys
-import fileinput
+from src.lang import interpreter as INT
+from src.lang import repl as REP
 
-import repl as REP
-import interpreter as INT
-
-from rich import print
 from rich.traceback import install
+from rich import print
+
+import fileinput
+import sys
 
 
 

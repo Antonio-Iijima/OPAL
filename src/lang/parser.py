@@ -2,8 +2,8 @@
 
 
 
-import keywords as KEY
-import interpreter as INT
+from src.lang  import interpreter as INT
+from src.lang import keywords as KEY
 
 
 

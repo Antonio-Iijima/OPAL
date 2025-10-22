@@ -7,6 +7,8 @@ from textual.message import Message
 from typing import Iterable
 from pathlib import Path
 
+import os
+
 
 
 class EditorFrame(Horizontal):
@@ -26,7 +28,7 @@ class DirectoryPanel(Vertical):
 
     def compose(self) ->ComposeResult:
         yield DirectoryOpt(id="DirectoryOpt", classes="extendedTopPanel secondary")
-        yield FilteredDirectoryTree(id="DirectoryTree", path="../OPAL")
+        yield FilteredDirectoryTree(id="DirectoryTree", path=os.path.abspath(__file__ + "/../../.."))
 
 
 

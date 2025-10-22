@@ -1,7 +1,8 @@
-import sys, os
+from src.ide.editor import EditorFrame, Editor, FilteredDirectoryTree, EditorTabs
+from src.ide.terminal import TerminalFrame, TerminalLog, TerminalInput, Terminal
 
-from editor import EditorFrame, Editor, FilteredDirectoryTree, EditorTabs
-from terminal import TerminalFrame, TerminalLog, TerminalInput, Terminal
+from src.lang import interpreter as INT
+from src.lang import repl as REP
 
 from textual.widgets import Footer, TabPane, Input
 from textual.app import App, ComposeResult
@@ -9,10 +10,7 @@ from textual.containers import Horizontal
 from textual.binding import Binding
 from textual import on
 
-sys.path.append(os.path.abspath(f"{__file__}/../../lang")) 
-
-import interpreter as INT
-import repl as REP
+import sys
 
 
 

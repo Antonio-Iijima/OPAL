@@ -8,9 +8,9 @@ def loop(for_, i, in_, range_, start, stop, step, contents):
 
 EXTENSIONS = {name : fun for (name, fun) in locals().items() if callable(fun)}
 
-import repl as REP
-import parser as PAR
-import keywords as KEY
-import evaluate as EVA
-import environment as ENV
-import interpreter as INT
+from src.lang  import interpreter as INT
+from src.lang import environment as ENV
+from src.lang import evaluate as EVA
+from src.lang import keywords as KEY
+from src.lang import parser as PAR
+from src.lang import repl as REP
