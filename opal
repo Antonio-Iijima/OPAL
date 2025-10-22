@@ -1,11 +1,14 @@
 #!/bin/sh
 
 
-path="$(dirname $0)"
+path="$(dirname "$BASH_SOURCE")"
 
 case "$1" in
     "docs") rm -r "${path}/docs/"*
-            pdoc3 --html --force --output-dir "${path}/docs" "${path}/src"
+            if [ "$2" = "-q" ]
+            then pdoc3 --html --force --output-dir "${path}/docs" "${path}/src" > /dev/null
+            else pdoc3 --html --force --output-dir "${path}/docs" "${path}/src"
+            fi
             mv "${path}/docs/src/"* "${path}/docs"
             rm -r "${path}/docs/src"
     ;;

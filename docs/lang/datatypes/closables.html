@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>src.lang.datatypes API documentation</title>
-<meta name="description" content="Custom datatype classes.">
+<title>src.lang.datatypes.closables API documentation</title>
+<meta name="description" content="Closable datatypes (functions, templates, &amp;c).">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -33,10 +33,10 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>src.lang.datatypes</code></h1>
+<h1 class="title">Module <code>src.lang.datatypes.closables</code></h1>
 </header>
 <section id="section-intro">
-<p>Custom datatype classes.</p>
+<p>Closable datatypes (functions, templates, &amp;c).</p>
 </section>
 <section>
 </section>
@@ -47,7 +47,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="src.lang.datatypes.Closable"><code class="flex name class">
+<dt id="src.lang.datatypes.closables.Closable"><code class="flex name class">
 <span>class <span class="ident">Closable</span></span>
 <span>(</span><span>name: str, parameters: list = None, body: list = None)</span>
 </code></dt>
@@ -86,13 +86,13 @@ el.replaceWith(d);
 <p>Initialize datatype and generate unique ID.</p></div>
 <h3>Subclasses</h3>
 <ul class="hlist">
-<li><a title="src.lang.datatypes.Function" href="#src.lang.datatypes.Function">Function</a></li>
-<li><a title="src.lang.datatypes.Instance" href="#src.lang.datatypes.Instance">Instance</a></li>
-<li><a title="src.lang.datatypes.Template" href="#src.lang.datatypes.Template">Template</a></li>
+<li><a title="src.lang.datatypes.closables.Function" href="#src.lang.datatypes.closables.Function">Function</a></li>
+<li><a title="src.lang.datatypes.closables.Instance" href="#src.lang.datatypes.closables.Instance">Instance</a></li>
+<li><a title="src.lang.datatypes.closables.Template" href="#src.lang.datatypes.closables.Template">Template</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="src.lang.datatypes.Closable.generate_id"><code class="name flex">
+<dt id="src.lang.datatypes.closables.Closable.generate_id"><code class="name flex">
 <span>def <span class="ident">generate_id</span></span>(<span>self, k: int = 15) ‑> str</span>
 </code></dt>
 <dd>
@@ -108,50 +108,7 @@ el.replaceWith(d);
 </dd>
 </dl>
 </dd>
-<dt id="src.lang.datatypes.Frozen"><code class="flex name class">
-<span>class <span class="ident">Frozen</span></span>
-<span>(</span><span>val: str)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class Frozen:
-    def __init__(self, val: str) -&gt; None:
-        self.value = val
-
-
-    def thaw(self):
-        &#34;&#34;&#34;Compute the value of a `Frozen` expression.&#34;&#34;&#34;
-        return EVA.evaluate(self.value)
-    
-
-    def __str__(self): return f&#34;&lt;frozen {self.value}&gt;&#34;
-
-
-    def __repr__(self): return str(self)</code></pre>
-</details>
-<div class="desc"></div>
-<h3>Methods</h3>
-<dl>
-<dt id="src.lang.datatypes.Frozen.thaw"><code class="name flex">
-<span>def <span class="ident">thaw</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def thaw(self):
-    &#34;&#34;&#34;Compute the value of a `Frozen` expression.&#34;&#34;&#34;
-    return EVA.evaluate(self.value)</code></pre>
-</details>
-<div class="desc"><p>Compute the value of a <code><a title="src.lang.datatypes.Frozen" href="#src.lang.datatypes.Frozen">Frozen</a></code> expression.</p></div>
-</dd>
-</dl>
-</dd>
-<dt id="src.lang.datatypes.Function"><code class="flex name class">
+<dt id="src.lang.datatypes.closables.Function"><code class="flex name class">
 <span>class <span class="ident">Function</span></span>
 <span>(</span><span>name: str,<br>parameters: list = None,<br>body: list = None,<br>isMethod: bool = False,<br>isLazy: bool = False)</span>
 </code></dt>
@@ -214,11 +171,11 @@ el.replaceWith(d);
 <p>Initialize closable function type.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></li>
+<li><a title="src.lang.datatypes.closables.Closable" href="#src.lang.datatypes.closables.Closable">Closable</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="src.lang.datatypes.Function.eval"><code class="name flex">
+<dt id="src.lang.datatypes.closables.Function.eval"><code class="name flex">
 <span>def <span class="ident">eval</span></span>(<span>self, args: list) ‑> <built-in function any></span>
 </code></dt>
 <dd>
@@ -267,14 +224,14 @@ el.replaceWith(d);
 </dl>
 <h3>Inherited members</h3>
 <ul class="hlist">
-<li><code><b><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></b></code>:
+<li><code><b><a title="src.lang.datatypes.closables.Closable" href="#src.lang.datatypes.closables.Closable">Closable</a></b></code>:
 <ul class="hlist">
-<li><code><a title="src.lang.datatypes.Closable.generate_id" href="#src.lang.datatypes.Closable.generate_id">generate_id</a></code></li>
+<li><code><a title="src.lang.datatypes.closables.Closable.generate_id" href="#src.lang.datatypes.closables.Closable.generate_id">generate_id</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
-<dt id="src.lang.datatypes.Instance"><code class="flex name class">
+<dt id="src.lang.datatypes.closables.Instance"><code class="flex name class">
 <span>class <span class="ident">Instance</span></span>
 <span>(</span><span>name: str, parameters: list, args: list)</span>
 </code></dt>
@@ -308,11 +265,11 @@ el.replaceWith(d);
 <p>Initialize datatype and generate unique ID.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></li>
+<li><a title="src.lang.datatypes.closables.Closable" href="#src.lang.datatypes.closables.Closable">Closable</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="src.lang.datatypes.Instance.eval"><code class="name flex">
+<dt id="src.lang.datatypes.closables.Instance.eval"><code class="name flex">
 <span>def <span class="ident">eval</span></span>(<span>self, method: str, args: list = None)</span>
 </code></dt>
 <dd>
@@ -334,195 +291,14 @@ el.replaceWith(d);
 </dl>
 <h3>Inherited members</h3>
 <ul class="hlist">
-<li><code><b><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></b></code>:
+<li><code><b><a title="src.lang.datatypes.closables.Closable" href="#src.lang.datatypes.closables.Closable">Closable</a></b></code>:
 <ul class="hlist">
-<li><code><a title="src.lang.datatypes.Closable.generate_id" href="#src.lang.datatypes.Closable.generate_id">generate_id</a></code></li>
+<li><code><a title="src.lang.datatypes.closables.Closable.generate_id" href="#src.lang.datatypes.closables.Closable.generate_id">generate_id</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
-<dt id="src.lang.datatypes.Latent"><code class="flex name class">
-<span>class <span class="ident">Latent</span></span>
-<span>(</span><span>var: <built-in function any>, val: <built-in function any>)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class Latent(TypedVariable):
-    
-    def getType(self):
-        return self._getType(self.val)
-
-
-    def setVal(self, val: any):
-        super().setVal(val)
-        self.val = val
-
-
-    def __str__(self) -&gt; str: return f&#34;&lt;latent {self.getType()} {self.name}&gt;&#34;</code></pre>
-</details>
-<div class="desc"></div>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li><a title="src.lang.datatypes.TypedVariable" href="#src.lang.datatypes.TypedVariable">TypedVariable</a></li>
-</ul>
-<h3>Methods</h3>
-<dl>
-<dt id="src.lang.datatypes.Latent.getType"><code class="name flex">
-<span>def <span class="ident">getType</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def getType(self):
-    return self._getType(self.val)</code></pre>
-</details>
-<div class="desc"></div>
-</dd>
-<dt id="src.lang.datatypes.Latent.setVal"><code class="name flex">
-<span>def <span class="ident">setVal</span></span>(<span>self, val: <built-in function any>)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def setVal(self, val: any):
-    super().setVal(val)
-    self.val = val</code></pre>
-</details>
-<div class="desc"></div>
-</dd>
-</dl>
-</dd>
-<dt id="src.lang.datatypes.Lazy"><code class="flex name class">
-<span>class <span class="ident">Lazy</span></span>
-<span>(</span><span>func: str)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class Lazy:
-    def __init__(self, func: str):
-        self.func = func
-
-
-    def eval(self, args: list) -&gt; any: return EVA.evaluate([self.func, *map(Frozen, args)])
-
-
-    def __str__(self) -&gt; str: return f&#34;&lt;{self.__class__.__name__.lower()} {self.func}&gt;&#34;
-
-
-    def __repr__(self): return str(self)</code></pre>
-</details>
-<div class="desc"></div>
-<h3>Methods</h3>
-<dl>
-<dt id="src.lang.datatypes.Lazy.eval"><code class="name flex">
-<span>def <span class="ident">eval</span></span>(<span>self, args: list) ‑> <built-in function any></span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def eval(self, args: list) -&gt; any: return EVA.evaluate([self.func, *map(Frozen, args)])</code></pre>
-</details>
-<div class="desc"></div>
-</dd>
-</dl>
-</dd>
-<dt id="src.lang.datatypes.Strict"><code class="flex name class">
-<span>class <span class="ident">Strict</span></span>
-<span>(</span><span>var: list, val: <built-in function any>)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class Strict(TypedVariable):
-
-    def __init__(self, var: list, val: any) -&gt; None:
-        super().__init__(var[1], val)
-        
-        self.type = var[0]
-        self.typeCheck()
-
-
-    def getType(self) -&gt; str: return self.type
-        
-
-    def typeCheck(self) -&gt; None:
-        &#34;&#34;&#34;Raises `TypeError` if currently contained variable type is not `self.type`.&#34;&#34;&#34;
-        if not self.types[self.type](self.val): 
-            raise TypeError(f&#34;variable {self.name} requires value of type &lt;{self.type}&gt; but received &lt;{self._getType(self.val)}&gt;&#34;)
-
-
-    def setVal(self, val: any) -&gt; &#34;Strict&#34;:
-        super().setVal(val)
-        self.typeCheck()
-
-
-    def __str__(self) -&gt; str: return f&#34;&lt;strict {self.type} {self.name}&gt;&#34;</code></pre>
-</details>
-<div class="desc"></div>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li><a title="src.lang.datatypes.TypedVariable" href="#src.lang.datatypes.TypedVariable">TypedVariable</a></li>
-</ul>
-<h3>Methods</h3>
-<dl>
-<dt id="src.lang.datatypes.Strict.getType"><code class="name flex">
-<span>def <span class="ident">getType</span></span>(<span>self) ‑> str</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def getType(self) -&gt; str: return self.type</code></pre>
-</details>
-<div class="desc"></div>
-</dd>
-<dt id="src.lang.datatypes.Strict.setVal"><code class="name flex">
-<span>def <span class="ident">setVal</span></span>(<span>self, val: <built-in function any>) ‑> <a title="src.lang.datatypes.Strict" href="#src.lang.datatypes.Strict">Strict</a></span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def setVal(self, val: any) -&gt; &#34;Strict&#34;:
-    super().setVal(val)
-    self.typeCheck()</code></pre>
-</details>
-<div class="desc"></div>
-</dd>
-<dt id="src.lang.datatypes.Strict.typeCheck"><code class="name flex">
-<span>def <span class="ident">typeCheck</span></span>(<span>self) ‑> None</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def typeCheck(self) -&gt; None:
-    &#34;&#34;&#34;Raises `TypeError` if currently contained variable type is not `self.type`.&#34;&#34;&#34;
-    if not self.types[self.type](self.val): 
-        raise TypeError(f&#34;variable {self.name} requires value of type &lt;{self.type}&gt; but received &lt;{self._getType(self.val)}&gt;&#34;)</code></pre>
-</details>
-<div class="desc"><p>Raises <code>TypeError</code> if currently contained variable type is not <code>self.type</code>.</p></div>
-</dd>
-</dl>
-</dd>
-<dt id="src.lang.datatypes.Template"><code class="flex name class">
+<dt id="src.lang.datatypes.closables.Template"><code class="flex name class">
 <span>class <span class="ident">Template</span></span>
 <span>(</span><span>name: str, parameters: list = None, body: list = None)</span>
 </code></dt>
@@ -578,12 +354,12 @@ el.replaceWith(d);
 <p>Initialize datatype and generate unique ID.</p></div>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></li>
+<li><a title="src.lang.datatypes.closables.Closable" href="#src.lang.datatypes.closables.Closable">Closable</a></li>
 </ul>
 <h3>Methods</h3>
 <dl>
-<dt id="src.lang.datatypes.Template.new"><code class="name flex">
-<span>def <span class="ident">new</span></span>(<span>self, args: list) ‑> <a title="src.lang.datatypes.Instance" href="#src.lang.datatypes.Instance">Instance</a></span>
+<dt id="src.lang.datatypes.closables.Template.new"><code class="name flex">
+<span>def <span class="ident">new</span></span>(<span>self, args: list) ‑> <a title="src.lang.datatypes.closables.Instance" href="#src.lang.datatypes.closables.Instance">Instance</a></span>
 </code></dt>
 <dd>
 <details class="source">
@@ -611,107 +387,12 @@ el.replaceWith(d);
 </dl>
 <h3>Inherited members</h3>
 <ul class="hlist">
-<li><code><b><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></b></code>:
+<li><code><b><a title="src.lang.datatypes.closables.Closable" href="#src.lang.datatypes.closables.Closable">Closable</a></b></code>:
 <ul class="hlist">
-<li><code><a title="src.lang.datatypes.Closable.generate_id" href="#src.lang.datatypes.Closable.generate_id">generate_id</a></code></li>
+<li><code><a title="src.lang.datatypes.closables.Closable.generate_id" href="#src.lang.datatypes.closables.Closable.generate_id">generate_id</a></code></li>
 </ul>
 </li>
 </ul>
-</dd>
-<dt id="src.lang.datatypes.TypedVariable"><code class="flex name class">
-<span>class <span class="ident">TypedVariable</span></span>
-<span>(</span><span>var: <built-in function any>, val: <built-in function any>)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class TypedVariable:
-
-    def __init__(self, var: any, val: any):
-        self.name = var
-        self.val = val
-
-        self.types = {
-            &#34;int&#34;       : KEY.isint,
-            &#34;float&#34;     : KEY.isfloat,
-            &#34;str&#34;       : KEY.isstring,
-            &#34;lazy&#34;      : KEY.islazy,
-            &#34;list&#34;      : KEY.islist,
-            &#34;frozen&#34;    : KEY.isfrozen,
-            &#34;function&#34;  : KEY.isfunction,
-            &#34;bool&#34;      : KEY.isbool
-        }
-
-
-    def setVal(self, val: any):
-        isinstance(self.val, Closable) and INT.interpreter.ENV.cleanup(self.name)
-        self.val = val
-
-        
-    def getVal(self) -&gt; any: return self.val.thaw() if isinstance(self.val, Frozen) else self.val
-
-
-    def _getType(self, val) -&gt; str:
-        for type, check in self.types.items():
-            if check(val): return type
-
-
-    def __repr__(self): return str(self)</code></pre>
-</details>
-<div class="desc"></div>
-<h3>Subclasses</h3>
-<ul class="hlist">
-<li><a title="src.lang.datatypes.Latent" href="#src.lang.datatypes.Latent">Latent</a></li>
-<li><a title="src.lang.datatypes.Strict" href="#src.lang.datatypes.Strict">Strict</a></li>
-</ul>
-<h3>Methods</h3>
-<dl>
-<dt id="src.lang.datatypes.TypedVariable.getVal"><code class="name flex">
-<span>def <span class="ident">getVal</span></span>(<span>self) ‑> <built-in function any></span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def getVal(self) -&gt; any: return self.val.thaw() if isinstance(self.val, Frozen) else self.val</code></pre>
-</details>
-<div class="desc"></div>
-</dd>
-<dt id="src.lang.datatypes.TypedVariable.setVal"><code class="name flex">
-<span>def <span class="ident">setVal</span></span>(<span>self, val: <built-in function any>)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def setVal(self, val: any):
-    isinstance(self.val, Closable) and INT.interpreter.ENV.cleanup(self.name)
-    self.val = val</code></pre>
-</details>
-<div class="desc"></div>
-</dd>
-</dl>
-</dd>
-<dt id="src.lang.datatypes.Variable"><code class="flex name class">
-<span>class <span class="ident">Variable</span></span>
-<span>(</span><span>var: str | list, val: <built-in function any>)</span>
-</code></dt>
-<dd>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class Variable:
-
-    def __new__(cls, var: str|list, val: any) -&gt; &#34;TypedVariable&#34;:
-        &#34;&#34;&#34;Constructs a `Strict` or `Latent` variable object based on the specification of `var` with the value `val`.&#34;&#34;&#34;
-        return Strict(var, val) if isinstance(var, list) else Latent(var, val)</code></pre>
-</details>
-<div class="desc"></div>
 </dd>
 </dl>
 </section>
@@ -723,71 +404,34 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="src.lang" href="index.html">src.lang</a></code></li>
+<li><code><a title="src.lang.datatypes" href="index.html">src.lang.datatypes</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="src.lang.datatypes.Closable" href="#src.lang.datatypes.Closable">Closable</a></code></h4>
+<h4><code><a title="src.lang.datatypes.closables.Closable" href="#src.lang.datatypes.closables.Closable">Closable</a></code></h4>
 <ul class="">
-<li><code><a title="src.lang.datatypes.Closable.generate_id" href="#src.lang.datatypes.Closable.generate_id">generate_id</a></code></li>
+<li><code><a title="src.lang.datatypes.closables.Closable.generate_id" href="#src.lang.datatypes.closables.Closable.generate_id">generate_id</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="src.lang.datatypes.Frozen" href="#src.lang.datatypes.Frozen">Frozen</a></code></h4>
+<h4><code><a title="src.lang.datatypes.closables.Function" href="#src.lang.datatypes.closables.Function">Function</a></code></h4>
 <ul class="">
-<li><code><a title="src.lang.datatypes.Frozen.thaw" href="#src.lang.datatypes.Frozen.thaw">thaw</a></code></li>
+<li><code><a title="src.lang.datatypes.closables.Function.eval" href="#src.lang.datatypes.closables.Function.eval">eval</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="src.lang.datatypes.Function" href="#src.lang.datatypes.Function">Function</a></code></h4>
+<h4><code><a title="src.lang.datatypes.closables.Instance" href="#src.lang.datatypes.closables.Instance">Instance</a></code></h4>
 <ul class="">
-<li><code><a title="src.lang.datatypes.Function.eval" href="#src.lang.datatypes.Function.eval">eval</a></code></li>
+<li><code><a title="src.lang.datatypes.closables.Instance.eval" href="#src.lang.datatypes.closables.Instance.eval">eval</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="src.lang.datatypes.Instance" href="#src.lang.datatypes.Instance">Instance</a></code></h4>
+<h4><code><a title="src.lang.datatypes.closables.Template" href="#src.lang.datatypes.closables.Template">Template</a></code></h4>
 <ul class="">
-<li><code><a title="src.lang.datatypes.Instance.eval" href="#src.lang.datatypes.Instance.eval">eval</a></code></li>
+<li><code><a title="src.lang.datatypes.closables.Template.new" href="#src.lang.datatypes.closables.Template.new">new</a></code></li>
 </ul>
-</li>
-<li>
-<h4><code><a title="src.lang.datatypes.Latent" href="#src.lang.datatypes.Latent">Latent</a></code></h4>
-<ul class="">
-<li><code><a title="src.lang.datatypes.Latent.getType" href="#src.lang.datatypes.Latent.getType">getType</a></code></li>
-<li><code><a title="src.lang.datatypes.Latent.setVal" href="#src.lang.datatypes.Latent.setVal">setVal</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a title="src.lang.datatypes.Lazy" href="#src.lang.datatypes.Lazy">Lazy</a></code></h4>
-<ul class="">
-<li><code><a title="src.lang.datatypes.Lazy.eval" href="#src.lang.datatypes.Lazy.eval">eval</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a title="src.lang.datatypes.Strict" href="#src.lang.datatypes.Strict">Strict</a></code></h4>
-<ul class="">
-<li><code><a title="src.lang.datatypes.Strict.getType" href="#src.lang.datatypes.Strict.getType">getType</a></code></li>
-<li><code><a title="src.lang.datatypes.Strict.setVal" href="#src.lang.datatypes.Strict.setVal">setVal</a></code></li>
-<li><code><a title="src.lang.datatypes.Strict.typeCheck" href="#src.lang.datatypes.Strict.typeCheck">typeCheck</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a title="src.lang.datatypes.Template" href="#src.lang.datatypes.Template">Template</a></code></h4>
-<ul class="">
-<li><code><a title="src.lang.datatypes.Template.new" href="#src.lang.datatypes.Template.new">new</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a title="src.lang.datatypes.TypedVariable" href="#src.lang.datatypes.TypedVariable">TypedVariable</a></code></h4>
-<ul class="">
-<li><code><a title="src.lang.datatypes.TypedVariable.getVal" href="#src.lang.datatypes.TypedVariable.getVal">getVal</a></code></li>
-<li><code><a title="src.lang.datatypes.TypedVariable.setVal" href="#src.lang.datatypes.TypedVariable.setVal">setVal</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a title="src.lang.datatypes.Variable" href="#src.lang.datatypes.Variable">Variable</a></code></h4>
 </li>
 </ul>
 </li>

@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>src.lang API documentation</title>
-<meta name="description" content="Lang documentation info.">
+<title>src.lang.datatypes API documentation</title>
+<meta name="description" content="Custom datatype classes.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -33,49 +33,25 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>src.lang</code></h1>
+<h1 class="title">Module <code>src.lang.datatypes</code></h1>
 </header>
 <section id="section-intro">
-<p>Lang documentation info.</p>
+<p>Custom datatype classes.</p>
 </section>
 <section>
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
 <dl>
-<dt><code class="name"><a title="src.lang.clips" href="clips.html">src.lang.clips</a></code></dt>
+<dt><code class="name"><a title="src.lang.datatypes.closables" href="closables.html">src.lang.datatypes.closables</a></code></dt>
 <dd>
-<div class="desc"><p>Integration for CLIPS-style propositional logic.</p></div>
+<div class="desc"><p>Closable datatypes (functions, templates, &amp;c).</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.datatypes" href="datatypes/index.html">src.lang.datatypes</a></code></dt>
+<dt><code class="name"><a title="src.lang.datatypes.lazy" href="lazy.html">src.lang.datatypes.lazy</a></code></dt>
 <dd>
-<div class="desc"><p>Custom datatype classes.</p></div>
+<div class="desc"><p>Lazy evaluation.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.environment" href="environment.html">src.lang.environment</a></code></dt>
+<dt><code class="name"><a title="src.lang.datatypes.typing" href="typing.html">src.lang.datatypes.typing</a></code></dt>
 <dd>
-<div class="desc"><p>Environment data structure and all globally accessible structures.</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.evaluate" href="evaluate.html">src.lang.evaluate</a></code></dt>
-<dd>
-<div class="desc"><p>Evaluation function.</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.extensions" href="extensions.html">src.lang.extensions</a></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="src.lang.interpreter" href="interpreter.html">src.lang.interpreter</a></code></dt>
-<dd>
-<div class="desc"><p>Manage interaction with the interpreter command-line.</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.keywords" href="keywords/index.html">src.lang.keywords</a></code></dt>
-<dd>
-<div class="desc"><p>Language keywords/built-in functions</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.parser" href="parser.html">src.lang.parser</a></code></dt>
-<dd>
-<div class="desc"><p>Parser and basic syntax checker.</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.repl" href="repl.html">src.lang.repl</a></code></dt>
-<dd>
-<div class="desc"><p>Read, Eval, Print, Loop.</p></div>
+<div class="desc"><p>Strict and latent variable typing.</p></div>
 </dd>
 </dl>
 </section>
@@ -93,20 +69,14 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="src" href="../index.html">src</a></code></li>
+<li><code><a title="src.lang" href="../index.html">src.lang</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-submodules">Sub-modules</a></h3>
 <ul>
-<li><code><a title="src.lang.clips" href="clips.html">src.lang.clips</a></code></li>
-<li><code><a title="src.lang.datatypes" href="datatypes/index.html">src.lang.datatypes</a></code></li>
-<li><code><a title="src.lang.environment" href="environment.html">src.lang.environment</a></code></li>
-<li><code><a title="src.lang.evaluate" href="evaluate.html">src.lang.evaluate</a></code></li>
-<li><code><a title="src.lang.extensions" href="extensions.html">src.lang.extensions</a></code></li>
-<li><code><a title="src.lang.interpreter" href="interpreter.html">src.lang.interpreter</a></code></li>
-<li><code><a title="src.lang.keywords" href="keywords/index.html">src.lang.keywords</a></code></li>
-<li><code><a title="src.lang.parser" href="parser.html">src.lang.parser</a></code></li>
-<li><code><a title="src.lang.repl" href="repl.html">src.lang.repl</a></code></li>
+<li><code><a title="src.lang.datatypes.closables" href="closables.html">src.lang.datatypes.closables</a></code></li>
+<li><code><a title="src.lang.datatypes.lazy" href="lazy.html">src.lang.datatypes.lazy</a></code></li>
+<li><code><a title="src.lang.datatypes.typing" href="typing.html">src.lang.datatypes.typing</a></code></li>
 </ul>
 </li>
 </ul>
