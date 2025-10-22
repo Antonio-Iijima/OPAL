@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>src.lang API documentation</title>
-<meta name="description" content="Lang documentation info.">
+<title>src.lang.keywords.control API documentation</title>
+<meta name="description" content="Control flow functions.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -33,55 +33,110 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>src.lang</code></h1>
+<h1 class="title">Module <code>src.lang.keywords.control</code></h1>
 </header>
 <section id="section-intro">
-<p>Lang documentation info.</p>
+<p>Control flow functions.</p>
 </section>
 <section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt><code class="name"><a title="src.lang.clips" href="clips.html">src.lang.clips</a></code></dt>
+<dt id="src.lang.keywords.control.cond"><code class="name flex">
+<span>def <span class="ident">cond</span></span>(<span>expr: list) ‑> <built-in function any></span>
+</code></dt>
 <dd>
-<div class="desc"><p>Integration for CLIPS-style propositional logic.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cond(expr: list) -&gt; any:
+    &#34;&#34;&#34;Evaluate conditional expression.&#34;&#34;&#34;
+    
+    # Evaluate the body of the conditional if the condition is true or &#39;else&#39;, otherwise move to next conditional
+    return EVA.evaluate(expr[0][1]) if (expr[0][0] == &#34;else&#34; or EVA.evaluate(expr[0][0])) else cond(expr[1:])</code></pre>
+</details>
+<div class="desc"><p>Evaluate conditional expression.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.datatypes" href="datatypes.html">src.lang.datatypes</a></code></dt>
+<dt id="src.lang.keywords.control.do"><code class="name flex">
+<span>def <span class="ident">do</span></span>(<span>exprlist: list, body: list) ‑> <built-in function any></span>
+</code></dt>
 <dd>
-<div class="desc"><p>Custom datatype classes.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do(exprlist: list, body: list) -&gt; any:
+    &#34;&#34;&#34;Evaluates a series of expressions before returning the value of `body`. Runs in a local scope.&#34;&#34;&#34;
+    
+    def logic(exprlist: list, body: list) -&gt; any:
+        for expr in exprlist: EVA.evaluate(expr)
+        return EVA.evaluate(body)
+    
+    return INT.interpreter.ENV.runlocal(logic, exprlist, body)</code></pre>
+</details>
+<div class="desc"><p>Evaluates a series of expressions before returning the value of <code>body</code>. Runs in a local scope.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.environment" href="environment.html">src.lang.environment</a></code></dt>
+<dt id="src.lang.keywords.control.let"><code class="name flex">
+<span>def <span class="ident">let</span></span>(<span>bindings: list, body: list) ‑> <built-in function any></span>
+</code></dt>
 <dd>
-<div class="desc"><p>Environment data structure and all globally accessible structures.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def let(bindings: list, body: list) -&gt; any:
+    &#34;&#34;&#34;Binds all variables in `bindings` and evaluates `body` in a local scope.&#34;&#34;&#34;
+
+    def logic(bindings: list, body: list) -&gt; any:
+        for pair in bindings: INT.interpreter.ENV.set(*pair)
+        return EVA.evaluate(body)
+    
+    return INT.interpreter.ENV.runlocal(logic, bindings, body)</code></pre>
+</details>
+<div class="desc"><p>Binds all variables in <code>bindings</code> and evaluates <code>body</code> in a local scope.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.evaluate" href="evaluate.html">src.lang.evaluate</a></code></dt>
+<dt id="src.lang.keywords.control.repeat"><code class="name flex">
+<span>def <span class="ident">repeat</span></span>(<span>number: int, body: list) ‑> None</span>
+</code></dt>
 <dd>
-<div class="desc"><p>Evaluation function.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def repeat(number: int, body: list) -&gt; None:
+    &#34;&#34;&#34;Evaluate `body` `number` times.&#34;&#34;&#34;
+    
+    n = EVA.evaluate(number)
+    for _ in range(n):
+        EVA.evaluate(body)</code></pre>
+</details>
+<div class="desc"><p>Evaluate <code>body</code> <code>number</code> times.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.extensions" href="extensions.html">src.lang.extensions</a></code></dt>
+<dt id="src.lang.keywords.control.until"><code class="name flex">
+<span>def <span class="ident">until</span></span>(<span>cond: list | bool, inc: list, body: list) ‑> None</span>
+</code></dt>
 <dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="src.lang.interpreter" href="interpreter.html">src.lang.interpreter</a></code></dt>
-<dd>
-<div class="desc"><p>Manage interaction with the interpreter command-line.</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.keywords" href="keywords/index.html">src.lang.keywords</a></code></dt>
-<dd>
-<div class="desc"><p>Language keywords/built-in functions</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.parser" href="parser.html">src.lang.parser</a></code></dt>
-<dd>
-<div class="desc"><p>Parser and basic syntax checker.</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.repl" href="repl.html">src.lang.repl</a></code></dt>
-<dd>
-<div class="desc"><p>Read, Eval, Print, Loop.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def until(cond: list | bool, inc: list, body: list) -&gt; None:
+    &#34;&#34;&#34;Repeatedly evaluate.evaluate `body` until `cond` is `#f`. Runs in a local scope.&#34;&#34;&#34;
+
+    def logic(cond: list | bool, inc: int, body: list) -&gt; None:
+        while not(EVA.evaluate(cond)):
+            EVA.evaluate(body)
+            EVA.evaluate(inc)
+
+    return INT.interpreter.ENV.runlocal(logic, cond, inc, body)</code></pre>
+</details>
+<div class="desc"><p>Repeatedly evaluate.evaluate <code>body</code> until <code><a title="src.lang.keywords.control.cond" href="#src.lang.keywords.control.cond">cond()</a></code> is <code>#f</code>. Runs in a local scope.</p></div>
 </dd>
 </dl>
-</section>
-<section>
-</section>
-<section>
 </section>
 <section>
 </section>
@@ -93,20 +148,16 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="src" href="../index.html">src</a></code></li>
+<li><code><a title="src.lang.keywords" href="index.html">src.lang.keywords</a></code></li>
 </ul>
 </li>
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
-<ul>
-<li><code><a title="src.lang.clips" href="clips.html">src.lang.clips</a></code></li>
-<li><code><a title="src.lang.datatypes" href="datatypes.html">src.lang.datatypes</a></code></li>
-<li><code><a title="src.lang.environment" href="environment.html">src.lang.environment</a></code></li>
-<li><code><a title="src.lang.evaluate" href="evaluate.html">src.lang.evaluate</a></code></li>
-<li><code><a title="src.lang.extensions" href="extensions.html">src.lang.extensions</a></code></li>
-<li><code><a title="src.lang.interpreter" href="interpreter.html">src.lang.interpreter</a></code></li>
-<li><code><a title="src.lang.keywords" href="keywords/index.html">src.lang.keywords</a></code></li>
-<li><code><a title="src.lang.parser" href="parser.html">src.lang.parser</a></code></li>
-<li><code><a title="src.lang.repl" href="repl.html">src.lang.repl</a></code></li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="src.lang.keywords.control.cond" href="#src.lang.keywords.control.cond">cond</a></code></li>
+<li><code><a title="src.lang.keywords.control.do" href="#src.lang.keywords.control.do">do</a></code></li>
+<li><code><a title="src.lang.keywords.control.let" href="#src.lang.keywords.control.let">let</a></code></li>
+<li><code><a title="src.lang.keywords.control.repeat" href="#src.lang.keywords.control.repeat">repeat</a></code></li>
+<li><code><a title="src.lang.keywords.control.until" href="#src.lang.keywords.control.until">until</a></code></li>
 </ul>
 </li>
 </ul>

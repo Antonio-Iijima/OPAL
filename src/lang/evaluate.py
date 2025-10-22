@@ -14,7 +14,7 @@ from src.lang import keywords as KEY
 
 def evaluate(expr: any) -> any:
     """Evaluates complete OPAL expressions."""
-#    print(expr)
+
     # Processing a single atom
 
     # Look up variables, return literals
@@ -52,18 +52,9 @@ def evaluate(expr: any) -> any:
         # If its a keyword, evaluate each group
         elif KEY.iskeyword(HEAD):
             for NAME, CATEGORY in INT.interpreter.KEYWORDS.items():
-                if HEAD in CATEGORY:
-                    match NAME:
+                if HEAD in CATEGORY and NAME not in "SPECIAL":
+                    return CATEGORY[HEAD](*KEY.evlist(TAIL) if NAME in ("REGULAR", "BOOLEAN") else TAIL)
 
-                        # Regular or applicative-order n-ary functions
-                        case "REGULAR": return CATEGORY[HEAD](*KEY.evlist(TAIL))
-
-                        # Boolean functions
-                        case "BOOLEAN": return CATEGORY[HEAD](*map(bool, KEY.evlist(TAIL)))
-
-                        # Irregular or normal-order n-ary functions; Environment; Extensions
-                        case "IRREGULAR"|"ENVIRONMENT"|"EXTENSIONS": return CATEGORY[HEAD](*TAIL)
-                        
             # 'cxr' expressions
             if KEY.iscxr(HEAD): return KEY.evcxr(HEAD[1:-1], evaluate(expr[1]))
 
@@ -73,8 +64,7 @@ def evaluate(expr: any) -> any:
                 case "set": return INT.interpreter.ENV.set(
                     TAIL[0], 
                     evaluate(TAIL[1]), 
-                    0 if isinstance(TAIL[0], list) 
-                    else INT.interpreter.ENV.find_scope(TAIL[0])
+                    INT.interpreter.ENV.find_scope(TAIL[0])
                 )
 
                 # Lazy parameter evaluation wrapper for functions

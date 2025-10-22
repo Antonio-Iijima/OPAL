@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>src.lang API documentation</title>
-<meta name="description" content="Lang documentation info.">
+<title>src.lang.keywords.miscellaneous API documentation</title>
+<meta name="description" content="Other miscellaneous functions.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -33,55 +33,122 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>src.lang</code></h1>
+<h1 class="title">Module <code>src.lang.keywords.miscellaneous</code></h1>
 </header>
 <section id="section-intro">
-<p>Lang documentation info.</p>
+<p>Other miscellaneous functions.</p>
 </section>
 <section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt><code class="name"><a title="src.lang.clips" href="clips.html">src.lang.clips</a></code></dt>
+<dt id="src.lang.keywords.miscellaneous.OPAL_eval"><code class="name flex">
+<span>def <span class="ident">OPAL_eval</span></span>(<span>expr: <built-in function any>) ‑> <built-in function any></span>
+</code></dt>
 <dd>
-<div class="desc"><p>Integration for CLIPS-style propositional logic.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def OPAL_eval(expr: any) -&gt; any:
+    &#34;&#34;&#34;Interpreter access from the command line for quoted expressions.&#34;&#34;&#34;
+    return EVA.evaluate(expr[1])</code></pre>
+</details>
+<div class="desc"><p>Interpreter access from the command line for quoted expressions.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.datatypes" href="datatypes.html">src.lang.datatypes</a></code></dt>
+<dt id="src.lang.keywords.miscellaneous.getfile"><code class="name flex">
+<span>def <span class="ident">getfile</span></span>(<span>filepath: str) ‑> list</span>
+</code></dt>
 <dd>
-<div class="desc"><p>Custom datatype classes.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def getfile(filepath: str) -&gt; list:
+    &#34;&#34;&#34;File system access.&#34;&#34;&#34;
+    return open(filepath).readlines()</code></pre>
+</details>
+<div class="desc"><p>File system access.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.environment" href="environment.html">src.lang.environment</a></code></dt>
+<dt id="src.lang.keywords.miscellaneous.globals"><code class="name flex">
+<span>def <span class="ident">globals</span></span>(<span>var: str, val: <built-in function any> = None) ‑> None</span>
+</code></dt>
 <dd>
-<div class="desc"><p>Environment data structure and all globally accessible structures.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def globals(var: str, val: any = None) -&gt; None:
+    &#34;&#34;&#34;Define or access global variables.&#34;&#34;&#34;
+
+    # If val is provided, evaluate and assign it to var in the GLOBALS dictionary
+    if val: INT.interpreter.GLOBALS[var] = EVA.evaluate(val)
+
+    # Otherwise look up and return the value of var if it exists
+    else: return INT.interpreter.GLOBALS.get(var, ValueError)</code></pre>
+</details>
+<div class="desc"><p>Define or access global variables.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.evaluate" href="evaluate.html">src.lang.evaluate</a></code></dt>
+<dt id="src.lang.keywords.miscellaneous.import_lib"><code class="name flex">
+<span>def <span class="ident">import_lib</span></span>(<span>name: str, alias: str = None) ‑> None</span>
+</code></dt>
 <dd>
-<div class="desc"><p>Evaluation function.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def import_lib(name: str, _as: str = None, alias: str = None) -&gt; None:
+    &#34;&#34;&#34;Import a library with an optional alias.&#34;&#34;&#34;
+
+    alias = alias or name
+    name = importlib.import_module(name)
+    INT.interpreter.IMPORTS[alias] = name</code></pre>
+</details>
+<div class="desc"><p>Import a library with an optional alias.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.extensions" href="extensions.html">src.lang.extensions</a></code></dt>
+<dt id="src.lang.keywords.miscellaneous.load"><code class="name flex">
+<span>def <span class="ident">load</span></span>(<span>location: str) ‑> None</span>
+</code></dt>
 <dd>
-<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load(location: str) -&gt; None:
+    &#34;&#34;&#34;Load and run a .op file from provided relative location.&#34;&#34;&#34;
+
+    # Require .op files for reliability
+    if not location.endswith(&#34;.op&#34;): raise IOError(f&#34;ensure file extension is *.op.&#34;)
+    
+    with open(location, &#34;r&#34;) as file: REP.REPL(file.read().split(&#34;\n&#34;), True)</code></pre>
+</details>
+<div class="desc"><p>Load and run a .op file from provided relative location.</p></div>
 </dd>
-<dt><code class="name"><a title="src.lang.interpreter" href="interpreter.html">src.lang.interpreter</a></code></dt>
+<dt id="src.lang.keywords.miscellaneous.run_method"><code class="name flex">
+<span>def <span class="ident">run_method</span></span>(<span>imported: str, args: list) ‑> <built-in function any></span>
+</code></dt>
 <dd>
-<div class="desc"><p>Manage interaction with the interpreter command-line.</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.keywords" href="keywords/index.html">src.lang.keywords</a></code></dt>
-<dd>
-<div class="desc"><p>Language keywords/built-in functions</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.parser" href="parser.html">src.lang.parser</a></code></dt>
-<dd>
-<div class="desc"><p>Parser and basic syntax checker.</p></div>
-</dd>
-<dt><code class="name"><a title="src.lang.repl" href="repl.html">src.lang.repl</a></code></dt>
-<dd>
-<div class="desc"><p>Read, Eval, Print, Loop.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_method(imported: str, args: list) -&gt; any:
+    &#34;&#34;&#34;Call a method from an imported module or library.&#34;&#34;&#34;
+
+    module, method = imported.split(&#34;.&#34;)
+
+    # Use the module and method strings to get the callable function
+    imported = getattr(INT.interpreter.IMPORTS[module], method)
+
+    # Either call the function with arguments or return it if none are provided
+    return imported(*args) if callable(imported) else imported</code></pre>
+</details>
+<div class="desc"><p>Call a method from an imported module or library.</p></div>
 </dd>
 </dl>
-</section>
-<section>
-</section>
-<section>
 </section>
 <section>
 </section>
@@ -93,20 +160,17 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="src" href="../index.html">src</a></code></li>
+<li><code><a title="src.lang.keywords" href="index.html">src.lang.keywords</a></code></li>
 </ul>
 </li>
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
-<ul>
-<li><code><a title="src.lang.clips" href="clips.html">src.lang.clips</a></code></li>
-<li><code><a title="src.lang.datatypes" href="datatypes.html">src.lang.datatypes</a></code></li>
-<li><code><a title="src.lang.environment" href="environment.html">src.lang.environment</a></code></li>
-<li><code><a title="src.lang.evaluate" href="evaluate.html">src.lang.evaluate</a></code></li>
-<li><code><a title="src.lang.extensions" href="extensions.html">src.lang.extensions</a></code></li>
-<li><code><a title="src.lang.interpreter" href="interpreter.html">src.lang.interpreter</a></code></li>
-<li><code><a title="src.lang.keywords" href="keywords/index.html">src.lang.keywords</a></code></li>
-<li><code><a title="src.lang.parser" href="parser.html">src.lang.parser</a></code></li>
-<li><code><a title="src.lang.repl" href="repl.html">src.lang.repl</a></code></li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="src.lang.keywords.miscellaneous.OPAL_eval" href="#src.lang.keywords.miscellaneous.OPAL_eval">OPAL_eval</a></code></li>
+<li><code><a title="src.lang.keywords.miscellaneous.getfile" href="#src.lang.keywords.miscellaneous.getfile">getfile</a></code></li>
+<li><code><a title="src.lang.keywords.miscellaneous.globals" href="#src.lang.keywords.miscellaneous.globals">globals</a></code></li>
+<li><code><a title="src.lang.keywords.miscellaneous.import_lib" href="#src.lang.keywords.miscellaneous.import_lib">import_lib</a></code></li>
+<li><code><a title="src.lang.keywords.miscellaneous.load" href="#src.lang.keywords.miscellaneous.load">load</a></code></li>
+<li><code><a title="src.lang.keywords.miscellaneous.run_method" href="#src.lang.keywords.miscellaneous.run_method">run_method</a></code></li>
 </ul>
 </li>
 </ul>

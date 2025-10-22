@@ -55,7 +55,7 @@ el.replaceWith(d);
 </summary>
 <pre><code class="python">def evaluate(expr: any) -&gt; any:
     &#34;&#34;&#34;Evaluates complete OPAL expressions.&#34;&#34;&#34;
-#    print(expr)
+
     # Processing a single atom
 
     # Look up variables, return literals
@@ -93,18 +93,9 @@ el.replaceWith(d);
         # If its a keyword, evaluate each group
         elif KEY.iskeyword(HEAD):
             for NAME, CATEGORY in INT.interpreter.KEYWORDS.items():
-                if HEAD in CATEGORY:
-                    match NAME:
+                if HEAD in CATEGORY and NAME not in &#34;SPECIAL&#34;:
+                    return CATEGORY[HEAD](*KEY.evlist(TAIL) if NAME in (&#34;REGULAR&#34;, &#34;BOOLEAN&#34;) else TAIL)
 
-                        # Regular or applicative-order n-ary functions
-                        case &#34;REGULAR&#34;: return CATEGORY[HEAD](*KEY.evlist(TAIL))
-
-                        # Boolean functions
-                        case &#34;BOOLEAN&#34;: return CATEGORY[HEAD](*map(bool, KEY.evlist(TAIL)))
-
-                        # Irregular or normal-order n-ary functions; Environment; Extensions
-                        case &#34;IRREGULAR&#34;|&#34;ENVIRONMENT&#34;|&#34;EXTENSIONS&#34;: return CATEGORY[HEAD](*TAIL)
-                        
             # &#39;cxr&#39; expressions
             if KEY.iscxr(HEAD): return KEY.evcxr(HEAD[1:-1], evaluate(expr[1]))
 
@@ -114,8 +105,7 @@ el.replaceWith(d);
                 case &#34;set&#34;: return INT.interpreter.ENV.set(
                     TAIL[0], 
                     evaluate(TAIL[1]), 
-                    0 if isinstance(TAIL[0], list) 
-                    else INT.interpreter.ENV.find_scope(TAIL[0])
+                    INT.interpreter.ENV.find_scope(TAIL[0])
                 )
 
                 # Lazy parameter evaluation wrapper for functions

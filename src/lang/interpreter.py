@@ -103,7 +103,7 @@ class Interpreter:
                             "del"      : self.ENV.delete,
                             "burrow"   : self.ENV.begin_scope,
                             "surface"  : self.ENV.end_scope,
-                            "delex"    : self.ENV.delex
+                            "delex"    : self.delete_extension
                             },
             "EXTENSIONS"  : {}
         }
@@ -123,6 +123,9 @@ class Interpreter:
     def current_keyword_num(self) -> int:
         """Return current total number of keywords in the language."""
         return sum(map(len, self.KEYWORDS.values()))
+
+
+    ### Extension Management ###
 
 
     def extend(self, code: str, writable: bool = True) -> None:
@@ -154,6 +157,36 @@ class Interpreter:
             self.EXTENSION_INDEX.insert(index, (alias, len(extension.splitlines())))
             self.KEYWORDS["EXTENSIONS"][alias] = EXT.EXTENSIONS.get(name)
             
+
+    def delete_extension(self, extension: str) -> None:
+        """Delete an extension."""
+
+        if extension in self.KEYWORDS["EXTENSIONS"]:
+
+            # Bookend indices
+            start = end = 0
+
+            for i, (name, idx) in enumerate(self.EXTENSION_INDEX):
+                end += idx
+                
+                if name == extension: self.EXTENSION_INDEX.pop(i); break
+                
+                start += idx
+
+            # Get the current contents of the extensions.py file
+            contents = open(self.EXTENSIONS_PATH).readlines()
+            
+            # Excise selected extension
+            contents = contents[:start] + contents[end:]    
+            
+            with open(self.EXTENSIONS_PATH, "w") as file: file.writelines(contents)
+            importlib.reload(EXT)
+
+            self.EXTENSION_LOG.remove(extension)
+            self.KEYWORDS["EXTENSIONS"].pop(extension)
+
+        else: raise NameError(f"extension '{extension}' not found.")
+
 
     def exit_extensions(self) -> Text|None:
         """Safely save or remove any extensions added in an interactive interpreter session."""

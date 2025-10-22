@@ -76,8 +76,8 @@ class Environment:
     ### Variable Management ###
 
 
-    def find_scope(self, var: str|list, scope: int = 0) -> int:
-        """Find and return the index of the lowest scope in which `var` has been declared. If not found, return -1."""
+    def find_scope(self, var: str|list, scope: int = 0) -> int|None:
+        """Find and return the index of the lowest scope in which `var` has been declared. If not found, return None."""
         
         return (
             None if scope == len(self.env)
@@ -145,38 +145,6 @@ class Environment:
         """Matches a list of parameters with a list of arguments for use in functions."""
         for var, val in zip(parameters, args): self.set(var, val)
 
-
-    ### Extension Management ###
-
-
-    def delex(self, extension: str) -> None:
-        """Delete an extension."""
-
-        if extension in INT.interpreter.KEYWORDS["EXTENSIONS"]:
-
-            # Bookend indices
-            start = end = 0
-
-            for i, (name, idx) in enumerate(INT.interpreter.EXTENSION_INDEX):
-                end += idx
-                
-                if name == extension: INT.interpreter.EXTENSION_INDEX.pop(i); break
-                
-                start += idx
-
-            # Get the current contents of the extensions.py file
-            contents = open(f"{INT.interpreter.PATH}/src/extensions.py").readlines()
-            
-            # Excise selected extension
-            contents = contents[:start] + contents[end:]    
-            
-            with open(f"{INT.interpreter.PATH}/src/extensions.py", "w") as file: file.writelines(contents)
-            importlib.reload(EXT)
-
-            INT.interpreter.EXTENSION_LOG.remove(extension)
-            INT.interpreter.KEYWORDS["EXTENSIONS"].pop(extension)
-
-        else: raise NameError(f"extension '{extension}' not found.")
 
 
     ### Other Methods ###

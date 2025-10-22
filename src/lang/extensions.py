@@ -6,7 +6,7 @@ def loop(for_, i, in_, range_, start, stop, step, contents):
 
 #EXCLUDE
 
-EXTENSIONS = {name : fun for (name, fun) in locals().items() if callable(fun)}
+EXTENSIONS = { name : fun for (name, fun) in locals().items() if callable(fun) }
 
 from src.lang  import interpreter as INT
 from src.lang import environment as ENV
