@@ -26,7 +26,7 @@ class DirectoryPanel(Vertical):
 
     def compose(self) ->ComposeResult:
         yield DirectoryOpt(id="DirectoryOpt", classes="extendedTopPanel secondary")
-        yield FilteredDirectoryTree(id="DirectoryTree", path="./OPAL")
+        yield FilteredDirectoryTree(id="DirectoryTree", path="../OPAL")
 
 
 

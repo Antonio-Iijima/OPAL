@@ -49,9 +49,8 @@ if __name__ == "__main__":
     if INT.interpreter.iFlag:
         try: REPL.REPL()
 
-        # Catch exiting exceptions and safely quit extensions
-        except BaseException as e:
-            INT.interpreter.exit_extensions(); print()
-            
-            # Don't print ctrl-c because I use it more than quit; only raise other unexpected errors
-            if type(e) != KeyboardInterrupt: raise e
+        # Ignore ctrl-c because I use it more than quit; only raise other unexpected errors
+        except KeyboardInterrupt: pass
+
+        # Always safely quit extensions
+        finally: INT.interpreter.exit_extensions()

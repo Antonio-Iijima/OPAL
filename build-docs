@@ -1,0 +1,7 @@
+#!/bin/sh
+
+
+rm -r docs/
+pdoc3 --html --force --output-dir docs/ src/
+mv docs/src/* docs/
+rm -r docs/src

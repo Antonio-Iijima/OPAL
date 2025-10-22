@@ -227,7 +227,8 @@ https://github.com/Antonio-Iijima/OPAL
                     "Arrivederci!",
                     box=INT.interpreter.DEFAULT_OUTLINE,
                     border_style=INT.interpreter.DEFAULT_COLOR
-                )
+                ),
+                ""
             )
         ) or quit()
 

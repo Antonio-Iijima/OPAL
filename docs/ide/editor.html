@@ -107,7 +107,7 @@ el.replaceWith(d);
 
     def compose(self) -&gt;ComposeResult:
         yield DirectoryOpt(id=&#34;DirectoryOpt&#34;, classes=&#34;extendedTopPanel secondary&#34;)
-        yield FilteredDirectoryTree(id=&#34;DirectoryTree&#34;, path=&#34;./OPAL&#34;)</code></pre>
+        yield FilteredDirectoryTree(id=&#34;DirectoryTree&#34;, path=&#34;../OPAL&#34;)</code></pre>
 </details>
 <div class="desc"><p>An expanding container with vertical layout and no scrollbars.</p>
 <p>Initialize a Widget.</p>
@@ -156,7 +156,7 @@ el.replaceWith(d);
 </summary>
 <pre><code class="python">def compose(self) -&gt;ComposeResult:
     yield DirectoryOpt(id=&#34;DirectoryOpt&#34;, classes=&#34;extendedTopPanel secondary&#34;)
-    yield FilteredDirectoryTree(id=&#34;DirectoryTree&#34;, path=&#34;./OPAL&#34;)</code></pre>
+    yield FilteredDirectoryTree(id=&#34;DirectoryTree&#34;, path=&#34;../OPAL&#34;)</code></pre>
 </details>
 <div class="desc"><p>Called by Textual to create child widgets.</p>
 <p>This method is called when a widget is mounted or by setting <code>recompose=True</code> when

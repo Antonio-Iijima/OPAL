@@ -210,8 +210,3 @@ class IDEFrame(Horizontal):
         INT.interpreter.exit_extensions()
         self.init_opal_interpreter()
         self.process_input(self._get_current_editor().text.splitlines(), fromTerminal = False)
-
-
-
-if __name__ == "__main__":
-    IDE(css_path="app.tcss").run()
