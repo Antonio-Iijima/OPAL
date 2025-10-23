@@ -3,17 +3,20 @@
 
 path="$(dirname "$BASH_SOURCE")"
 
+
 if [ "$1" = "build" ]; then
+
     if [ -d ".venv" ]; then 
         rm -r "${path}/.venv"
     fi
 
     python3 -m venv "${path}/.venv"
     .venv/bin/pip install -r "${path}/requirements.txt" $@
+    .venv/bin/pip freeze > requirements.txt
 
 else
     . "${path}/.venv/bin/activate"
-    
+
     case "$1" in
         "docs")
             rm -r "${path}/docs/"*
