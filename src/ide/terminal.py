@@ -2,6 +2,8 @@ from textual.containers import Horizontal, Vertical, VerticalScroll
 from textual.widgets import Switch, Static, RichLog, Input
 from textual.app import ComposeResult
 
+import sys
+
 
 
 class TerminalFrame(Vertical):
@@ -36,7 +38,7 @@ class OptionsPanel(Horizontal):
         for flag in flags:
             yield Horizontal(
                 Static(f" {flag} ", classes="label secondary"),
-                Switch(animate=True, id=flag, classes="switch primary"),
+                Switch(value=flag in sys.argv, animate=True, id=flag, classes="switch primary"),
             )
 
 

@@ -74,7 +74,7 @@ el.replaceWith(d);
         for flag in flags:
             yield Horizontal(
                 Static(f&#34; {flag} &#34;, classes=&#34;label secondary&#34;),
-                Switch(animate=True, id=flag, classes=&#34;switch primary&#34;),
+                Switch(value=flag in sys.argv, animate=True, id=flag, classes=&#34;switch primary&#34;),
             )</code></pre>
 </details>
 <div class="desc"><p>An expanding container with horizontal layout and no scrollbars.</p>
@@ -139,7 +139,7 @@ el.replaceWith(d);
     for flag in flags:
         yield Horizontal(
             Static(f&#34; {flag} &#34;, classes=&#34;label secondary&#34;),
-            Switch(animate=True, id=flag, classes=&#34;switch primary&#34;),
+            Switch(value=flag in sys.argv, animate=True, id=flag, classes=&#34;switch primary&#34;),
         )</code></pre>
 </details>
 <div class="desc"><p>Called by Textual to create child widgets.</p>

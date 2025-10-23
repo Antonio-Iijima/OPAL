@@ -102,6 +102,7 @@ el.replaceWith(d);
             # Special forms and functions with unique evaluation requirements
             match HEAD:
 
+                # Evaluate `set` expressions (different from internal use; see docs)
                 case &#34;set&#34;: return INT.interpreter.ENV.set(
                     TAIL[0], 
                     evaluate(TAIL[1]), 

@@ -61,6 +61,7 @@ def evaluate(expr: any) -> any:
             # Special forms and functions with unique evaluation requirements
             match HEAD:
 
+                # Evaluate `set` expressions (different from internal use; see docs)
                 case "set": return INT.interpreter.ENV.set(
                     TAIL[0], 
                     evaluate(TAIL[1]), 

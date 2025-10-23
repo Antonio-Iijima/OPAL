@@ -50,7 +50,7 @@ if __name__ == "__main__":
         try: REPL.REPL()
 
         # Ignore ctrl-c because I use it more than quit; only raise other unexpected errors
-        except KeyboardInterrupt: pass
+        except KeyboardInterrupt: print()
 
         # Always safely quit extensions
         finally: INT.interpreter.exit_extensions()
