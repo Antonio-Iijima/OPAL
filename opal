@@ -13,7 +13,7 @@ case "$1" in
         shift
         [ -d "$venv" ] && rm -r "$venv"
         python3 -m venv "$venv"
-        "$venv"/bin/pip install -r "$path"/requirements.txt $@
+        "$venv"/bin/pip install -r "$path"/.requirements $@
         ;;
     *)
         . "$venv"/bin/activate
