@@ -95,11 +95,6 @@ $width: 25;
 
 
 
-FilteredDirectoryTree {
-    max-width: 40;
-    width: auto;
-}
-
 OptionsPanel {
     height: 5;
 }
