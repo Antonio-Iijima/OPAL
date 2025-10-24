@@ -39,7 +39,7 @@ $ git clone https://github.com/Antonio-Iijima/OPAL.git
 $ cd OPAL
 ```
 
-OPAL uses a virtual environment provided by Python's `venv` module. In order to get started, run the following:
+OPAL uses a virtual environment provided by Python's `venv` module. In order to run the setup script, execute the following:
 
 ```
 $ chmod 755 opal
@@ -52,7 +52,7 @@ You are now ready to start programming with OPAL. Run `./opal --help` for furthe
 ## Usage
 
 
-The OPAL interpreter can be run in many different ways. To start an interactive interpreter session, us the `-i` flag:
+The OPAL interpreter can be run in many different ways. To start an interactive interpreter session, use the `-i` flag:
 
 ```
 $ ./opal -i
@@ -73,9 +73,9 @@ If you have ideas for interesting features, find or fix a bug, or notice a typo,
 ## Resources
 
 
-For a comprehensive dive into the implementation and usage of OPAL, visit the [documentation](https://antonio-iijima.github.io/OPAL/) site.
+For a comprehensive deep dive into the features, usage, and implementation of OPAL, check out the [documentation](https://antonio-iijima.github.io/OPAL/).
 
-OPAL is under active developement; the following programming paradigms have varying degrees of functionality:
+OPAL is under active development; the following programming paradigms have varying degrees of functionality:
 
 - Imperative
   - Procedural
