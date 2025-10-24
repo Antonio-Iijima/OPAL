@@ -61,7 +61,15 @@ Enter 'help' to show further information
 (Ω)
 ```
 
-OPAL includes a built-in, terminal-based IDE, which can be run using `./opal --ide`.
+OPAL also includes a built-in, terminal-based IDE, which can be run using `./opal --ide`.
+
+To run OPAL from any directory, add the following line to your `.bashrc` file and restart the terminal:
+
+```
+opal() { . ~/PATH/TO/OPAL/opal $@; }
+```
+
+You should now be able to use `opal <flags>` directly as a command without needing to `cd` into the project directory.
 
 
 ## Contributing
