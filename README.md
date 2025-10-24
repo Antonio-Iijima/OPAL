@@ -63,7 +63,7 @@ Enter 'help' to show further information
 
 OPAL also includes a built-in, terminal-based IDE, which can be run using `./opal --ide`.
 
-To run OPAL from any directory, add the following line to your `.bashrc` file and restart the terminal:
+To run OPAL from any directory, add the following line to your `~/.bashrc` file, replacing `~/PATH/TO/OPAL` with the absolute path to the project, and restart the terminal:
 
 ```
 opal() { . ~/PATH/TO/OPAL/opal $@; }
