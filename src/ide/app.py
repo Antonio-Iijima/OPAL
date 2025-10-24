@@ -147,7 +147,7 @@ class IDEFrame(Horizontal):
         else:
 
             editor = Editor.code_editor(
-                language="python",
+                language="python", 
                 show_cursor=True,
                 show_line_numbers=True,
                 compact=True

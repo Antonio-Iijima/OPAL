@@ -1,0 +1,40 @@
+
+A note on flag convention:
+    Flags prefixed with -- are positional and MUST come before any other general
+    flags, and cannot be combined with each other. Flags prefixed with a single -
+    (see "FLAGS" section) can be provided in arbitrary order and combination.
+
+
+OPTIONS:
+    --build <pip-flags>     Install or update all dependencies. OPAL runs with an
+                            internally-managed virtual environment; please ensure
+                            the requirements are up-to-date. Any flags passed to 
+                            -build will be transferred to pip.
+
+    --build-docs             Generates new documentation, stored in the /docs folder.
+                            Automatically removes old documentation.
+
+    <flags> <files>         When run with flags only, OPAL runs the interpreter from
+                            the terminal. <flags> and <files> may be provided in any
+                            order.
+
+    --console               Runs the textual development console IDE event logging. 
+                            Must be run before IDE is launched to connect properly.
+
+    --ide <flags>           Runs the terminal-based IDE with the provided flags. For
+                            all IDE instances, -i is permanently active and does not 
+                            need to be provided.
+
+    --ide-dev <flags>       Runs the IDE in textual development mode, enabling live
+                            editing of CSS and console event logging in a separate
+                            terminal. Shares the same standard flags as -ide.
+
+
+FLAGS:
+    <flags> : -i, -d, -p, -z
+    
+    -i      interactive mode
+    -d      development mode
+    -p      permanent extensions
+    -z      random keyword deletion
+

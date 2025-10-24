@@ -8,7 +8,7 @@ def loop(for_, i, in_, range_, start, stop, step, contents):
 
 EXTENSIONS = { name : fun for (name, fun) in locals().items() if callable(fun) }
 
-from src.lang  import interpreter as INT
+from src.lang import interpreter as INT
 from src.lang import environment as ENV
 from src.lang import evaluate as EVA
 from src.lang import keywords as KEY

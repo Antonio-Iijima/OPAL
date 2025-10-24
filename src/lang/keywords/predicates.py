@@ -2,7 +2,7 @@
 
 
 
-from src.lang  import interpreter as INT
+from src.lang import interpreter as INT
 from src.lang import datatypes as DAT
 
 import re

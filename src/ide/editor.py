@@ -117,13 +117,14 @@ class Editor(TextArea):
 
 
     def _on_key(self, event):
-        if not event.key == "ctrl+r": self.saved = False
+        self.saved = event.key == "ctrl+r"
 
         pairs = {
-            "("  : "()",
-            "{"  : "{}",
-            "["  : "[]",
-            "\"" : "\"\""
+            "(" : "()",
+            "{" : "{}",
+            "[" : "[]",
+            "'" : "''",
+            '"' : "''"
         }
 
         if event.character in pairs:
