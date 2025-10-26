@@ -28,6 +28,9 @@ case "$1" in
                 mv "${path}/docs/src/"* "$path"/docs
                 rm -r "$path"/docs/src
             ;;
+            "--docs-dev")
+                pdoc --http : "$path"/src/
+            ;;
             "--ide")
                 shift
                 python3 "$path"/IDE.py $@

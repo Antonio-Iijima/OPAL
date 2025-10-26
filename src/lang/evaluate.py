@@ -1,4 +1,11 @@
-"""Evaluation function."""
+"""
+## The `evaluate()` Function
+
+The evaluation function is the core of OPAL. `evaluate()` is responsible for 
+
+
+
+"""
 
 
 
