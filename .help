@@ -11,8 +11,10 @@ OPTIONS:
                             the requirements are up-to-date. Any flags passed to 
                             -build will be transferred to pip.
 
-    --build-docs             Generates new documentation, stored in the /docs folder.
+    --build-docs            Generates new documentation, stored in the /docs folder.
                             Automatically removes old documentation.
+
+    --docs-dev              Local server to see live modifications to the docs.                        
 
     <flags> <files>         When run with flags only, OPAL runs the interpreter from
                             the terminal. <flags> and <files> may be provided in any
