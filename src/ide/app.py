@@ -1,3 +1,22 @@
+"""
+
+## Main App Implementation
+
+The IDE app serves as the top level of the app implementation (although the top level entrypoint is in
+IDE.py). The Textual library, on which the IDE is built, prefers to use a "messages up, attributes down"
+design philosophy; i.e. elements (child widgets) generate custom messages on events, which bubble up through
+the DOM to their parents. This continues all the way to the top of the DOM, the App widget, unless handled
+somewhere along the way. 
+
+Taking advantage of this allows us to unify all message handling in one place - not in the `IDE` class, 
+but the `IDEFrame`, the main container for the rest of the app. Keybinds, on-focus and file-select actions,
+and even the IDE's REPL(`process_input()`) are handled via messages to the `IDEFrame`.
+
+
+"""
+
+
+
 from src.ide.editor import EditorFrame, Editor, FilteredDirectoryTree, EditorTabs
 from src.ide.terminal import TerminalFrame, TerminalLog, TerminalInput, Terminal
 
@@ -15,9 +34,13 @@ import sys
 
 
 class IDE(App):
+    """
+    The base of the DOM tree. Only serves to hold the `IDEFrame` and the `Footer`, 
+    and set the theme. All messages are handled by `IDEFrame`.
+    """
 
 
-    def __init__(self, driver_class = None, css_path = None, watch_css = False, ansi_color = False):
+    def __init__(self, driver_class = None, css_path = None, watch_css = False, ansi_color = False) -> None:
         super().__init__(driver_class, css_path, watch_css, ansi_color)
         self.theme = 'gruvbox'
 
@@ -38,7 +61,7 @@ class IDEFrame(Horizontal):
     ]
     
 
-    def __init__(self, *children, name = None, id = None, classes = None, disabled = False, markup = True):
+    def __init__(self, *children, name = None, id = None, classes = None, disabled = False, markup = True) -> None:
         super().__init__(*children, name=name, id=id, classes=classes, disabled=disabled, markup=markup)
         self.selected_file = None
         self.selected_id = None
@@ -57,7 +80,7 @@ class IDEFrame(Horizontal):
         return super()._on_mount(event)
 
 
-    def init_opal_interpreter(self):
+    def init_opal_interpreter(self) -> None:
 
         # Setup interpreter with flags
         INT.interpreter = INT.Interpreter(
@@ -78,7 +101,7 @@ class IDEFrame(Horizontal):
         return self.tabs.query_one(f"#{self.tabs.active}").query_one(Editor)
 
 
-    def _update_selection(self, file):
+    def _update_selection(self, file) -> None:
         if file is None:
             self.selected_file = self.selected_id = None
         else:
@@ -105,7 +128,7 @@ class IDEFrame(Horizontal):
 
 
     @on(Input.Submitted)
-    def write_input_to_terminal(self, event):
+    def write_input_to_terminal(self, event) -> None:
         self.query_one(TerminalInput).clear()
 
         log = self.query_one(TerminalLog)
@@ -120,7 +143,7 @@ class IDEFrame(Horizontal):
 
 
     @on(FilteredDirectoryTree.Selected)
-    def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected):
+    def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected) -> None:
         if self.tabs.active == "DefaultPane": self.tabs.remove_pane("DefaultPane")
 
         self._update_selection(selected.file)
@@ -128,7 +151,7 @@ class IDEFrame(Horizontal):
     
 
     @on(EditorTabs.TabActivated)
-    def select_new_tab_info(self, event):
+    def select_new_tab_info(self, event) -> None:
         if event.tab.id == "--content-tab-DefaultPane":
             self._update_selection(None)
         else:
@@ -199,11 +222,11 @@ class IDEFrame(Horizontal):
         self.notify(f"{self.selected_file.name} saved")
 
 
-    def action_close_tab(self) -> bool:
+    def action_close_tab(self) -> None:
         self._close_tab()
 
 
-    def action_run_file(self):
+    def action_run_file(self) -> None:
         self.query_one(TerminalLog).clear()
         INT.interpreter.exit_extensions()
         self.init_opal_interpreter()

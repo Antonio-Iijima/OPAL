@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
 <title>src.ide.app API documentation</title>
-<meta name="description" content="">
+<meta name="description" content="Main App Implementation …">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -36,6 +36,15 @@ el.replaceWith(d);
 <h1 class="title">Module <code>src.ide.app</code></h1>
 </header>
 <section id="section-intro">
+<h2 id="main-app-implementation">Main App Implementation</h2>
+<p>The IDE app serves as the top level of the app implementation (although the top level entrypoint is in
+IDE.py). The Textual library, on which the IDE is built, prefers to use a "messages up, attributes down"
+design philosophy; i.e. elements (child widgets) generate custom messages on events, which bubble up through
+the DOM to their parents. This continues all the way to the top of the DOM, the App widget, unless handled
+somewhere along the way. </p>
+<p>Taking advantage of this allows us to unify all message handling in one place - not in the <code><a title="src.ide.app.IDE" href="#src.ide.app.IDE">IDE</a></code> class,
+but the <code><a title="src.ide.app.IDEFrame" href="#src.ide.app.IDEFrame">IDEFrame</a></code>, the main container for the rest of the app. Keybinds, on-focus and file-select actions,
+and even the IDE's REPL(<code>process_input()</code>) are handled via messages to the <code><a title="src.ide.app.IDEFrame" href="#src.ide.app.IDEFrame">IDEFrame</a></code>.</p>
 </section>
 <section>
 </section>
@@ -56,9 +65,13 @@ el.replaceWith(d);
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class IDE(App):
+    &#34;&#34;&#34;
+    The base of the DOM tree. Only serves to hold the `IDEFrame` and the `Footer`, 
+    and set the theme. All messages are handled by `IDEFrame`.
+    &#34;&#34;&#34;
 
 
-    def __init__(self, driver_class = None, css_path = None, watch_css = False, ansi_color = False):
+    def __init__(self, driver_class = None, css_path = None, watch_css = False, ansi_color = False) -&gt; None:
         super().__init__(driver_class, css_path, watch_css, ansi_color)
         self.theme = &#39;gruvbox&#39;
 
@@ -67,7 +80,8 @@ el.replaceWith(d);
         yield IDEFrame(id=&#34;IDEFrame&#34;, classes=&#34;universal&#34;)
         yield Footer(compact=True)</code></pre>
 </details>
-<div class="desc"><p>The base class for Textual Applications.</p>
+<div class="desc"><p>The base of the DOM tree. Only serves to hold the <code><a title="src.ide.app.IDEFrame" href="#src.ide.app.IDEFrame">IDEFrame</a></code> and the <code>Footer</code>,
+and set the theme. All messages are handled by <code><a title="src.ide.app.IDEFrame" href="#src.ide.app.IDEFrame">IDEFrame</a></code>.</p>
 <p>Create an instance of an app.</p>
 <h2 id="args">Args</h2>
 <dl>
@@ -134,7 +148,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
     ]
     
 
-    def __init__(self, *children, name = None, id = None, classes = None, disabled = False, markup = True):
+    def __init__(self, *children, name = None, id = None, classes = None, disabled = False, markup = True) -&gt; None:
         super().__init__(*children, name=name, id=id, classes=classes, disabled=disabled, markup=markup)
         self.selected_file = None
         self.selected_id = None
@@ -153,7 +167,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
         return super()._on_mount(event)
 
 
-    def init_opal_interpreter(self):
+    def init_opal_interpreter(self) -&gt; None:
 
         # Setup interpreter with flags
         INT.interpreter = INT.Interpreter(
@@ -174,7 +188,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
         return self.tabs.query_one(f&#34;#{self.tabs.active}&#34;).query_one(Editor)
 
 
-    def _update_selection(self, file):
+    def _update_selection(self, file) -&gt; None:
         if file is None:
             self.selected_file = self.selected_id = None
         else:
@@ -201,7 +215,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 
 
     @on(Input.Submitted)
-    def write_input_to_terminal(self, event):
+    def write_input_to_terminal(self, event) -&gt; None:
         self.query_one(TerminalInput).clear()
 
         log = self.query_one(TerminalLog)
@@ -216,7 +230,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 
 
     @on(FilteredDirectoryTree.Selected)
-    def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected):
+    def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected) -&gt; None:
         if self.tabs.active == &#34;DefaultPane&#34;: self.tabs.remove_pane(&#34;DefaultPane&#34;)
 
         self._update_selection(selected.file)
@@ -224,7 +238,7 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
     
 
     @on(EditorTabs.TabActivated)
-    def select_new_tab_info(self, event):
+    def select_new_tab_info(self, event) -&gt; None:
         if event.tab.id == &#34;--content-tab-DefaultPane&#34;:
             self._update_selection(None)
         else:
@@ -295,11 +309,11 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
         self.notify(f&#34;{self.selected_file.name} saved&#34;)
 
 
-    def action_close_tab(self) -&gt; bool:
+    def action_close_tab(self) -&gt; None:
         self._close_tab()
 
 
-    def action_run_file(self):
+    def action_run_file(self) -&gt; None:
         self.query_one(TerminalLog).clear()
         INT.interpreter.exit_extensions()
         self.init_opal_interpreter()
@@ -347,27 +361,27 @@ you are using <code>textual run</code> with the <code>dev</code> switch.</dd>
 <h3>Methods</h3>
 <dl>
 <dt id="src.ide.app.IDEFrame.action_close_tab"><code class="name flex">
-<span>def <span class="ident">action_close_tab</span></span>(<span>self) ‑> bool</span>
+<span>def <span class="ident">action_close_tab</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def action_close_tab(self) -&gt; bool:
+<pre><code class="python">def action_close_tab(self) -&gt; None:
     self._close_tab()</code></pre>
 </details>
 <div class="desc"></div>
 </dd>
 <dt id="src.ide.app.IDEFrame.action_run_file"><code class="name flex">
-<span>def <span class="ident">action_run_file</span></span>(<span>self)</span>
+<span>def <span class="ident">action_run_file</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def action_run_file(self):
+<pre><code class="python">def action_run_file(self) -&gt; None:
     self.query_one(TerminalLog).clear()
     INT.interpreter.exit_extensions()
     self.init_opal_interpreter()
@@ -414,14 +428,14 @@ calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
 </code></pre></div>
 </dd>
 <dt id="src.ide.app.IDEFrame.init_opal_interpreter"><code class="name flex">
-<span>def <span class="ident">init_opal_interpreter</span></span>(<span>self)</span>
+<span>def <span class="ident">init_opal_interpreter</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def init_opal_interpreter(self):
+<pre><code class="python">def init_opal_interpreter(self) -&gt; None:
 
     # Setup interpreter with flags
     INT.interpreter = INT.Interpreter(
@@ -435,7 +449,7 @@ calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
 <div class="desc"></div>
 </dd>
 <dt id="src.ide.app.IDEFrame.open_in_new_tab"><code class="name flex">
-<span>def <span class="ident">open_in_new_tab</span></span>(<span>self,<br>selected: <a title="src.ide.editor.FilteredDirectoryTree.Selected" href="editor.html#src.ide.editor.FilteredDirectoryTree.Selected">FilteredDirectoryTree.Selected</a>)</span>
+<span>def <span class="ident">open_in_new_tab</span></span>(<span>self,<br>selected: <a title="src.ide.editor.FilteredDirectoryTree.Selected" href="editor.html#src.ide.editor.FilteredDirectoryTree.Selected">FilteredDirectoryTree.Selected</a>) ‑> None</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -443,7 +457,7 @@ calling [<code>refresh()</code>][textual.widget.Widget.refresh].</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@on(FilteredDirectoryTree.Selected)
-def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected):
+def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected) -&gt; None:
     if self.tabs.active == &#34;DefaultPane&#34;: self.tabs.remove_pane(&#34;DefaultPane&#34;)
 
     self._update_selection(selected.file)
@@ -474,7 +488,7 @@ def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected):
 <div class="desc"></div>
 </dd>
 <dt id="src.ide.app.IDEFrame.select_new_tab_info"><code class="name flex">
-<span>def <span class="ident">select_new_tab_info</span></span>(<span>self, event)</span>
+<span>def <span class="ident">select_new_tab_info</span></span>(<span>self, event) ‑> None</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -482,7 +496,7 @@ def open_in_new_tab(self, selected: FilteredDirectoryTree.Selected):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@on(EditorTabs.TabActivated)
-def select_new_tab_info(self, event):
+def select_new_tab_info(self, event) -&gt; None:
     if event.tab.id == &#34;--content-tab-DefaultPane&#34;:
         self._update_selection(None)
     else:
@@ -493,7 +507,7 @@ def select_new_tab_info(self, event):
 <div class="desc"></div>
 </dd>
 <dt id="src.ide.app.IDEFrame.write_input_to_terminal"><code class="name flex">
-<span>def <span class="ident">write_input_to_terminal</span></span>(<span>self, event)</span>
+<span>def <span class="ident">write_input_to_terminal</span></span>(<span>self, event) ‑> None</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -501,7 +515,7 @@ def select_new_tab_info(self, event):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@on(Input.Submitted)
-def write_input_to_terminal(self, event):
+def write_input_to_terminal(self, event) -&gt; None:
     self.query_one(TerminalInput).clear()
 
     log = self.query_one(TerminalLog)
@@ -523,7 +537,9 @@ def write_input_to_terminal(self, event):
 </article>
 <nav id="sidebar">
 <div class="toc">
-<ul></ul>
+<ul>
+<li><a href="#main-app-implementation">Main App Implementation</a></li>
+</ul>
 </div>
 <ul id="index">
 <li><h3>Super-module</h3>

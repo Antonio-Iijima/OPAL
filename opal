@@ -29,7 +29,7 @@ case "$1" in
                 rm -r "$path"/docs/src
             ;;
             "--docs-dev")
-                pdoc --http : "$path"/src/
+                pdoc3 --http : "$path"/src/ 
             ;;
             "--ide")
                 shift
