@@ -212,8 +212,6 @@ https://github.com/Antonio-Iijima/OPAL
     def quit(self) -> None:
         """Exit the interactive interpreter."""
 
-        INT.interpreter.exit_extensions()
-
         msg = ""
 
         if INT.interpreter.zFlag:
@@ -228,7 +226,7 @@ https://github.com/Antonio-Iijima/OPAL
                     box=INT.interpreter.DEFAULT_OUTLINE,
                     border_style=INT.interpreter.DEFAULT_COLOR
                 ),
-                ""
+                INT.interpreter.exit_extensions()
             )
         ) or quit()
 

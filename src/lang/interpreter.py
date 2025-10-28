@@ -75,10 +75,10 @@ class Interpreter:
             "Original text of extensions.py file on interpreter start."
 
         self.EXTENSION_INDEX = []
-        "Extension log."
+        "Ordered list of all extensions, stored as tuples of (name, lines)."
 
         self.EXTENSION_LOG = []
-        "Tracks new extension names."
+        "Tracks added extensions for exit logging if -p."
 
         self.CLOSURES = {}
         "Closure environments, accessed by ID."
@@ -112,8 +112,8 @@ class Interpreter:
 
         # Final setup
 
-        # Load extensions
-        self.extend(self.ORIGINAL_EXTENSIONS, False)
+        # Load extensions file only after first #INCLUDE
+        self.extend(self.ORIGINAL_EXTENSIONS, write=False)
 
         # Initialize keyword number
         self.INITIAL_KEYWORD_NUM = self.current_keyword_num()
@@ -128,35 +128,40 @@ class Interpreter:
     ### Extension Management ###
 
 
-    def extend(self, code: str, writable: bool = True) -> None:
+    def get_extension(self, extension: str) -> dict:
+        """Reloads the extension library and returns currently available extensions."""
+
+        importlib.reload(EXT)
+        return EXT.__dict__.get(extension)
+
+
+    def extend(self, code: str, write: bool = True, padding: int = 3) -> None:
         """Add extensions in Python to OPAL."""    
 
-        # Segment code into list of strings by individual extension
-        include, *exclude = code.removeprefix("@start").removesuffix("@end").strip().split("#EXCLUDE")
-        
-        ext_list = include.split("#INCLUDE ")[1:] # remove leading empty string
+        extensions = [ 
+            extension.splitlines(keepends=True)
+            for extension in code\
+                .removeprefix("@start")\
+                .removesuffix("@end")\
+                    .strip()
+                        .replace("#INCLUDE", "#EXTENSION #INCLUDE")\
+                        .split("#EXTENSION ")
+            if extension.startswith("#INCLUDE")
+            ]
 
-        for extension in ext_list:
-            name, alias = extension[:extension.find("\n")].split(" as ")
+        for extension in extensions:
+            _, name, _, alias = extension[0].split()
 
-            if writable:
-                
-                extension = f"#INCLUDE {extension}\n\n\n"    
-                
-                with open(self.EXTENSIONS_PATH) as extensions:
-                    contents = extensions.read()
+            if write:
+                extension = ["\n"] * padding + extension
+                with open(self.EXTENSIONS_PATH, "a") as file:
+                    file.writelines(extension)
 
-                with open(self.EXTENSIONS_PATH, "w") as file: 
-                    file.writelines(extension + contents)
-                
-                importlib.reload(EXT)
-
-            index = 0 if writable else len(self.EXTENSION_LOG)
-
-            self.EXTENSION_LOG.insert(index, (alias))
-            self.EXTENSION_INDEX.insert(index, (alias, len(extension.splitlines())))
-            self.KEYWORDS["EXTENSIONS"][alias] = EXT.EXTENSIONS.get(name)
+                self.EXTENSION_LOG.append(alias)
             
+            self.EXTENSION_INDEX.append((alias, len(extension)))
+            self.KEYWORDS["EXTENSIONS"][alias] = self.get_extension(name)
+        
 
     def delete_extension(self, extension: str) -> None:
         """Delete an extension."""
@@ -164,8 +169,14 @@ class Interpreter:
         if extension in self.KEYWORDS["EXTENSIONS"]:
 
             # Bookend indices
-            start = end = 0
+            with open(self.EXTENSIONS_PATH, "r") as file:
+                contents = file.read()
+                start = end = len(contents[:contents.find("#INCLUDE")].splitlines())
 
+                # Setup for line removal later
+                file.seek(0)
+                contents = file.readlines()
+                
             for i, (name, idx) in enumerate(self.EXTENSION_INDEX):
                 end += idx
                 
@@ -173,16 +184,12 @@ class Interpreter:
                 
                 start += idx
 
-            # Get the current contents of the extensions.py file
-            contents = open(self.EXTENSIONS_PATH).readlines()
-            
-            # Excise selected extension
-            contents = contents[:start] + contents[end:]    
-            
-            with open(self.EXTENSIONS_PATH, "w") as file: file.writelines(contents)
-            importlib.reload(EXT)
+            with open(self.EXTENSIONS_PATH, "w") as file: 
 
-            self.EXTENSION_LOG.remove(extension)
+                # Excise extension lines
+                file.writelines(contents[:start] + contents[end:])
+
+            extension in self.EXTENSION_LOG and self.EXTENSION_LOG.remove(extension)
             self.KEYWORDS["EXTENSIONS"].pop(extension)
 
         else: raise NameError(f"extension '{extension}' not found.")
@@ -206,8 +213,9 @@ class Interpreter:
         else:
             with open(self.EXTENSIONS_PATH, "w") as file:
                 file.writelines(self.ORIGINAL_EXTENSIONS)
+        
+        return ""
 
-    
 
     def del_random_keyword(self) -> Text:
         """Delete a random keyword from the language for the duration of the interpreter instance if the user makes a mistake."""

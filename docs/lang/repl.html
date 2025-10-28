@@ -244,8 +244,6 @@ https://github.com/Antonio-Iijima/OPAL
     def quit(self) -&gt; None:
         &#34;&#34;&#34;Exit the interactive interpreter.&#34;&#34;&#34;
 
-        INT.interpreter.exit_extensions()
-
         msg = &#34;&#34;
 
         if INT.interpreter.zFlag:
@@ -260,7 +258,7 @@ https://github.com/Antonio-Iijima/OPAL
                     box=INT.interpreter.DEFAULT_OUTLINE,
                     border_style=INT.interpreter.DEFAULT_COLOR
                 ),
-                &#34;&#34;
+                INT.interpreter.exit_extensions()
             )
         ) or quit()
 
@@ -632,8 +630,6 @@ https://github.com/Antonio-Iijima/OPAL
 <pre><code class="python">def quit(self) -&gt; None:
     &#34;&#34;&#34;Exit the interactive interpreter.&#34;&#34;&#34;
 
-    INT.interpreter.exit_extensions()
-
     msg = &#34;&#34;
 
     if INT.interpreter.zFlag:
@@ -648,7 +644,7 @@ https://github.com/Antonio-Iijima/OPAL
                 box=INT.interpreter.DEFAULT_OUTLINE,
                 border_style=INT.interpreter.DEFAULT_COLOR
             ),
-            &#34;&#34;
+            INT.interpreter.exit_extensions()
         )
     ) or quit()</code></pre>
 </details>

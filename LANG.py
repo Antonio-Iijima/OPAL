@@ -42,15 +42,16 @@ if __name__ == "__main__":
     # If called with nothing else, print the version and exit
     if not (sys.argv[1:] or INT.interpreter.iFlag): print(REPL.prompt(), end=''); print(f"OPAL Programming Language version {INT.interpreter.VERSION}"); exit()
 
-    # Read in files if necessary
-    if sys.argv[1:]: REPL.REPL(fileinput.input(), suppress=True)
+    try:
+        # Read in files if necessary
+        if sys.argv[1:]: REPL.REPL(fileinput.input(), suppress=True)
 
-    # Start interactive session
-    if INT.interpreter.iFlag:
-        try: REPL.REPL()
+        # Start interactive session
+        if INT.interpreter.iFlag:
+            REPL.REPL()
 
-        # Ignore ctrl-c because I use it more than quit; only raise other unexpected errors
-        except KeyboardInterrupt: print()
+    # Ignore ctrl-c because I use it more than quit; only raise other unexpected errors
+    except KeyboardInterrupt: print()
 
-        # Always safely quit extensions
-        finally: INT.interpreter.exit_extensions()
+    # Always safely quit extensions
+    finally: INT.interpreter.exit_extensions()

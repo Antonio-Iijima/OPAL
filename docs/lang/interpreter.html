@@ -116,10 +116,10 @@ el.replaceWith(d);
             &#34;Original text of extensions.py file on interpreter start.&#34;
 
         self.EXTENSION_INDEX = []
-        &#34;Extension log.&#34;
+        &#34;Ordered list of all extensions, stored as tuples of (name, lines).&#34;
 
         self.EXTENSION_LOG = []
-        &#34;Tracks new extension names.&#34;
+        &#34;Tracks added extensions for exit logging if -p.&#34;
 
         self.CLOSURES = {}
         &#34;Closure environments, accessed by ID.&#34;
@@ -153,8 +153,8 @@ el.replaceWith(d);
 
         # Final setup
 
-        # Load extensions
-        self.extend(self.ORIGINAL_EXTENSIONS, False)
+        # Load extensions file only after first #INCLUDE
+        self.extend(self.ORIGINAL_EXTENSIONS, write=False)
 
         # Initialize keyword number
         self.INITIAL_KEYWORD_NUM = self.current_keyword_num()
@@ -169,35 +169,40 @@ el.replaceWith(d);
     ### Extension Management ###
 
 
-    def extend(self, code: str, writable: bool = True) -&gt; None:
+    def get_extension(self, extension: str) -&gt; dict:
+        &#34;&#34;&#34;Reloads the extension library and returns currently available extensions.&#34;&#34;&#34;
+
+        importlib.reload(EXT)
+        return EXT.__dict__.get(extension)
+
+
+    def extend(self, code: str, write: bool = True, padding: int = 3) -&gt; None:
         &#34;&#34;&#34;Add extensions in Python to OPAL.&#34;&#34;&#34;    
 
-        # Segment code into list of strings by individual extension
-        include, *exclude = code.removeprefix(&#34;@start&#34;).removesuffix(&#34;@end&#34;).strip().split(&#34;#EXCLUDE&#34;)
-        
-        ext_list = include.split(&#34;#INCLUDE &#34;)[1:] # remove leading empty string
+        extensions = [ 
+            extension.splitlines(keepends=True)
+            for extension in code\
+                .removeprefix(&#34;@start&#34;)\
+                .removesuffix(&#34;@end&#34;)\
+                    .strip()
+                        .replace(&#34;#INCLUDE&#34;, &#34;#EXTENSION #INCLUDE&#34;)\
+                        .split(&#34;#EXTENSION &#34;)
+            if extension.startswith(&#34;#INCLUDE&#34;)
+            ]
 
-        for extension in ext_list:
-            name, alias = extension[:extension.find(&#34;\n&#34;)].split(&#34; as &#34;)
+        for extension in extensions:
+            _, name, _, alias = extension[0].split()
 
-            if writable:
-                
-                extension = f&#34;#INCLUDE {extension}\n\n\n&#34;    
-                
-                with open(self.EXTENSIONS_PATH) as extensions:
-                    contents = extensions.read()
+            if write:
+                extension = [&#34;\n&#34;] * padding + extension
+                with open(self.EXTENSIONS_PATH, &#34;a&#34;) as file:
+                    file.writelines(extension)
 
-                with open(self.EXTENSIONS_PATH, &#34;w&#34;) as file: 
-                    file.writelines(extension + contents)
-                
-                importlib.reload(EXT)
-
-            index = 0 if writable else len(self.EXTENSION_LOG)
-
-            self.EXTENSION_LOG.insert(index, (alias))
-            self.EXTENSION_INDEX.insert(index, (alias, len(extension.splitlines())))
-            self.KEYWORDS[&#34;EXTENSIONS&#34;][alias] = EXT.EXTENSIONS.get(name)
+                self.EXTENSION_LOG.append(alias)
             
+            self.EXTENSION_INDEX.append((alias, len(extension)))
+            self.KEYWORDS[&#34;EXTENSIONS&#34;][alias] = self.get_extension(name)
+        
 
     def delete_extension(self, extension: str) -&gt; None:
         &#34;&#34;&#34;Delete an extension.&#34;&#34;&#34;
@@ -205,8 +210,14 @@ el.replaceWith(d);
         if extension in self.KEYWORDS[&#34;EXTENSIONS&#34;]:
 
             # Bookend indices
-            start = end = 0
+            with open(self.EXTENSIONS_PATH, &#34;r&#34;) as file:
+                contents = file.read()
+                start = end = len(contents[:contents.find(&#34;#INCLUDE&#34;)].splitlines())
 
+                # Setup for line removal later
+                file.seek(0)
+                contents = file.readlines()
+                
             for i, (name, idx) in enumerate(self.EXTENSION_INDEX):
                 end += idx
                 
@@ -214,16 +225,12 @@ el.replaceWith(d);
                 
                 start += idx
 
-            # Get the current contents of the extensions.py file
-            contents = open(self.EXTENSIONS_PATH).readlines()
-            
-            # Excise selected extension
-            contents = contents[:start] + contents[end:]    
-            
-            with open(self.EXTENSIONS_PATH, &#34;w&#34;) as file: file.writelines(contents)
-            importlib.reload(EXT)
+            with open(self.EXTENSIONS_PATH, &#34;w&#34;) as file: 
 
-            self.EXTENSION_LOG.remove(extension)
+                # Excise extension lines
+                file.writelines(contents[:start] + contents[end:])
+
+            extension in self.EXTENSION_LOG and self.EXTENSION_LOG.remove(extension)
             self.KEYWORDS[&#34;EXTENSIONS&#34;].pop(extension)
 
         else: raise NameError(f&#34;extension &#39;{extension}&#39; not found.&#34;)
@@ -247,8 +254,9 @@ el.replaceWith(d);
         else:
             with open(self.EXTENSIONS_PATH, &#34;w&#34;) as file:
                 file.writelines(self.ORIGINAL_EXTENSIONS)
+        
+        return &#34;&#34;
 
-    
 
     def del_random_keyword(self) -&gt; Text:
         &#34;&#34;&#34;Delete a random keyword from the language for the duration of the interpreter instance if the user makes a mistake.&#34;&#34;&#34;
@@ -290,11 +298,11 @@ el.replaceWith(d);
 </dd>
 <dt id="src.lang.interpreter.Interpreter.EXTENSION_INDEX"><code class="name">var <span class="ident">EXTENSION_INDEX</span></code></dt>
 <dd>
-<div class="desc"><p>Extension log.</p></div>
+<div class="desc"><p>Ordered list of all extensions, stored as tuples of (name, lines).</p></div>
 </dd>
 <dt id="src.lang.interpreter.Interpreter.EXTENSION_LOG"><code class="name">var <span class="ident">EXTENSION_LOG</span></code></dt>
 <dd>
-<div class="desc"><p>Tracks new extension names.</p></div>
+<div class="desc"><p>Tracks added extensions for exit logging if -p.</p></div>
 </dd>
 <dt id="src.lang.interpreter.Interpreter.GLOBALS"><code class="name">var <span class="ident">GLOBALS</span></code></dt>
 <dd>
@@ -371,8 +379,14 @@ el.replaceWith(d);
     if extension in self.KEYWORDS[&#34;EXTENSIONS&#34;]:
 
         # Bookend indices
-        start = end = 0
+        with open(self.EXTENSIONS_PATH, &#34;r&#34;) as file:
+            contents = file.read()
+            start = end = len(contents[:contents.find(&#34;#INCLUDE&#34;)].splitlines())
 
+            # Setup for line removal later
+            file.seek(0)
+            contents = file.readlines()
+            
         for i, (name, idx) in enumerate(self.EXTENSION_INDEX):
             end += idx
             
@@ -380,16 +394,12 @@ el.replaceWith(d);
             
             start += idx
 
-        # Get the current contents of the extensions.py file
-        contents = open(self.EXTENSIONS_PATH).readlines()
-        
-        # Excise selected extension
-        contents = contents[:start] + contents[end:]    
-        
-        with open(self.EXTENSIONS_PATH, &#34;w&#34;) as file: file.writelines(contents)
-        importlib.reload(EXT)
+        with open(self.EXTENSIONS_PATH, &#34;w&#34;) as file: 
 
-        self.EXTENSION_LOG.remove(extension)
+            # Excise extension lines
+            file.writelines(contents[:start] + contents[end:])
+
+        extension in self.EXTENSION_LOG and self.EXTENSION_LOG.remove(extension)
         self.KEYWORDS[&#34;EXTENSIONS&#34;].pop(extension)
 
     else: raise NameError(f&#34;extension &#39;{extension}&#39; not found.&#34;)</code></pre>
@@ -421,48 +431,64 @@ el.replaceWith(d);
     # Otherwise overwrite back to original
     else:
         with open(self.EXTENSIONS_PATH, &#34;w&#34;) as file:
-            file.writelines(self.ORIGINAL_EXTENSIONS)</code></pre>
+            file.writelines(self.ORIGINAL_EXTENSIONS)
+    
+    return &#34;&#34;</code></pre>
 </details>
 <div class="desc"><p>Safely save or remove any extensions added in an interactive interpreter session.</p></div>
 </dd>
 <dt id="src.lang.interpreter.Interpreter.extend"><code class="name flex">
-<span>def <span class="ident">extend</span></span>(<span>self, code: str, writable: bool = True) ‑> None</span>
+<span>def <span class="ident">extend</span></span>(<span>self, code: str, write: bool = True, padding: int = 3) ‑> None</span>
 </code></dt>
 <dd>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def extend(self, code: str, writable: bool = True) -&gt; None:
+<pre><code class="python">def extend(self, code: str, write: bool = True, padding: int = 3) -&gt; None:
     &#34;&#34;&#34;Add extensions in Python to OPAL.&#34;&#34;&#34;    
 
-    # Segment code into list of strings by individual extension
-    include, *exclude = code.removeprefix(&#34;@start&#34;).removesuffix(&#34;@end&#34;).strip().split(&#34;#EXCLUDE&#34;)
-    
-    ext_list = include.split(&#34;#INCLUDE &#34;)[1:] # remove leading empty string
+    extensions = [ 
+        extension.splitlines(keepends=True)
+        for extension in code\
+            .removeprefix(&#34;@start&#34;)\
+            .removesuffix(&#34;@end&#34;)\
+                .strip()
+                    .replace(&#34;#INCLUDE&#34;, &#34;#EXTENSION #INCLUDE&#34;)\
+                    .split(&#34;#EXTENSION &#34;)
+        if extension.startswith(&#34;#INCLUDE&#34;)
+        ]
 
-    for extension in ext_list:
-        name, alias = extension[:extension.find(&#34;\n&#34;)].split(&#34; as &#34;)
+    for extension in extensions:
+        _, name, _, alias = extension[0].split()
 
-        if writable:
-            
-            extension = f&#34;#INCLUDE {extension}\n\n\n&#34;    
-            
-            with open(self.EXTENSIONS_PATH) as extensions:
-                contents = extensions.read()
+        if write:
+            extension = [&#34;\n&#34;] * padding + extension
+            with open(self.EXTENSIONS_PATH, &#34;a&#34;) as file:
+                file.writelines(extension)
 
-            with open(self.EXTENSIONS_PATH, &#34;w&#34;) as file: 
-                file.writelines(extension + contents)
-            
-            importlib.reload(EXT)
-
-        index = 0 if writable else len(self.EXTENSION_LOG)
-
-        self.EXTENSION_LOG.insert(index, (alias))
-        self.EXTENSION_INDEX.insert(index, (alias, len(extension.splitlines())))
-        self.KEYWORDS[&#34;EXTENSIONS&#34;][alias] = EXT.EXTENSIONS.get(name)</code></pre>
+            self.EXTENSION_LOG.append(alias)
+        
+        self.EXTENSION_INDEX.append((alias, len(extension)))
+        self.KEYWORDS[&#34;EXTENSIONS&#34;][alias] = self.get_extension(name)</code></pre>
 </details>
 <div class="desc"><p>Add extensions in Python to OPAL.</p></div>
+</dd>
+<dt id="src.lang.interpreter.Interpreter.get_extension"><code class="name flex">
+<span>def <span class="ident">get_extension</span></span>(<span>self, extension: str) ‑> dict</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_extension(self, extension: str) -&gt; dict:
+    &#34;&#34;&#34;Reloads the extension library and returns currently available extensions.&#34;&#34;&#34;
+
+    importlib.reload(EXT)
+    return EXT.__dict__.get(extension)</code></pre>
+</details>
+<div class="desc"><p>Reloads the extension library and returns currently available extensions.</p></div>
 </dd>
 </dl>
 </dd>
@@ -499,6 +525,7 @@ el.replaceWith(d);
 <li><code><a title="src.lang.interpreter.Interpreter.delete_extension" href="#src.lang.interpreter.Interpreter.delete_extension">delete_extension</a></code></li>
 <li><code><a title="src.lang.interpreter.Interpreter.exit_extensions" href="#src.lang.interpreter.Interpreter.exit_extensions">exit_extensions</a></code></li>
 <li><code><a title="src.lang.interpreter.Interpreter.extend" href="#src.lang.interpreter.Interpreter.extend">extend</a></code></li>
+<li><code><a title="src.lang.interpreter.Interpreter.get_extension" href="#src.lang.interpreter.Interpreter.get_extension">get_extension</a></code></li>
 </ul>
 </li>
 </ul>
