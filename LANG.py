@@ -40,7 +40,7 @@ if __name__ == "__main__":
     for flag in INT.interpreter.FLAGS: flag in sys.argv and sys.argv.remove(flag)
     
     # If called with nothing else, print the version and exit
-    if not (sys.argv[1:] or INT.interpreter.iFlag): print(REPL.prompt(), end=''); print(f"OPAL Programming Language version {INT.interpreter.VERSION}"); exit()
+    if not (sys.argv[1:] or INT.interpreter.iFlag): print(REPL.prompt(), end=''); print(f"OPAL Programming Language v{INT.interpreter.VERSION}"); exit()
 
     try:
         # Read in files if necessary

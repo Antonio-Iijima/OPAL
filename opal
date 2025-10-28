@@ -20,16 +20,10 @@ case "$1" in
 
         case "$1" in
             "--build-docs")
-                rm -r "$path"/docs/*
-                
-                [ "$2" = "-q" ] && pdoc3 --html --force --output-dir "$path"/docs "$path"/src > /dev/null \
-                || pdoc3 --html --force --output-dir "$path"/docs "$path"/src
-
-                mv "${path}/docs/src/"* "$path"/docs
-                rm -r "$path"/docs/src
+                pdoc --math --footer-text "$(python3 "$path"/LANG.py)" --output-directory "$path"/docs "$path"/src
             ;;
             "--docs-dev")
-                pdoc3 --http : "$path"/src/ 
+                pdoc --math --footer-text "$(python3 "$path"/LANG.py)" --port 8080 "$path"/src
             ;;
             "--ide")
                 shift

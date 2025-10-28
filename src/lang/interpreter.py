@@ -80,7 +80,7 @@ class Interpreter:
         self.EXTENSION_LOG = []
         "Tracks added extensions for exit logging if -p."
 
-        self.CLOSURES = {}
+        self.CLOSURES: dict[str, ENV.Environment] = {}
         "Closure environments, accessed by ID."
 
         self.GLOBALS = {}

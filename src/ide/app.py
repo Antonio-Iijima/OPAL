@@ -12,7 +12,6 @@ Taking advantage of this allows us to unify all message handling in one place - 
 but the `IDEFrame`, the main container for the rest of the app. Keybinds, on-focus and file-select actions,
 and even the IDE's REPL(`process_input()`) are handled via messages to the `IDEFrame`.
 
-
 """
 
 
