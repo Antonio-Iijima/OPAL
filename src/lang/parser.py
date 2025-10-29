@@ -87,8 +87,7 @@ def toPython(expr: str) -> list:
             for idx, char in enumerate(expr):
                 if   char == "(": balance += 1
                 elif char == ")": balance -= 1
-                if balance == 0: i = idx; break      
-            return [convert(expr[1:i]), *convert(expr[i+1:])]
+                if balance == 0: return [convert(expr[1:idx]), *convert(expr[idx+1:])]
         return [expr[0], *convert(expr[1:])]
     
     return convert(expr.replace("(", " ( ").replace(")", " ) ").replace("'", " ' ").split()).pop()
