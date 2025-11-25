@@ -1,0 +1,2 @@
+class PassByValue:
+    pass

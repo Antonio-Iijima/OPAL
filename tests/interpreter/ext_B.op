@@ -1,7 +1,0 @@
-@start
-#INCLUDE loop as loop
-def loop(for_, i, in_, range_, start, stop, step, contents):
-   from evaluate import evaluate
-   for i in range(start, stop, step):
-      evaluate(contents)
-@end

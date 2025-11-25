@@ -1,4 +1,4 @@
-<p align=center><img src="https://github.com/Antonio-Iijima/OPAL/blob/main/logo.png?raw=true" width=75%></p>
+<p align=center><img src="logo.png" width=75%></p>
 
 ---
 

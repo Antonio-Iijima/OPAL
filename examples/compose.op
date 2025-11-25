@@ -1,2 +1,0 @@
-(def compose (a b) (lambda (x) (a (b x))))
-(def multiply (a b) (* a b))

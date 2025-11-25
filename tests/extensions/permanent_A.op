@@ -1,4 +1,0 @@
-@start
-#INCLUDE test as permanent
-def test(): print("This is a test extension")
-@end

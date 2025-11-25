@@ -1,9 +1,0 @@
-(def f (x) (+ x 1))
-(f 1)
-
-(template example (a b)
-    (init (set c 3))
-    (func sum () (+ a (+ b c))))
-
-(set e (new example (1 2)))
-(e sum)
