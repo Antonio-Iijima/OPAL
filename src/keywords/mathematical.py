@@ -12,17 +12,3 @@ def add(x, y)      : return x + y
 def subtract(x, y) : return x - y
 def mod(x, y)      : return x % y
 def increment(x)   : return x + 1
-
-# keywords = {
-# "len"     : len,        "sort"  : sorted,
-# #    "show"    : show,       "eq"    : eq,
-# "+"       : add,        "-"     : subtract,
-# "*"       : multiply,   "/"     : f_divide,
-# "**"      : exponent,   "//"    : i_divide,
-# ">"       : greater,    "<"     : less,    
-# ">="      : geq,        "<="    : leq,
-# "!="      : uneq,       "%"     : mod,
-# "and"     : AND,        "or"    : OR,
-# "nor"     : NOR,        "xor"   : XOR,
-# "nand"    : NAND,       "not"   : NOT,
-# }

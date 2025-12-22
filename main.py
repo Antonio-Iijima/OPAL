@@ -1,8 +1,18 @@
-from src.core.opal import build
+from rich import traceback
+traceback.install(show_locals=True)
+
+from src.core.build import build
+
+build()
+from src.core.opal import opal
 
 
-#OPAL = build(0, 0, 0, 0, 0)
-OPAL = build(*[0]*5)
-OPAL.show()
+
+opal.info()
 print()
-print(type(OPAL))
+
+# expr = "(+ 1 2)"
+expr = "(* 4 3)"
+
+print(opal.PROMPT, expr)
+print(opal.parser_out(opal.evaluate(opal.parser_in(expr))))

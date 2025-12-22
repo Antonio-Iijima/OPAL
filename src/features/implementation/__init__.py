@@ -1,2 +1,2 @@
-from src.features.implementation.compiled import Compiler
-from src.features.implementation.interpreted import Interpreter
+from src.features.implementation.compiler import Compiler
+from src.features.implementation.interpreter import Interpreter

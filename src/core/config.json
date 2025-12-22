@@ -1,0 +1,18 @@
+{
+    "language" : {
+        "binding"           : 0,
+        "evaluation"        : 0,
+        "implementation"    : 0,
+        "parameterPassing"  : 0,
+        "parsing"           : 0,
+        "scoping"           : 0,
+        "typing"            : 0
+    },
+    "options" : {
+        "version"   : 0.1,
+        "prompt"    : "(Ω) ",
+        "comment"   : "--",
+        "multiline comment open" : "*/",
+        "multiline comment close" : "/*"
+    }
+}
