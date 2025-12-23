@@ -17,4 +17,4 @@ def call(self, event: str, *args, **kwargs) -> any:
 
 
 def __repr__(self) -> str:
-    return f"OPAL version {self.VERSION}"
+    return f"OPAL v{self.VERSION}"

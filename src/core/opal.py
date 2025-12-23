@@ -14,8 +14,8 @@ from src.features import (
             
 from rich import print
 
-            
-                            
+
+
 class OPAL(
     binding.NormalOrder,
     evaluation.Evaluate,
@@ -26,11 +26,20 @@ class OPAL(
     typing.Dynamic
     ):
 
+    # flags
+    iFlag = True
+    dFlag = True
+
+    # details
+    NAME = 'OPAL'
     VERSION = '0.1'
+
+    # options
     PROMPT = '(Ω) '
-    COMMENT = '--'
+    SINGLE_COMMENT = '--'
     MULTILINE_COMMENT_OPEN = '*/'
     MULTILINE_COMMENT_CLOSE = '/*'
+    DEFAULT_COLOR = 'green'
 
     PATH = '/home/ai/github/OPAL/src'
 
@@ -59,8 +68,7 @@ class OPAL(
     
     
     def __repr__(self) -> str:
-        return f"OPAL version {self.VERSION}"
-
+        return f"OPAL v{self.VERSION}"
 
 
 

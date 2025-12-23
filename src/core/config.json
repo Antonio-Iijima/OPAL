@@ -8,11 +8,22 @@
         "scoping"           : 0,
         "typing"            : 0
     },
+
+    "flags" : [
+        "-i",
+        "-d"
+    ],
+
+    "details" : {
+        "name"      : "OPAL",
+        "version"   : 0.1
+    },
+
     "options" : {
-        "version"   : 0.1,
-        "prompt"    : "(Ω) ",
-        "comment"   : "--",
-        "multiline comment open" : "*/",
-        "multiline comment close" : "/*"
+        "prompt"                    : "(Ω) ",
+        "single comment"            : "--",
+        "multiline comment open"    : "*/",
+        "multiline comment close"   : "/*",
+        "default color"             : "green"
     }
 }
