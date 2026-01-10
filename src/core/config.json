@@ -1,12 +1,12 @@
 {
-    "language" : {
+    "features" : {
+        "typing"            : 0,
         "binding"           : 0,
-        "evaluation"        : 0,
-        "implementation"    : 0,
-        "parameterPassing"  : 0,
         "parsing"           : 0,
         "scoping"           : 0,
-        "typing"            : 0
+        "evaluation"        : 0,
+        "implementation"    : 0,
+        "parameterPassing"  : 0
     },
 
     "flags" : [
@@ -16,7 +16,7 @@
 
     "details" : {
         "name"      : "OPAL",
-        "version"   : 0.1
+        "version"   : "0.0.1"
     },
 
     "options" : {

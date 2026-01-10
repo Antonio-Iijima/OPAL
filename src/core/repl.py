@@ -153,7 +153,7 @@ class REPL:
         msg = ""
 
         if opal.iFlag: 
-            msg += f"{opal.NAME} v{opal.VERSION}, [{opal.DEFAULT_COLOR}]interactive[/]"
+            msg += f"{opal}, [{opal.DEFAULT_COLOR}]interactive[/]"
 
             if opal.dFlag: msg += f" with [cyan]debugging[/cyan]"
         
@@ -193,9 +193,12 @@ https://github.com/Antonio-Iijima/ALVIN
         return self.welcome()
 
 
-    def quit(self) -> None:
+    def quit(self, show: bool = False) -> None:
         """Exit the interactive interpreter."""
+        
+        not show and quit()
 
+        
         msg = "Arrivederci!"
 
         print(
@@ -205,7 +208,8 @@ https://github.com/Antonio-Iijima/ALVIN
                     msg,
                     box=box.DOUBLE,
                     border_style=opal.DEFAULT_COLOR
-                )
+                ),
+                ""
             )
         ) or quit()
 

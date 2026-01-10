@@ -22,21 +22,22 @@ def build() -> None:
         config = load(data)
     
     with open(f"{PATH}/core/methods.py") as methods: 
-        methods = "    ".join(methods.readlines())
+        methods = methods.readlines()
 
 
     features = {
+        "typing"            : (typing.Dynamic, typing.Static),
         "binding"           : (binding.NormalOrder, binding.ApplicativeOrder),
-        "evaluation"        : (evaluation.Evaluate,),
-        "implementation"    : (implementation.Interpreter, implementation.Compiler),
-        "parameterPassing"  : (parameterPassing.PassByValue, parameterPassing.PassByReference),
         "parsing"           : (parsing.Parser,),
         "scoping"           : (scoping.Dynamic, scoping.Static),
-        "typing"            : (typing.Dynamic, typing.Static)
+        "evaluation"        : (evaluation.Evaluate,),
+        "implementation"    : (implementation.Interpreter, implementation.Compiler),
+        "parameterPassing"  : (parameterPassing.PassByValue, parameterPassing.PassByReference)
         }
 
 
-    BASES: tuple[type] = tuple(f"{feature}.{choices[config["language"][feature]].__name__}" for feature, choices in features.items())
+    BASES: tuple[type] = tuple(f"{feature}.{choices[config["features"][feature]].__name__}" for feature, choices in features.items())
+    FEATURES: dict = config["features"]
 
 
     with open(f"{PATH}/core/opal.py", "w") as file: 
@@ -47,13 +48,7 @@ def build() -> None:
 from src.keywords import *
 
 from src.features import (
-    binding,
-    evaluation,
-    implementation,
-    parameterPassing,
-    parsing,
-    scoping,
-    typing
+    {embed(FEATURES.keys(), ",\n    ")}
 )
             
 from rich import print
@@ -73,6 +68,14 @@ class OPAL(
     # options
     {embed(f"{var.upper().replace(" ", "_")} = '{val}'" for var, val in config["options"].items())}
 
+    # features
+    FEATURES = {{
+        {embed([
+            f"'{var}' {" " * (len(max(config["features"].keys(), key=len)) - len(var))} : {(val, features[var][val].__name__)}" 
+            for var, val in config["features"].items()
+            ], ",\n        ")}
+        }}
+
     PATH = '{PATH}'
 
     REGULAR = REGULAR
@@ -81,7 +84,7 @@ class OPAL(
     SPECIAL = SPECIAL
 
     
-    {methods.strip()}
+    {embed(methods, "    ")}
 
 
 

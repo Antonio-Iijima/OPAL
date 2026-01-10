@@ -3,13 +3,13 @@
 from src.keywords import *
 
 from src.features import (
+    typing,
     binding,
-    evaluation,
-    implementation,
-    parameterPassing,
     parsing,
     scoping,
-    typing
+    evaluation,
+    implementation,
+    parameterPassing
 )
             
 from rich import print
@@ -17,22 +17,22 @@ from rich import print
 
 
 class OPAL(
+    typing.Dynamic,
     binding.NormalOrder,
-    evaluation.Evaluate,
-    implementation.Interpreter,
-    parameterPassing.PassByValue,
     parsing.Parser,
     scoping.Dynamic,
-    typing.Dynamic
+    evaluation.Evaluate,
+    implementation.Interpreter,
+    parameterPassing.PassByValue
     ):
 
     # flags
     iFlag = True
-    dFlag = True
+    dFlag = False
 
     # details
     NAME = 'OPAL'
-    VERSION = '0.1'
+    VERSION = '0.0.1'
 
     # options
     PROMPT = '(Ω) '
@@ -40,6 +40,17 @@ class OPAL(
     MULTILINE_COMMENT_OPEN = '*/'
     MULTILINE_COMMENT_CLOSE = '/*'
     DEFAULT_COLOR = 'green'
+
+    # features
+    FEATURES = {
+        'typing'            : (0, 'Dynamic'),
+        'binding'           : (0, 'NormalOrder'),
+        'parsing'           : (0, 'Parser'),
+        'scoping'           : (0, 'Dynamic'),
+        'evaluation'        : (0, 'Evaluate'),
+        'implementation'    : (0, 'Interpreter'),
+        'parameterPassing'  : (0, 'PassByValue')
+        }
 
     PATH = '/home/ai/github/OPAL/src'
 
@@ -50,12 +61,11 @@ class OPAL(
 
     
     def info(self) -> None:
-        features = sorted([(parent.__module__.split(".")[-2], parent.__name__) for parent in self.__class__.__bases__], key=lambda x: len(x[0]))
-        offset = int(max(max(map(len, entry)) for entry in features) * 1.25)
+        offset = int(len(max(self.FEATURES.keys(), key=len)) * 1.25)
     
         print(f"OPAL is a Parameterized Adaptive Language")
-        for (module, selection) in features:
-            print(f"{module[0].upper()}{module[1:]} {"."*(offset-len(module))} {selection}")
+        for feature, (idx, selection) in self.FEATURES.items():
+            print(f"{feature[0].upper()}{feature[1:]} {"."*(offset-len(feature))} | {idx} | {selection}")
         print(f"Version {self.VERSION}")
     
     
@@ -68,7 +78,7 @@ class OPAL(
     
     
     def __repr__(self) -> str:
-        return f"OPAL v{self.VERSION}"
+        return f"OPAL {self.VERSION}"
 
 
 
